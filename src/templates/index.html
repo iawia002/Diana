@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="author" content="{{ data['user']['username'] }}">
+    <meta name="description" content="{{ data['user']['introduction'] }}">
+    <title>L</title>
+    {% include 'scrollreveal.html' %}
+</head>
+<body>
+    <div class="top">
+        <div class="bg" style="background-image: url('{{ data['bg']['url'] }}');"></div>
+        <div class="avatar" style="background-image: url('{{ data['user']['avatar'] }}');"></div>
+        <h1>{{ data['user']['username'] }}</h1>
+        <p>{{ data['user']['introduction'] }}</p>
+        <br>
+        <!-- <div class="nav">
+            <li><i class="fa fa-paper-plane" aria-hidden="true"></i><a href="/">首页</a></li>
+            <li><i class="fa fa-rocket" aria-hidden="true"></i><a href="/tags">所有标签</a></li>
+        </div> -->
+        <div class="last-article">
+            <p><i class="fa fa-terminal" aria-hidden="true"></i> <a href="/p/{{ data['last_article']['article_id'] }}">{{ data['last_article']['title'] }}</a></p>
+        </div>
+        <div class="connect">
+            <a href="https://github.com/iawia002" target="_blank" data-balloon="GitHub @iawia002" data-balloon-pos="up">
+                <i class="fa fa-github" aria-hidden="true"></i>
+            </a>
+            <a href="mailto:%7a%32%64@%6a%69%66%61%6e%67%63%68%65%6e%67.%63%6f%6d" data-balloon="z2d@jifangcheng.com" data-balloon-pos="up">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <p class="bg-intro">{{ data['bg']['name'] }}</p>
+    </div>
+
+    <div class="content">
+        {% include 'article_list.html' %}
+    </div>
+    <input type="hidden" value="{{ data['next_page'] }}" id="next_page">
+    <input type="hidden" value="index" id="page">
+    <input type="hidden" value="" id="tag">
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-81813308-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</body>
+</html>

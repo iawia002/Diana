@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{{ data['status']['code'] }}</title>
+    <style>
+        h1 {
+            font-size: 5rem !important;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        a {
+            color: #fff;
+        }
+        a:hover {
+            color: #fff;
+        }
+    </style>
+    {% include 'scrollreveal.html' %}
+</head>
+<body>
+    <div class="top" style="background-image: url('{{ data['bg']['url'] }}');">
+        <h1>{{ data['status']['code'] }}</h1>
+        <div class="connect">
+            <a href="/" data-balloon="返回首页" data-balloon-pos="up">
+                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            </a>
+            <a href="https://github.com/iawia002" target="_blank" data-balloon="GitHub @iawia002" data-balloon-pos="up">
+                <i class="fa fa-github" aria-hidden="true"></i>
+            </a>
+            <a href="mailto:%7a%32%64@%6a%69%66%61%6e%67%63%68%65%6e%67.%63%6f%6d" data-balloon="z2d@jifangcheng.com" data-balloon-pos="up">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <p class="bg-intro">{{ data['bg']['name'] }}</p>
+    </div>
+</body>
+</html>

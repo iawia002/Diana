@@ -1,0 +1,312 @@
+// base
+@import "normalize.css";
+@import "variable";
+
+body {
+  background: $white;
+  font: {
+    family: $font;
+    weight: normal;
+  }
+  letter-spacing: 0.5px;
+  color: $black;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  font: {
+    size: 16px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: $green;
+  color: $white;
+}
+
+a,
+button {
+  transition: background 0.4s, color 0.5s;
+  color: $green;
+  text-decoration: none;
+
+  &:hover {
+    color: $black;
+  }
+}
+
+// div {
+//   transition-property: box-shadow;
+//   transition-duration: 0.5s;
+//   // &:hover {
+//   //
+//   // }
+// }
+
+p {
+  color: $black;
+  margin: 0;
+
+  &.img {
+    padding: 0 0 10px !important;
+    text-align: center;
+  }
+}
+
+h1 {
+  margin: 0;
+}
+
+li,
+ul {
+  list-style-type: none;
+}
+
+label {
+  font-weight: normal;
+}
+
+hr {
+  clear: both;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid $eee;
+  height: 0;
+}
+
+button {
+  border: 0;
+  background: none;
+}
+
+input {
+  outline: 0;
+}
+
+@media (max-width: 767px) {
+  .hidden-xs {
+    display: none;
+  }
+
+  .visible-xs {
+    display: block !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .hidden-sm {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .hidden-md {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hidden-lg {
+    display: none;
+  }
+}
+
+@mixin avatar($top: 55px, $bottom: 10px) {
+  margin: $top auto $bottom;
+  padding: 0;
+  width: 120px;
+  height: 120px;
+  box-shadow: 0 2.5px 5px 0 $black;
+  border-radius: 60px;
+  text-indent: -9999px;
+  background: url("../img/Katarina.png");
+  background-size: 100%;
+}
+
+@mixin article {
+  background: $white;
+  max-width: 640px;
+  margin: 40px auto;
+  box-shadow: 0 0 20px $light-black;
+  overflow: hidden;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul {
+    padding: 0 20px;
+    line-height: normal;
+  }
+
+  p,
+  ul,
+  table {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1rem;
+    // color: #333;
+  }
+
+  video {
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    color: $color-555;
+  }
+
+  ul {
+    padding-left: 3rem;
+
+    ul {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 2rem;
+    }
+  }
+
+  li {
+    padding-bottom: 5px;
+    list-style-type: disc;
+  }
+
+  h1 {
+    text-align: center;
+    font: {
+      size: 1.3rem;
+      weight: normal;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+  }
+
+  blockquote {
+    border-left: 3px solid $eee;
+    margin: 20px;
+
+    p {
+      margin: 0;
+      padding: {
+        top: 10px;
+        bottom: 10px;
+      }
+
+      &.img {
+        padding: 10px 20px !important;
+        text-align: left;
+      }
+    }
+  }
+
+  pre code {
+    padding: 10px 20px;
+  }
+
+  li code,
+  p code {
+    padding: 0.2rem;
+    margin: 0;
+    background-color: $eee;
+  }
+
+  hr {
+    margin: {
+      left: 20px;
+      right: 20px;
+    }
+  }
+
+  table {
+    width: 100%;
+    overflow: auto;
+    display: table;
+    border-spacing: 0;
+    border-collapse: collapse;
+
+    tr {
+      border-top: 1px solid $ccc;
+      background-color: $fff;
+
+      &:nth-child(2n) {
+        background-color: $f8;
+      }
+    }
+
+    th,
+    td {
+      border: 1px solid $ddd;
+      padding: 6px 13px;
+      line-height: normal;
+    }
+  }
+}
+
+.title {
+  text-align: center;
+}
+
+.time {
+  text-align: right;
+  font-size: 1rem;
+  padding: 0 20px 20px;
+}
+
+.tags {
+  overflow: hidden;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+
+  a {
+    padding: 12px;
+    margin: 5px;
+    background: $green;
+    display: block;
+    float: left;
+    color: $white;
+    line-height: normal;
+
+    &:hover {
+      background: $dark-green;
+      color: $white;
+    }
+  }
+
+  span {
+    background: $white;
+    color: $black;
+    padding: 5px;
+    // font-size: 13px;
+    margin: 5px 0 5px 8px;
+    border-radius: 9px;
+    line-height: normal;
+  }
+}
+
+.sr {
+  visibility: hidden;
+}

@@ -1,0 +1,210 @@
+// 首页
+@import "base";
+@import "animate";
+
+// @media (max-width: 1199){ //<=1199的设备 }
+// @media (max-width: 991px){ //<=991的设备 }
+// @media (max-width: 767px){ //<=768的设备 }
+
+.top {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: {
+    color: $light-gray;
+  }
+  font-size: 30px;
+  color: $white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 0;
+
+  h1 {
+    font: {
+      size: 2rem;
+      weight: normal;
+    }
+    margin-top: 5px;
+    text-shadow: 0 0 20px $black;
+    color: $white;
+  }
+
+  p {
+    font: {
+      size: 1.5rem;
+      weight: normal;
+    }
+    margin-top: 10px;
+    text-shadow: 0 0 20px $black;
+    border-left: 3px solid $white;
+    padding: 3px 20px;
+    display: inline-block;
+    color: $white;
+  }
+
+  h1,
+  p {
+    // @media (max-width: 991px) {
+    //     font-size: 3.5rem;
+    //     padding-top: 20px;
+    // }
+    // @media (max-width: 767px) {
+    //     font-size: 3.5rem;
+    //     padding-top: 20px;
+    // }
+  }
+
+  .bg-intro {
+    border: 0;
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+    color: $eee;
+  }
+
+  .bg {
+    // height: 100vh;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: {
+      image: url("../img/Ashe_8.jpg");
+      repeat: no-repeat;
+      size: cover;
+      position: center;
+      // color: $light-gray;
+    }
+    opacity: 0;
+    animation: {
+      name: overlay;
+      duration: .5s;
+      delay: .1s;
+      fill-mode: forwards;
+    }
+    position: absolute;
+  }
+}
+
+.nav {
+  margin-top: 45px;
+  font-size: 1.2rem;
+  display: inline-block;
+  text-align: center;
+
+  li {
+    float: left;
+    padding: 10px;
+  }
+
+  p {
+    border: 0;
+  }
+
+  a {
+    color: $white;
+    padding: 8px 2px;
+
+    &:hover {
+      border-bottom: 3px solid $white;
+    }
+  }
+}
+
+.last-article {
+  margin-top: 50px;
+
+  p {
+    border: 0;
+    font-size: 1.3rem;
+    // @media (max-width: 991px) {
+    //     font-size: 3rem;
+    //     padding-top: 20px;
+    // }
+    // @media (max-width: 767px) {
+    //     font-size: 3rem;
+    //     padding-top: 20px;
+    // }
+  }
+
+  a {
+    color: $white;
+
+    &:hover {
+      text-decoration: underline;
+      // text-decoration-skip: ink;
+    }
+  }
+}
+
+.avatar {
+  @include avatar;
+  // @media (max-width: 991px) {
+  //     width: 240px;
+  //     height: 240px;
+  //     border-radius: 120px;
+  // }
+  // @media (max-width: 767px) {
+  //     margin-top: 20px;
+  // }
+}
+
+.article {
+  @include article;
+  max-width: 700px;
+}
+
+.connect {
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+
+  a {
+    color: $white;
+  }
+  // @media (max-width: 991px) {
+  //     font-size: 3rem;
+  // }
+  // @media (max-width: 767px) {
+  //     font-size: 3rem;
+  // }
+}
+
+.content {
+  background: $light-gray;
+  padding: 20px 0;
+}
+
+@media (max-width: 767px) {
+  // html {
+  //   font-size: 14px;
+  // }
+
+  .avatar {
+    margin-top: 20px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .top {
+    h1 {
+      font-size: 1.4rem;
+    }
+
+    p,
+    .connect {
+      font-size: 1.3rem;
+    }
+
+    .bg-intro {
+      display: none;
+    }
+  }
+}

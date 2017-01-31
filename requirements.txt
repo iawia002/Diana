@@ -1,0 +1,14 @@
+tornado==4.4.1
+flake8==2.6.2
+redis==2.10.5
+SQLAlchemy==1.0.15
+Alembic==0.8.7
+psycopg2==2.6.2
+DBUtils==1.1
+pinyin==0.3.1
+bcrypt==3.1.0
+ipdb==0.10.1
+fabric==1.12.0
+mock==2.0.0
+coverage==4.2
+schematics==1.1.1

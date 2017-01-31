@@ -1,0 +1,28 @@
+# Diana
+version: '2'
+
+services:
+  # postgres
+  postgres:
+    image: daocloud.io/library/postgres:9.5
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=diana
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    restart: always
+
+  # web
+  web:
+    build: .
+    command: python app.py
+    volumes:
+      - .:/code
+      - /etc/localtime:/etc/localtime
+    environment:
+      - PYTHONPATH=/code
+    ports:
+      - '8004:8004'
+    links:
+      - postgres:postgres
+    restart: always
