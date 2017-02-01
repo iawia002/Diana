@@ -24,7 +24,8 @@
     {% include 'scrollreveal.html' %}
 </head>
 <body>
-    <div class="top" style="background-image: url('{{ data['bg']['url'] }}');">
+    <div class="top">
+        <div class="bg" style="background-image: url('{{ data['bg']['url'] }}');"></div>
         <h1>{{ data['status']['code'] }}</h1>
         <div class="connect">
             <a href="/" data-balloon="返回首页" data-balloon-pos="up">
