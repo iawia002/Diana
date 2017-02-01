@@ -93,8 +93,7 @@ npm-debug.log
 /data/*
 !/data/.gitkeep
 /backup
-/static/dist/*
-!/static/dist/.gitkeep
+/static/dist
 /static/ssl/*
 !/static/ssl/.gitkeep
 local_*.py
