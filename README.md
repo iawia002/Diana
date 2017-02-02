@@ -35,5 +35,4 @@ Edit | Tags | Article
 * `fab init` Initialize a user(admin/admin) and an article
 * `fab runserver`
 
-
-* have fun [http://0.0.0.0:8004](http://0.0.0.0:8004)
+have fun [http://0.0.0.0:8004](http://0.0.0.0:8004)
