@@ -5,6 +5,10 @@ Edit | Tags | Article
 --- | --- | ---
 ![](http://img.l.jifangcheng.com/1ef1b1e039260bcef2a5daf94f9507f393c27046.png) | ![](http://img.l.jifangcheng.com/bca54377ba24092cf7f8404bca6aff9b7951381b.png) | ![](http://img.l.jifangcheng.com/3138596bb343f210d7aa238165817ece3efd7a83.png)
 
+## Key feature
+* Writing with __Markdown__
+* Use __label__ to categorize
+
 ## Architecture
 ### frontend
 * __npm__
