@@ -2,13 +2,13 @@
 # coding=utf-8
 
 
+import config
 import utils.db
 import utils.tags
 import utils.auth
 import utils.common
 import utils.json_utils
 from db.sa import Session
-from config import config
 from apps.model import (
     User,
     Tag as TagModel,

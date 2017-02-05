@@ -4,7 +4,7 @@ from sqlalchemy import engine_from_config, pool
 from logging.config import fileConfig
 
 from apps.model import Base
-from config import config as diana_config
+import config as diana_config
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

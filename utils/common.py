@@ -3,7 +3,7 @@
 
 import random
 
-from config import config
+import config
 
 
 def raise_error(request, status_code):

@@ -7,7 +7,7 @@ import psycopg2.extras
 
 from DBUtils.PooledDB import PooledDB
 
-from config import config
+import config
 
 
 class psql(object):

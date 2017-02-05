@@ -5,8 +5,8 @@ from __future__ import absolute_import
 
 from sqlalchemy.sql import ClauseElement
 
+import config
 from db.sa import Session
-from config import config
 from apps.model import (
     Tag,
     User,

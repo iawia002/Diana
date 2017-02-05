@@ -2,7 +2,8 @@
 # coding=utf-8
 
 import redis
-from config import config
+
+import config
 
 
 def get_redis():

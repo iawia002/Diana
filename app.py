@@ -9,11 +9,11 @@ from tornado.options import (
     options,
 )
 
+import config
 import apps.auth
 import apps.blog
 import apps.tags
 import apps.common
-from config import config
 
 
 # 在options中设置几个变量

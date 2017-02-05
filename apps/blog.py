@@ -10,8 +10,7 @@ import utils.auth
 import utils.common
 import utils.json_utils
 
-from config import config
-
+import config
 from db.sa import Session
 
 from apps.model import (
