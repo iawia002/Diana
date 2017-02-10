@@ -14,7 +14,7 @@ def runserver(env='docker'):
         )
     else:
         local(
-            'docker-compose run --rm -p 8004:8004 web'
+            'DEBUG=True docker-compose run --rm -p 8004:8004 web'
         )
 
 

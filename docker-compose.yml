@@ -15,7 +15,7 @@ services:
   # web
   web:
     build: .
-    command: python app.py
+    command: python app.py -debug=${DEBUG}
     volumes:
       - .:/code
       - /etc/localtime:/etc/localtime
