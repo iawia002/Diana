@@ -6,6 +6,6 @@ editor = new Editor
 
 editor.render()
 
-$('#markdown_content').keyup(editor.render)
+$('#markdown_content').bind('input propertychange', editor.render)
 
 key 's', editor.save
