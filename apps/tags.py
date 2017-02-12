@@ -43,7 +43,8 @@ class Tags(BaseHandler):
         tags = session.query(User).filter(
             User.user_id == config.USER_ID
         ).first().tag
-        tags = [tag.to_json() for tag in tags]
+        # 所有标签要排除空标签
+        tags = [tag.to_json() for tag in tags if len(tag.article.all()) > 0]
         session.commit()
         session.close()
         tags_keys = [

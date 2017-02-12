@@ -146,6 +146,7 @@ class Edit(BaseHandler):
                 compiled_content=compiled_content,
             )
 
+        # 文章标签更新方法：先把以前的全部删除再全部新建
         article.tag[:] = []
         for tag in tags:
             tag = utils.db.get_or_create(session, Tag, content=tag)
