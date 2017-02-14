@@ -72,11 +72,13 @@ class ImageGallery
       ImageGallery.changeImage(images, nextIndex)
 
     key 'right', right
-    mc.on 'swiperight', right
+    # 滑动操作的左右是反的，往左滑是下一张
+    mc.on 'swiperight', left
+    # 点击显示下一张
     mc.on 'tap', right
 
     key 'left', left
-    mc.on 'swipeleft', left
+    mc.on 'swipeleft', right
 
     $('.model .bg').click =>
       @close()
