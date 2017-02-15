@@ -17,10 +17,17 @@
   right: 0;
   z-index: 50;
   // overflow: hidden;
-  color: $black;
+  color: $white;
   font-size: 1rem;
-  background: $white;
-  box-shadow: 0 0 10px $light-black;
+  background: {
+    image: url("../img/bg.jpg");
+    repeat: no-repeat;
+    size: cover;
+    position: center;
+    color: $white;
+  }
+  // box-shadow: 0 0 10px $light-black;
+  box-shadow: 0 0 15px $black;
 
   ul {
     padding: 0;
@@ -50,10 +57,11 @@
     // display: block;
     // width: 70%;
     text-align: center;
+    color: inherit;
   }
 
   a {
-    color: $black;
+    color: inherit;
 
     &:hover {
       text-decoration: underline;
