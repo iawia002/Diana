@@ -18,6 +18,13 @@ def runserver(env='docker'):
         )
 
 
+def makemigrations(msg=''):
+    local(
+        'docker-compose run --rm web alembic revision '
+        '--autogenerate -m "{}"'.format(msg)
+    )
+
+
 def migrate(env='docker'):
     if env == 'local':
         local(
