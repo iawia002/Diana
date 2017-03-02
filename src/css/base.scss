@@ -237,7 +237,9 @@ input {
   p code {
     padding: 0.2rem;
     margin: 0;
-    background-color: $eee;
+    background-color: $code;
+    color: $black2;
+    border-radius: 3px;
   }
 
   hr {
