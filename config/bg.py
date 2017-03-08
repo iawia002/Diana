@@ -35,6 +35,10 @@ INDEX_BG = [
         'name': '偶像歌手 阿狸'
     },
     {
+        'url': 'http://img.l.jifangcheng.com/d3860d14623dcdb45f51220b19fc8408d3461eab.jpg',  # noqa
+        'name': '勇者 阿狸'
+    },
+    {
         'url': 'http://7xqk8o.com1.z0.glb.clouddn.com/Annie_6.jpg',
         'name': '安伯斯与提妮'
     },
