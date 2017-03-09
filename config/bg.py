@@ -27,6 +27,14 @@ INDEX_BG = [
         'name': '绯红 阿卡丽'
     },
     {
+        'url': 'http://img.l.jifangcheng.com/9bcb623cc9cffe003b15dde28bc008525676ec37.jpg',  # noqa
+        'name': '铁血女忍 阿卡丽'
+    },
+    {
+        'url': 'http://img.l.jifangcheng.com/5bf87013ffa18434669693b64db2f5faa34f6ba0.jpg',  # noqa
+        'name': '银色之牙 阿卡丽'
+    },
+    {
         'url': 'http://7xqk8o.com1.z0.glb.clouddn.com/Irelia_1.jpg',
         'name': '夜刃 艾瑞莉娅'
     },
