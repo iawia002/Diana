@@ -15,6 +15,7 @@ services:
   web:
     build: .
     command: python app.py -debug=${DEBUG}
+    # command: python app.py -debug=${DEBUG} -log_file_prefix=./log/diana.log
     volumes:
       - .:/code
       - /etc/localtime:/etc/localtime

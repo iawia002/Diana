@@ -171,6 +171,10 @@ INDEX_BG = [
         'url': 'http://img.l.jifangcheng.com/7bb5317d17a1e32622622fc3db006141fadbe868.jpg',  # noqa
         'name': '大元素使 拉克丝'
     },
+    {
+        'url': 'http://img.l.jifangcheng.com/efb736618590b5685fea5d31176b811d650f5b5c.jpg',  # noqa
+        'name': '腥红之月 伊莉丝'
+    },
 ]
 
 INDEX_SAYING = [

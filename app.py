@@ -19,7 +19,6 @@ import apps.common
 # 在options中设置几个变量
 define('port', default=8004, help='run on this port', type=int)
 define('debug', default=False, help='enable debug mode')
-# options.log_file_prefix = '/etc/logs/zed.tornado.log'
 
 
 class Application(tornado.web.Application):

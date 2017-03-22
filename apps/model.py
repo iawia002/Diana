@@ -73,7 +73,7 @@ class User(Base):
     article = relationship(
         'Article',
         back_populates='user',
-        order_by='desc(Article.update_time)',
+        order_by='desc(Article.create_time)',
         lazy='dynamic',
     )
 
@@ -176,7 +176,7 @@ class Tag(Base):
         'Article',
         secondary=tag_article,
         back_populates='tag',
-        order_by='desc(Article.update_time)',
+        order_by='desc(Article.create_time)',
         lazy='dynamic',
     )
     user = relationship(
