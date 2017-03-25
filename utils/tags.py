@@ -7,6 +7,9 @@ import pinyin
 
 
 def tag_url_encode(name):
+    '''
+    base64 不能对 unicode 进行操作，所以要先转换成 byte
+    '''
     return base64.urlsafe_b64encode(name.encode('utf-8'))
 
 
@@ -14,8 +17,6 @@ def tag_url_decode(name):
     try:
         name = base64.urlsafe_b64decode(str(name)).decode('utf-8')
     except Exception:
-        return None
-    if r'\x' in repr(name):
         return None
     return name
 

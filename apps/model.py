@@ -186,7 +186,7 @@ class Tag(Base):
     )
 
     def __repr__(self):
-        return "<Tag(content='%s')>" % (self.content)
+        return "<Tag(content='%s')>" % (self.content.encode('utf-8'))
 
     def to_json(self):
         return {
