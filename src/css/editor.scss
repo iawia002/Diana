@@ -51,3 +51,11 @@
   resize: none;
   line-height: normal;
 }
+
+.CodeMirror {
+  height: 100%;
+}
+
+.cm-s-solarized.CodeMirror {
+  box-shadow: none;
+}
