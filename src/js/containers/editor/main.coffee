@@ -3,7 +3,7 @@ key = require 'keymaster'
 Editor = require './editor.coffee'
 CodeMirror = require 'CodeMirror'
 require 'CodeMirror/lib/codemirror.css'
-require 'CodeMirror/mode/markdown/markdown.js'
+require 'CodeMirror/mode/gfm/gfm.js'
 require 'CodeMirror/theme/solarized.css'
 
 
@@ -14,7 +14,7 @@ key 's', editor.save
 
 editorTextarea = document.getElementById('markdown_content')
 codeEditor = CodeMirror.fromTextArea(editorTextarea, {
-  mode: 'markdown',
+  mode: 'gfm',
   theme: 'solarized',
   lineWrapping: true,
 })
