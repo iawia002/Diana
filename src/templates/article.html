@@ -31,7 +31,10 @@
                 <a href="/tag/{{ tag['url'] }}">{{ tag['content'] }}<span>{{ tag['number'] }}</span></a>
                 {% end %}
             </div>
-            <p class="time">{{ data['article']['update_time'] }}</p>
+            <p class="time">
+              <span><i class="fa fa-eye" aria-hidden="true"></i> {{ data['article']['views'] }}</span>
+              <span><i class="fa fa-calendar" aria-hidden="true"></i> {{ data['article']['update_time'] }}</span>
+            </p>
         </div>
         <div class="article" style="padding: 20px;">
             <div id="disqus_thread"></div>

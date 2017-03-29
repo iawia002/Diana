@@ -7,7 +7,10 @@
         <a href="/tag/{{ tag['url'] }}">{{ tag['content'] }}<span>{{ tag['number'] }}</span></a>
         {% end %}
     </div>
-    <p class="time">{{ article['update_time'] }}</p>
+    <p class="time">
+      <span><i class="fa fa-eye" aria-hidden="true"></i> {{ article['views'] }}</span>
+      <span><i class="fa fa-calendar" aria-hidden="true"></i> {{ article['update_time'] }}</span>
+    </p>
 </div>
 {% end %}
 

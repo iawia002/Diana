@@ -121,6 +121,10 @@ class Article(Base):
     compiled_content = sa.Column(
         sa.Text
     )
+    views = sa.Column(
+        sa.Integer,
+        default=0,
+    )
     user = relationship(
         'User',
         back_populates='article',
@@ -154,6 +158,7 @@ class Article(Base):
             'introduction': self.introduction,
             'compiled_content': self.compiled_content,
             'tags': tags,
+            'views': self.views if self.views else 0,
         }
 
 

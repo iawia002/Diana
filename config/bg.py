@@ -175,6 +175,14 @@ INDEX_BG = [
         'url': 'http://img.l.jifangcheng.com/efb736618590b5685fea5d31176b811d650f5b5c.jpg',  # noqa
         'name': '腥红之月 伊莉丝'
     },
+    {
+        'url': 'http://img.l.jifangcheng.com/1fb91f1bf6680a2f28adc4e640a0483d3a3431eb.jpg',  # noqa
+        'name': '死兆星 锤石'
+    },
+    {
+        'url': 'http://img.l.jifangcheng.com/92d63674b8b5acebba73df565623cf937c833f98.jpg',  # noqa
+        'name': '死兆星 韦鲁斯'
+    },
 ]
 
 INDEX_SAYING = [

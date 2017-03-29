@@ -283,6 +283,10 @@ input {
   text-align: right;
   font-size: 1rem;
   padding: 0 20px 20px;
+
+  span {
+    padding-left: 10px;
+  }
 }
 
 .tags {
