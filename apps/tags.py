@@ -20,7 +20,7 @@ class Tag(BaseHandler):
     def get(self, tag):
         session = Session()
         tag = utils.tags.tag_url_decode(tag)
-        t = session.query(TagModel).filter(TagModel.content == tag).first()
+        t = session.query(TagModel).filter_by(content=tag).first()
         if not t:
             return utils.common.raise_error(request=self, status_code=404)
         articles = utils.db.tag_articles(
@@ -40,8 +40,8 @@ class Tag(BaseHandler):
 class Tags(BaseHandler):
     def get(self):
         session = Session()
-        tags = session.query(User).filter(
-            User.user_id == config.USER_ID
+        tags = session.query(User).filter_by(
+            user_id=config.USER_ID
         ).first().tag
         # 所有标签要排除空标签
         tags = [tag.to_json() for tag in tags if len(tag.article.all()) > 0]

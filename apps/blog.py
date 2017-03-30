@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-import json
 import random
 import datetime
 
@@ -28,8 +27,8 @@ class Index(BaseHandler):
         data = {}
         data['bg'] = random.choice(config.INDEX_BG)
         session = Session()
-        data['last_article'] = session.query(User).filter(
-            User.user_id == config.USER_ID
+        data['last_article'] = session.query(User).filter_by(
+            user_id=config.USER_ID
         ).first().article[0]
         if data['last_article']:
             data['last_article'] = data['last_article'].to_json()
@@ -37,7 +36,6 @@ class Index(BaseHandler):
         session.close()
 
         articles = utils.db.article(page=1, user_id=config.USER_ID)
-        # articles = utils.tags.articles_add_tags(articles)
         user = utils.db.user(user_id=config.USER_ID)
         data['articles'] = articles
         data['user'] = user
@@ -75,9 +73,9 @@ class More(BaseHandler):
 class Article(BaseHandler):
     def get(self, article_id):
         session = Session()
-        article = session.query(ArticleModel).filter(
-            ArticleModel.article_id == article_id,
-            ArticleModel.user_id == config.USER_ID
+        article = session.query(ArticleModel).filter_by(
+            article_id=article_id,
+            user_id=config.USER_ID
         ).first()
         if not article:
             return utils.common.raise_error(request=self, status_code=404)
@@ -102,9 +100,9 @@ class Edit(BaseHandler):
     def get(self, article_id):
         data = {}
         session = Session()
-        article = session.query(ArticleModel).filter(
-            ArticleModel.article_id == article_id,
-            ArticleModel.user_id == self.user_id
+        article = session.query(ArticleModel).filter_by(
+            article_id=article_id,
+            user_id=self.user_id
         ).first()
         if article:
             article = article.to_json()
@@ -131,12 +129,12 @@ class Edit(BaseHandler):
         tags = self.get_arguments('tags[]')
 
         session = Session()
-        user = session.query(User).filter(
-            User.user_id == self.user_id
+        user = session.query(User).filter_by(
+            user_id=self.user_id
         ).first()
-        article = session.query(ArticleModel).filter(
-            ArticleModel.article_id == article_id,
-            ArticleModel.user_id == self.user_id
+        article = session.query(ArticleModel).filter_by(
+            article_id=article_id,
+            user_id=self.user_id
         ).first()
         if article:
             data.update({'update_time': datetime.datetime.now()})

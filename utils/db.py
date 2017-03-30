@@ -31,8 +31,8 @@ def get_or_create(session, model, defaults=None, **kwargs):
 
 def user(user_id):
     session = Session()
-    user = session.query(User).filter(
-        User.user_id == user_id
+    user = session.query(User).filter_by(
+        user_id=user_id
     ).first().to_json()
     session.commit()
     session.close()
@@ -49,8 +49,8 @@ def article(page, user_id):
     '''
     page = int(page)
     session = Session()
-    articles = session.query(User).filter(
-        User.user_id == user_id
+    articles = session.query(User).filter_by(
+        user_id=user_id
     ).first().article[
         (page-1)*config.ARTICLE_PAGE_NUMBER: page*config.ARTICLE_PAGE_NUMBER
     ]
@@ -63,11 +63,11 @@ def article(page, user_id):
 def tag_articles(tag, page, user_id):
     page = int(page)
     session = Session()
-    user = session.query(User).filter(
-        User.user_id == user_id
+    user = session.query(User).filter_by(
+        user_id=user_id
     ).first()
-    tag = session.query(Tag).filter(
-        Tag.content == tag
+    tag = session.query(Tag).filter_by(
+        content=tag
     ).first()
     if user not in tag.user:
         return None

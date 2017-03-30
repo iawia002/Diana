@@ -19,9 +19,7 @@ class Login(BaseHandler):
         session = Session()
         username = self.get_argument('username')
         password = self.get_argument('password')
-        user = session.query(User).filter(
-            User.username == username
-        ).first()
+        user = session.query(User).filter_by(username=username).first()
         if user and bcrypt.checkpw(
             password.encode('utf-8'), user.password.encode('utf-8')
         ):
