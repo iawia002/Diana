@@ -36,7 +36,7 @@ class Editor
 
   save: =>
     @render()
-    tags = JSON.stringify(@getTags())
+    tags = @getTags()
     $('#output ul').last().remove()
     _xsrf = utils.getCookie('_xsrf')
     $.post

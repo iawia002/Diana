@@ -3,6 +3,7 @@
 
 import json
 import random
+import datetime
 
 import utils.db
 import utils.tags
@@ -120,12 +121,14 @@ class Edit(BaseHandler):
     @utils.auth.login_require
     def post(self, article_id):
         article_id = int(article_id)
-        title = self.get_argument('title')
-        introduction = self.get_argument('introduction')
-        markdown_content = self.get_argument('markdown_content')
-        compiled_content = self.get_argument('compiled_content')
-        tags = self.get_argument('tags')
-        tags = json.loads(tags)
+        data = {
+            'title': self.get_argument('title'),
+            'introduction': self.get_argument('introduction'),
+            'markdown_content': self.get_argument('markdown_content'),
+            'compiled_content': self.get_argument('compiled_content'),
+            'user_id': self.user_id,
+        }
+        tags = self.get_arguments('tags[]')
 
         session = Session()
         user = session.query(User).filter(
@@ -136,18 +139,11 @@ class Edit(BaseHandler):
             ArticleModel.user_id == self.user_id
         ).first()
         if article:
-            article.title = title
-            article.introduction = introduction
-            article.markdown_content = markdown_content
-            article.compiled_content = compiled_content
+            data.update({'update_time': datetime.datetime.now()})
+            for k, v in data.iteritems():
+                setattr(article, k, v)
         else:
-            article = ArticleModel(
-                user_id=self.user_id,
-                title=title,
-                introduction=introduction,
-                markdown_content=markdown_content,
-                compiled_content=compiled_content,
-            )
+            article = ArticleModel(**data)
 
         # 文章标签更新方法：先把以前的全部删除再全部新建
         article.tag[:] = []

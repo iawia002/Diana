@@ -113,7 +113,6 @@ class Article(Base):
     update_time = sa.Column(
         sa.DateTime,
         default=datetime.datetime.now,
-        onupdate=datetime.datetime.now,
     )
     introduction = sa.Column(
         sa.String(1000)
