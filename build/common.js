@@ -1,29 +1,24 @@
-var path = require('path');
-var autoprefixer = require('autoprefixer');
-var postcssImport = require('postcss-import');
-var merge = require('webpack-merge');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var webpack = require('webpack');
-var development = require('./dev.js');
-var production = require('./prod.js');
+const path = require('path');
+const autoprefixer = require('autoprefixer');
+const postcssImport = require('postcss-import');
+const CleanPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
 
-var TARGET = process.env.npm_lifecycle_event;
-
-var PATHS = {
+const PATHS = {
   app: path.join(__dirname, '../src/js/containers/'),
   build: path.join(__dirname, '../static/dist/'),
   nodeModules: path.join(__dirname, '../node_modules/'),
 };
 
-var VENDOR = [
+const VENDOR = [
   'jquery',
   'highlight.js',
 ];
 
-var common = {
+module.exports = {
   entry: {
-    // app: [PATHS.app],
     vendor: VENDOR,
     editor: [PATHS.app + 'editor'],
     article: [PATHS.app + 'article'],
@@ -37,9 +32,21 @@ var common = {
   output: {
     filename: '[name].[chunkhash].js',
     path: PATHS.build,
+    publicPath: '/static/dist/'  // 在将 JS 文件插入到 HTML 中时会用到这个路径
   },
 
   plugins: [
+    new CleanPlugin(['dist'], {
+      root: path.join(__dirname, '../static/'),
+      verbose: true,
+      dry: false
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, '../src/templates/editor.html'),
       hash: true,
@@ -124,25 +131,56 @@ var common = {
   ],
 
   resolve: {
-    extensions: ['', '.js', '.jsx', '.coffee'],
-    modulesDirectories: ['node_modules', PATHS.app],
+    modules: ['node_modules'],
+    extensions: ['.js', '.jsx', '.json', '.css'],
   },
 
   module: {
-    preLoaders: [
-    ],
-    loaders: [
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015', 'stage-1'],
+            }
+          }
+        ]
+      },
       {
         test: /\.html$/,
-        loader: "raw-loader"
+        loader: 'raw-loader'
       },
       {
         test: /\.(css|sass|scss)$/,
-        loader: ExtractTextPlugin.extract("style-loader", ["css-loader", "postcss-loader", "sass-loader"])
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: function () {
+                  return [
+                    require('autoprefixer')
+                  ];
+                }
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                includePaths: [PATHS.nodeModules]
+              }
+            }
+          ]
+        })
       },
       {
         test: /\.(jpe?g|png|gif|bmp|ico)$/i,
-        loader: 'file?name=img/[name].[ext]',
+        loader: 'file-loader?name=img/[name].[ext]',
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -159,47 +197,7 @@ var common = {
       {
         test: /\.json(\?.*)?$/,
         loader: 'file-loader?name=/files/[name].[ext]'
-      },
-      {
-        test: /\.coffee$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: "coffee",
-        // loaders: ["coffee", "babel"],
-        // query: {
-        //   presets: ['es2015']
-        // }
       }
     ]
   },
-
-  postcss: function(webpack) {
-    return [
-      postcssImport({
-        addDependencyTo: webpack
-      }),
-      autoprefixer()
-    ]
-  },
-  devServer: {
-    contentBase: PATHS.app,
-    hot: true,
-    port: 9000,
-    noInfo: false,
-    // quiet: true,
-    historyApiFallback: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-    stats: {
-      colors: true,
-    },
-  },
 };
-
-if (TARGET === 'dev') {
-  module.exports = merge(development, common);
-}
-
-if (TARGET === 'build' || TARGET === 'd') {
-  module.exports = merge(production, common);
-}

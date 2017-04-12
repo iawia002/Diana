@@ -1,9 +1,14 @@
-require('./tag.coffee');
-require('../common/more.coffee');
+'use strict';
 
-require('../../../css/article.scss');
-require('font-awesome/css/font-awesome.css');
+import '../common/more.js';
 
-if (process.env.NODE_ENV !== 'production') {
-  require('../../../templates/tag.html')
-}
+import '../../../css/article.scss';
+import 'font-awesome/css/font-awesome.css';
+
+import $ from 'jquery';
+
+
+$(document).ready(() => {
+  sr.reveal('.article', {reset: true});
+  $('html').removeClass('sr');
+});
