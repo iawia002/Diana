@@ -5,4 +5,6 @@ const getCookie = (name) => {
   return r ? r[1] : undefined;
 }
 
-module.exports.getCookie = getCookie
+export default {
+  getCookie,
+}
