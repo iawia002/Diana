@@ -42,6 +42,12 @@ def alembic(command='current'):
     )
 
 
+def shell():
+    local(
+        'docker-compose run --rm web ipython'
+    )
+
+
 def init(env='docker'):
     if env == 'local':
         local(
