@@ -36,6 +36,12 @@ def migrate(env='docker'):
         )
 
 
+def alembic(command='current'):
+    local(
+        'docker-compose run --rm web alembic {}'.format(command)
+    )
+
+
 def init(env='docker'):
     if env == 'local':
         local(

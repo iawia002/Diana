@@ -13,6 +13,8 @@ import config
 import apps.auth
 import apps.blog
 import apps.tags
+import apps.user
+import apps.access_log
 import apps.common
 
 
@@ -33,17 +35,19 @@ class Application(tornado.web.Application):
             (r'/tag/(.*)', apps.tags.Tag),
             (r'/tags', apps.tags.Tags),
             (r'/more', apps.blog.More),
+            (r'/user', apps.user.User),
+            (r'/access_log', apps.access_log.AccessLog),
         ]
         template_path = os.path.join(
-            os.path.dirname(__file__), "static/dist/"
+            os.path.dirname(__file__), 'static/dist/'
         )
         settings = {
             'static_path': os.path.join(
-                os.path.dirname(__file__), "static"
+                os.path.dirname(__file__), 'static'
             ),
             'template_path': template_path,
             'cookie_secret': config.SECRET_KEY,
-            "default_handler_class": apps.common.NotFound,
+            'default_handler_class': apps.common.NotFound,
             'login_url': '/login',
             'xsrf_cookies': True,
             'debug': options.debug,
@@ -58,7 +62,7 @@ application = Application()
 
 
 def main():
-    application.listen(options.port)
+    application.listen(options.port, xheaders=True)
     tornado.ioloop.IOLoop.current().start()
 
 if __name__ == '__main__':

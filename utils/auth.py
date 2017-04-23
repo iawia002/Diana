@@ -20,6 +20,17 @@ def login_require(func):
     return wrapper
 
 
+def login_status(func):
+    def wrapper(*args, **kwargs):
+        self = args[0]
+        self.login = False
+        user_id = self.get_secure_cookie('diana')
+        if user_id:
+            self.login = True
+        return func(*args, **kwargs)
+    return wrapper
+
+
 # def next():
 #     if "?" not in url:
 #         if urlparse.urlsplit(url).scheme:

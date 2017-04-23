@@ -78,7 +78,7 @@ class User(Base):
     )
 
     def __repr__(self):
-        return "<User(name='%s')>" % self.username
+        return '<User(name={})>'.format(self.username)
 
     def to_json(self):
         return {
@@ -139,7 +139,7 @@ class Article(Base):
     )
 
     def __repr__(self):
-        return "<Article(title='%s')>" % self.title
+        return '<Article(title={})>'.format(self.title)
 
     def to_json(self):
         tags = [i.to_json() for i in self.tag]
@@ -190,7 +190,7 @@ class Tag(Base):
     )
 
     def __repr__(self):
-        return "<Tag(content='%s')>" % (self.content.encode('utf-8'))
+        return '<Tag(content={})>'.format(self.content.encode('utf-8'))
 
     def to_json(self):
         return {
@@ -200,3 +200,37 @@ class Tag(Base):
             'number': len(self.article.all()),
             'url': utils.tags.tag_url_encode(self.content),
         }
+
+
+class AccessLog(Base):
+    __tablename__ = 'access_log'
+
+    id = sa.Column(
+        sa.Integer,
+        primary_key=True,
+    )
+    remote_ip = sa.Column(
+        sa.String(15),
+    )
+    uri = sa.Column(
+        sa.String,
+    )
+    module = sa.Column(
+        sa.String(10),
+    )
+    user_agent = sa.Column(
+        sa.String,
+    )
+    method = sa.Column(
+        sa.String(7),
+    )
+    views = sa.Column(
+        sa.Integer,
+        default=0,
+    )
+    address = sa.Column(
+        sa.String(100),
+    )
+
+    def __repr__(self):
+        return '<AccessLog(remote_ip={})>'.format(self.remote_ip)

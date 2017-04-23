@@ -15,7 +15,12 @@
         <div class="bg" style="background-image: url('{{ data['bg']['url'] }}');"></div>
         <div class="avatar" style="background-image: url('{{ data['user']['avatar'] }}');"></div>
         <h1>{{ data['user']['username'] }}</h1>
-        <p>{{ data['user']['introduction'] }}</p>
+        <div class="introduction" id="introduction">
+          <p>{{ data['user']['introduction'] }}</p>
+          {% if data['login'] %}
+          <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+          {% end %}
+        </div>
         <br>
         <!-- <div class="nav">
             <li><i class="fa fa-paper-plane" aria-hidden="true"></i><a href="/">首页</a></li>
@@ -42,6 +47,7 @@
     <input type="hidden" value="{{ data['next_page'] }}" id="next_page">
     <input type="hidden" value="index" id="page">
     <input type="hidden" value="" id="tag">
+    {% module xsrf_form_html() %}
 
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

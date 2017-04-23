@@ -13,3 +13,11 @@ def raise_error(request, status_code):
     data['status']['code'] = status_code
     request.set_status(status_code)
     return request.render('error.html', data=data)
+
+
+def row2dict(row):
+    data = {}
+    for column in row.__table__.columns:
+        data[column.name] = getattr(row, column.name)
+
+    return data

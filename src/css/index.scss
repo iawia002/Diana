@@ -44,6 +44,14 @@
     color: $white;
   }
 
+  .introduction {
+    margin-top: 15px;
+
+    span {
+      font-size: 1rem;
+    }
+  }
+
   h1,
   p {
     // @media (max-width: 991px) {

@@ -23,6 +23,7 @@ from apps.base import BaseHandler
 
 
 class Index(BaseHandler):
+    @utils.auth.login_status
     def get(self):
         data = {}
         data['bg'] = random.choice(config.INDEX_BG)
@@ -40,6 +41,7 @@ class Index(BaseHandler):
         data['articles'] = articles
         data['user'] = user
         data['next_page'] = 2
+        data['login'] = self.login
         self.render('index.html', data=data)
 
 

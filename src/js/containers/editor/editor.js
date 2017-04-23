@@ -1,9 +1,10 @@
-'use strict';
+import 'notie/dist/notie.min.css';
 
 import $ from 'jquery';
+import notie from 'notie';
 import marked from 'marked';
 import hljs from 'highlight.js';
-import utils from '../../utils.js';
+import utils from '../../utils';
 
 
 hljs.configure({
@@ -12,7 +13,7 @@ hljs.configure({
 
 const renderer = new marked.Renderer();
 marked.setOptions({
-  renderer: renderer,
+  renderer,
   gfm: true,
   tables: true,
   breaks: true,
@@ -22,8 +23,9 @@ marked.setOptions({
   smartypants: false,
   langPrefix: 'hljs ',
   highlight: (code, lang) => {
-    return hljs.highlightAuto(code, [lang]).value;
-  }
+    const autoFunc = hljs.highlightAuto(code, [lang]).value;
+    return autoFunc;
+  },
 });
 
 
@@ -36,8 +38,9 @@ export default class Editor {
     $('#output').html(marked($('#markdown_content').val()));
   }
 
+  // eslint-disable-next-line
   getTags() {
-    const tags = new Array();
+    const tags = [];
     $('ul').last().children('li').each((index, element) => {
       tags.push($(element).text());
     });
@@ -49,25 +52,25 @@ export default class Editor {
     self.render();
     const tags = self.getTags();
     $('#output ul').last().remove();
-    const _xsrf = utils.getCookie('_xsrf');
-    const article_id = $('#article_id').val();
+    const xsrf = utils.getCookie('_xsrf');
+    const articleID = $('#article_id').val();
     $.post({
-      url: `/p/${article_id}/edit`,
+      url: `/p/${articleID}/edit`,
       data: {
-        article_id: article_id,
+        article_id: articleID,
         title: $('#output h1').html(),
         introduction: $('#output blockquote').html() ? $('#output blockquote').html() : '',
         markdown_content: $('#markdown_content').val(),
         compiled_content: $('#output').html(),
-        tags: tags,
-        _xsrf: _xsrf,
+        tags,
+        _xsrf: xsrf,
       },
       success: () => {
-        alert('success');
+        notie.alert({ type: 'success', text: 'success' });
       },
       error: () => {
-        alert('error');
-      }
+        notie.alert({ type: 'error', text: 'error' });
+      },
     });
   }
 }
