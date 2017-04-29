@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="author" content="{{ data['user']['username'] }}">
+    <meta name="description" content="{{ data['user']['introduction'] }}">
+    <title>L</title>
+    {% include 'scrollreveal.html' %}
+</head>
+<body>
+  <div>
+    <p>访问人数：{{ data['unique_visitors'] }}</p>
+    <p>访问次数：{{ data['views'] }}</p>
+
+    <p>
+      最多访问次数（{{ data['max_views']['views'] }}）的页面：
+      {% for item in data['max_views']['data'] %}
+      <a href="{{ item['uri'] }}">{{ item['title'] }}</a>
+      {% end %}
+    </p>
+    <p>
+      最多访问人数（{{ data['max_persons']['views'] }}）的页面：
+      {% for item in data['max_persons']['data'] %}
+      <a href="{{ item['uri'] }}">{{ item['title'] }}</a>
+      {% end %}
+    </p>
+  </div>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-81813308-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

@@ -14,8 +14,8 @@ import apps.auth
 import apps.blog
 import apps.tags
 import apps.user
-import apps.access_log
 import apps.common
+import apps.statistics
 
 
 # 在options中设置几个变量
@@ -36,7 +36,7 @@ class Application(tornado.web.Application):
             (r'/tags', apps.tags.Tags),
             (r'/more', apps.blog.More),
             (r'/user', apps.user.User),
-            (r'/access_log', apps.access_log.AccessLog),
+            (r'/statistics', apps.statistics.Statistics),
         ]
         template_path = os.path.join(
             os.path.dirname(__file__), 'static/dist/'

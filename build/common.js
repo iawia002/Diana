@@ -1,6 +1,4 @@
 const path = require('path');
-// const autoprefixer = require('autoprefixer');
-// const postcssImport = require('postcss-import');
 const CleanPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -16,6 +14,7 @@ const VENDOR = [
   'jquery',
   'highlight.js',
   'normalize.css',
+  'marked',  // webpack 第一次打包的时候没有处理这个库，--watch 再随便保存一个文件它又会打包，那时候又处理了这个库，现在不知道什么原因，只能先把它加到这里，暂时解决了这个问题
 ];
 
 module.exports = (env) => {
@@ -98,6 +97,13 @@ module.exports = (env) => {
         hash: true,
         filename: 'error.html',
         chunks: ['vendor', 'error', 'commons'],
+        inject: 'body',
+      }),
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname, '../src/templates/statistics.html'),
+        hash: true,
+        filename: 'statistics.html',
+        chunks: ['vendor', 'commons'],
         inject: 'body',
       }),
 
@@ -207,6 +213,11 @@ module.exports = (env) => {
   if (DEBUG) {
     Object.assign(config, {
       devtool: 'source-map',
+      watch: true,
+      watchOptions: {
+        aggregateTimeout: 1000, // 间隔单位 ms
+        poll: true,
+      },
     });
   }
   return config;

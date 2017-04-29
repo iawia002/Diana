@@ -7,6 +7,8 @@ from sqlalchemy.sql import (
     func,
 )
 
+import config
+import utils.db
 from db.sa import Session
 from utils.auth import login_require
 from apps.model import (
@@ -17,10 +19,12 @@ from apps.model import (
 from apps.base import BaseHandler
 
 
-class AccessLog(BaseHandler):
+class Statistics(BaseHandler):
     def prepare(self):
-        super(AccessLog, self).prepare()
+        super(Statistics, self).prepare()
         self.session = Session()
+        self.modules = ['Article', 'Tag', 'Tags', 'Index']
+        self.queryset = self.get_queryset()
 
     def get_article_info(self, access_log):
         uri = access_log.uri
@@ -40,10 +44,9 @@ class AccessLog(BaseHandler):
             'title': title,
         }
 
-    def get_session(self):
-        modules = ['Article', 'Tag', 'Tags', 'Index']
+    def get_queryset(self):
         return self.session.query(AccessLogModel).filter(
-            AccessLogModel.module.in_(modules)
+            AccessLogModel.module.in_(self.modules)
         )
 
     @login_require
@@ -103,4 +106,5 @@ class AccessLog(BaseHandler):
             'max_persons': max_person_data,
         })
         self.session.close()
-        return self.write(data)
+        data['user'] = utils.db.user(user_id=config.USER_ID)
+        return self.render('statistics.html', data=data)
