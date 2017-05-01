@@ -29,3 +29,4 @@ class AccessLogMixin(object):
         access_log.views += 1
         session.add(access_log)
         session.commit()
+        session.close()

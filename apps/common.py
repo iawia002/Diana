@@ -13,7 +13,7 @@ class Redirect(tornado.web.RequestHandler):
 
 
 class NotFound(tornado.web.RequestHandler, AccessLogMixin):
-    def prepare(self):
+    def on_finish(self):
         self.generate_access_log()
 
     def get(self):

@@ -20,8 +20,7 @@ from apps.base import BaseHandler
 
 
 class Statistics(BaseHandler):
-    def prepare(self):
-        super(Statistics, self).prepare()
+    def initialize(self):
         self.session = Session()
         self.modules = ['Article', 'Tag', 'Tags', 'Index']
         self.queryset = self.get_queryset()

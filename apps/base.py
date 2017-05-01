@@ -9,7 +9,7 @@ from mixins import AccessLogMixin
 
 class BaseHandler(tornado.web.RequestHandler, AccessLogMixin):
 
-    def prepare(self):
+    def on_finish(self):
         self.generate_access_log()
 
     def write_error(self, status_code, **kwargs):
