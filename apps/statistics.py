@@ -25,8 +25,7 @@ class Statistics(BaseHandler):
         self.modules = ['Article', 'Tag', 'Tags', 'Index']
         self.queryset = self.get_queryset()
 
-    def get_article_info(self, access_log):
-        uri = access_log.uri
+    def get_article_info(self, uri):
         article_id = uri.split('/')[-1]
         try:
             article_id = int(article_id)
@@ -58,24 +57,37 @@ class Statistics(BaseHandler):
                 func.sum(AccessLogModel.views)
             ).scalar(),
         }
-        max_views = self.session.query(AccessLogModel).filter_by(
-            views=self.session.query(func.max(AccessLogModel.views))
-        ).all()
-        # 最多访问数可能有并列最多的
-        max_view_data = {
-            'views': max_views[0].views,
-            'data': []
-        }
-        for record in max_views:
-            max_view_data['data'].append(
-                self.get_article_info(record)
-            )
-
-        max_persons = []
         # 总共不重复的页面
         uri = self.session.query(AccessLogModel.uri).group_by(
             AccessLogModel.uri
         ).all()
+
+        max_views = []
+        # 最多访问数可能有并列最多的
+        max_view_data = {
+            'views': '',
+            'data': []
+        }
+        for item in uri:
+            max_views.append({
+                'views': self.session.query(
+                    func.sum(AccessLogModel.views)
+                ).filter_by(uri=item).scalar(),
+                'uri': item[0],
+            })
+        # 排序，按个数分组
+        max_views.sort(reverse=True, key=lambda x: x['views'])
+        max_views_group = groupby(max_views, lambda x: x['views'])
+        for key, group in max_views_group:
+            max_view_data['views'] = key
+            for item in group:
+                max_view_data['data'].append(
+                    self.get_article_info(item['uri'])
+                )
+            # 只取第一项（个数最多的那一项），不能对 groupby 进行 list 操作
+            break
+
+        max_persons = []
         for item in uri:
             max_persons.append(
                 # 每个页面不重复的访问人数
@@ -95,7 +107,7 @@ class Statistics(BaseHandler):
             max_person_data['views'] = key
             for item in group:
                 max_person_data['data'].append(
-                    self.get_article_info(item.first())
+                    self.get_article_info(item.first().uri)
                 )
             # 只取第一项（个数最多的那一项），不能对 groupby 进行 list 操作
             break
