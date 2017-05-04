@@ -47,6 +47,53 @@ class Statistics(BaseHandler):
             AccessLogModel.module.in_(self.modules)
         )
 
+    def generate_group_data(self, group, extra_data_type):
+        data = {
+            'views': '',
+            'data': []
+        }
+        for key, group in group:
+            data['views'] = key
+            for item in group:
+                temp = self.get_article_info(item['uri'])
+                temp.update({
+                    extra_data_type: item[extra_data_type]
+                })
+                data['data'].append(temp)
+            # 只取第一项（个数最多的那一项），不能对 groupby 进行 list 操作
+            break
+        return data
+
+    def get_page_data(self):
+        # 总共不重复的页面
+        uri = self.session.query(AccessLogModel.uri).group_by(
+            AccessLogModel.uri
+        ).all()
+        # 最多访问数可能有并列最多的
+        page_data = []
+        for item in uri:
+            persons = self.session.query(AccessLogModel).filter_by(
+                uri=item
+            ).distinct(AccessLogModel.remote_ip)
+            page_data.append({
+                'uri': item[0],
+                'views': self.session.query(
+                    func.sum(AccessLogModel.views)
+                ).filter_by(uri=item).scalar(),
+                'persons': persons.count(),
+                'person_instance': persons,
+            })
+
+        # 排序，按个数分组
+        page_data.sort(reverse=True, key=lambda x: x['views'])
+        max_views_group = groupby(page_data, lambda x: x['views'])
+        max_view_data = self.generate_group_data(max_views_group, 'persons')
+
+        page_data.sort(key=lambda x: x['persons'], reverse=True)
+        max_persons_group = groupby(page_data, lambda x: x['persons'])
+        max_persons_data = self.generate_group_data(max_persons_group, 'views')
+        return max_view_data, max_persons_data
+
     @login_require
     def get(self):
         data = {
@@ -57,64 +104,10 @@ class Statistics(BaseHandler):
                 func.sum(AccessLogModel.views)
             ).scalar(),
         }
-        # 总共不重复的页面
-        uri = self.session.query(AccessLogModel.uri).group_by(
-            AccessLogModel.uri
-        ).all()
-
-        max_views = []
-        # 最多访问数可能有并列最多的
-        max_view_data = {
-            'views': '',
-            'data': []
-        }
-        for item in uri:
-            max_views.append({
-                'views': self.session.query(
-                    func.sum(AccessLogModel.views)
-                ).filter_by(uri=item).scalar(),
-                'uri': item[0],
-            })
-        # 排序，按个数分组
-        max_views.sort(reverse=True, key=lambda x: x['views'])
-        max_views_group = groupby(max_views, lambda x: x['views'])
-        for key, group in max_views_group:
-            max_view_data['views'] = key
-            for item in group:
-                max_view_data['data'].append(
-                    self.get_article_info(item['uri'])
-                )
-            # 只取第一项（个数最多的那一项），不能对 groupby 进行 list 操作
-            break
-
-        max_persons = []
-        for item in uri:
-            max_persons.append(
-                # 每个页面不重复的访问人数
-                self.session.query(AccessLogModel).filter_by(
-                    uri=item
-                ).distinct(AccessLogModel.remote_ip)
-            )
-
-        # 排序，按个数分组
-        max_persons.sort(key=lambda x: x.count(), reverse=True)
-        max_person_group = groupby(max_persons, lambda x: x.count())
-        max_person_data = {
-            'views': '',
-            'data': [],
-        }
-        for key, group in max_person_group:
-            max_person_data['views'] = key
-            for item in group:
-                max_person_data['data'].append(
-                    self.get_article_info(item.first().uri)
-                )
-            # 只取第一项（个数最多的那一项），不能对 groupby 进行 list 操作
-            break
-
+        page_data = self.get_page_data()
         data.update({
-            'max_views': max_view_data,
-            'max_persons': max_person_data,
+            'max_views': page_data[0],
+            'max_persons': page_data[1],
         })
         self.session.close()
         data['user'] = utils.db.user(user_id=config.USER_ID)
