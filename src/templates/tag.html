@@ -13,8 +13,8 @@
     {% include 'right.html' %}
 
     <div class="left">
-        <div class="article" style="margin-top: 10px;">
-            <p style="padding: 15px 20px; margin: 0px; font-size: 1.1rem"><a href="/tags">标签</a><span style="color: #ccc;"> / </span><span style="color: #777;">{{ data['tag'] }}</span></p>
+        <div class="tag-nav" style="margin-top: 10px;">
+            <p><a href="/tags">标签</a><span style="color: #ccc;"> / </span><span>{{ data['tag'] }}</span></p>
         </div>
         {% include 'article_list.html' %}
     </div>

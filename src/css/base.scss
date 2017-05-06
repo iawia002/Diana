@@ -131,12 +131,16 @@ input {
   background-size: 100%;
 }
 
-@mixin article {
+@mixin shadow-box {
   background: $white;
   max-width: 640px;
   margin: 40px auto;
-  box-shadow: 0 0 20px $light-black;
   overflow: hidden;
+  box-shadow: 0 0 20px $light-black;
+}
+
+@mixin article {
+  @include shadow-box;
 
   h1,
   h2,
@@ -323,4 +327,15 @@ input {
 
 .sr {
   visibility: hidden;
+}
+
+.tag-nav {
+  @include shadow-box;
+
+  p {
+    color: $gray2;
+    padding: 15px 20px;
+    margin: 0;
+    font-size: 1.1rem;
+  }
 }

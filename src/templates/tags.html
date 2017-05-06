@@ -13,9 +13,11 @@
     {% include 'right.html' %}
 
     <div class="left">
+        <div class="tag-nav" style="margin-top: 10px;">
+            <p>所有标签</p>
+        </div>
         <div class="article all-tags">
             <ul>
-                <p>所有标签</p>
                 {% for key in data['keys'] %}
                 <li><a href="#{{ key }}">{{ key }}</a></li>
                 {% end %}
