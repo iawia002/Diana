@@ -5,7 +5,7 @@ import utils.db
 from utils import ip_region
 
 from db.sa import Session
-from apps.model import AccessLog
+from models.statistics import AccessLog
 
 
 class AccessLogMixin(object):

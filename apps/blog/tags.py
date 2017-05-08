@@ -9,7 +9,7 @@ import utils.auth
 import utils.common
 import utils.json_utils
 from db.sa import Session
-from apps.model import (
+from apps.blog.models import (
     User,
     Tag as TagModel,
 )

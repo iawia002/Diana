@@ -3,7 +3,7 @@
 
 from db.sa import Session
 from utils.auth import login_require
-from apps.model import User as UserModel
+from apps.blog.models import User as UserModel
 
 from apps.base import BaseHandler
 

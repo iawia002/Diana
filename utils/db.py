@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-from __future__ import absolute_import
+from __future__ import absolute_import  # 有模块和本文件同名
 
 from sqlalchemy.sql import ClauseElement
 
 import config
 from db.sa import Session
-from apps.model import (
+from apps.blog.models import (
     Tag,
     User,
 )

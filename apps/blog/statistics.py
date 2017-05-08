@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+from __future__ import absolute_import
+
 from itertools import groupby
 
 from sqlalchemy.sql import (
@@ -11,10 +13,8 @@ import config
 import utils.db
 from db.sa import Session
 from utils.auth import login_require
-from apps.model import (
-    Article,
-    AccessLog as AccessLogModel,
-)
+from apps.blog.models import Article
+from models.statistics import AccessLog as AccessLogModel
 
 from apps.base import BaseHandler
 

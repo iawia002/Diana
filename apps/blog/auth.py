@@ -4,8 +4,8 @@
 import bcrypt
 
 from db.sa import Session
-from apps.model import User
 from apps.base import BaseHandler
+from apps.blog.models import User
 
 
 class Login(BaseHandler):

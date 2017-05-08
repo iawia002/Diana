@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+from __future__ import absolute_import
+
 import datetime
 
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
 
 import utils.tags
+from models import Base
 
-Base = declarative_base()
 
 '''
 用户和文章是一对多关系，一个用户可以有很多文章，一篇文章只能有一个用户
@@ -66,14 +67,14 @@ class User(Base):
         default=datetime.datetime.now,
     )
     tag = relationship(
-        'Tag',
+        'apps.blog.models.Tag',
         secondary=user_tag,
         back_populates='user',
     )
     article = relationship(
-        'Article',
+        'apps.blog.models.Article',
         back_populates='user',
-        order_by='desc(Article.create_time)',
+        order_by='desc(apps.blog.models.Article.create_time)',
         lazy='dynamic',
     )
 
@@ -125,7 +126,7 @@ class Article(Base):
         default=0,
     )
     user = relationship(
-        'User',
+        'apps.blog.models.User',
         back_populates='article',
     )
     user_id = sa.Column(
@@ -133,7 +134,7 @@ class Article(Base):
         sa.ForeignKey('users.user_id'),
     )
     tag = relationship(
-        'Tag',
+        'apps.blog.models.Tag',
         secondary=tag_article,
         back_populates='article',
     )
@@ -177,14 +178,14 @@ class Tag(Base):
         default=datetime.datetime.now,
     )
     article = relationship(
-        'Article',
+        'apps.blog.models.Article',
         secondary=tag_article,
         back_populates='tag',
-        order_by='desc(Article.create_time)',
+        order_by='desc(apps.blog.models.Article.create_time)',
         lazy='dynamic',
     )
     user = relationship(
-        'User',
+        'apps.blog.models.User',
         secondary=user_tag,
         back_populates='tag',
     )
@@ -200,37 +201,3 @@ class Tag(Base):
             'number': len(self.article.all()),
             'url': utils.tags.tag_url_encode(self.content),
         }
-
-
-class AccessLog(Base):
-    __tablename__ = 'access_log'
-
-    id = sa.Column(
-        sa.Integer,
-        primary_key=True,
-    )
-    remote_ip = sa.Column(
-        sa.String(15),
-    )
-    uri = sa.Column(
-        sa.String,
-    )
-    module = sa.Column(
-        sa.String(10),
-    )
-    user_agent = sa.Column(
-        sa.String,
-    )
-    method = sa.Column(
-        sa.String(7),
-    )
-    views = sa.Column(
-        sa.Integer,
-        default=0,
-    )
-    address = sa.Column(
-        sa.String(100),
-    )
-
-    def __repr__(self):
-        return '<AccessLog(remote_ip={})>'.format(self.remote_ip)

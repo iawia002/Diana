@@ -2,4 +2,4 @@
 # coding=utf-8
 
 
-from .access_log import *  # noqa
+from mixins.access_log import *  # noqa

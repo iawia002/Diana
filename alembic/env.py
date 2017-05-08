@@ -1,9 +1,15 @@
+#!/usr/bin/env python
+# coding=utf-8
+
 from __future__ import with_statement
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 from logging.config import fileConfig
 
-from apps.model import Base
+from models import Base
+# 因为 Base 单独定义在 models 里，所以下面必须要单独引入所有 model 文件，不然 Base.metadata.tables 为空
+from apps.blog import models  # noqa
+from models import statistics  # noqa
 import config as diana_config
 
 # this is the Alembic Config object, which provides

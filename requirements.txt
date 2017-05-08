@@ -2,7 +2,7 @@ tornado==4.4.2
 flake8==2.6.2
 redis==2.10.5
 SQLAlchemy==1.1.7
-Alembic==0.8.7
+Alembic==0.9.1
 psycopg2==2.6.2
 DBUtils==1.1
 pinyin==0.3.1

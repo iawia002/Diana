@@ -13,7 +13,7 @@ import utils.json_utils
 import config
 from db.sa import Session
 
-from apps.model import (
+from apps.blog.models import (
     Tag,
     User,
     Article as ArticleModel,
