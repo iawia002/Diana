@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>知乎热门钓鱼帖</title>
+</head>
+<body class="bg">
+    {% include 'top.html' %}
+    <div class="main">
+        {% include 'article_list.html' %}
+    </div>
+    <input type="hidden" value="{{ data['next_page'] }}" id="next_page">
+    {% include 'footer.html' %}
+</body>
+</html>

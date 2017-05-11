@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{{ data['status']['code'] }} - 知乎热门钓鱼帖</title>
+</head>
+<body class="bg">
+    {% include 'top.html' %}
+    <div class="main">
+        <p style="text-align: center; font-size: 3rem; padding-top: 20px;">
+            {{ data['status']['code'] }}
+        </p>
+    </div>
+    {% include 'footer.html' %}
+</body>
+</html>

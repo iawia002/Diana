@@ -111,4 +111,4 @@ class Statistics(BaseHandler):
         })
         self.session.close()
         data['user'] = utils.db.user(user_id=config.USER_ID)
-        return self.render('statistics.html', data=data)
+        return self.render('blog/statistics.html', data=data)

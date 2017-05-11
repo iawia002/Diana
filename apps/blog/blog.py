@@ -42,7 +42,7 @@ class Index(BaseHandler):
         data['user'] = user
         data['next_page'] = 2
         data['login'] = self.login
-        self.render('index.html', data=data)
+        self.render('blog/index.html', data=data)
 
 
 class More(BaseHandler):
@@ -64,7 +64,7 @@ class More(BaseHandler):
         # articles = utils.tags.articles_add_tags(articles)
         data = {}
         data['articles'] = articles
-        article_list = self.render_string('article_list.html', data=data)
+        article_list = self.render_string('blog/article_list.html', data=data)
         ret = {
             'next_page': int(next_page) + 1,
             'data': article_list
@@ -94,7 +94,7 @@ class Article(BaseHandler):
         data = {}
         data['article'] = article
         data['user'] = user
-        self.render('article.html', data=data)
+        self.render('blog/article.html', data=data)
 
 
 class Edit(BaseHandler):
@@ -116,7 +116,7 @@ class Edit(BaseHandler):
         data['article_id'] = article_id
         session.commit()
         session.close()
-        self.render('editor.html', data=data)
+        self.render('blog/editor.html', data=data)
 
     @utils.auth.login_require
     def post(self, article_id):

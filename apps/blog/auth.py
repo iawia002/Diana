@@ -13,7 +13,7 @@ class Login(BaseHandler):
     '''登录页面'''
 
     def get(self):
-        return self.render('login.html')
+        return self.render('blog/login.html')
 
     def post(self):
         session = Session()

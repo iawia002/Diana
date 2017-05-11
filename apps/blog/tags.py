@@ -34,7 +34,7 @@ class Tag(BaseHandler):
         data['next_page'] = 2
         session.commit()
         session.close()
-        self.render('tag.html', data=data)
+        self.render('blog/tag.html', data=data)
 
 
 class Tags(BaseHandler):
@@ -74,4 +74,4 @@ class Tags(BaseHandler):
         data['values'] = values
         user = utils.db.user(user_id=config.USER_ID)
         data['user'] = user
-        self.render('tags.html', data=data)
+        self.render('blog/tags.html', data=data)

@@ -9,6 +9,7 @@ from logging.config import fileConfig
 from models import Base
 # 因为 Base 单独定义在 models 里，所以下面必须要单独引入所有 model 文件，不然 Base.metadata.tables 为空
 from apps.blog import models  # noqa
+from apps.fish import models  # noqa
 from models import statistics  # noqa
 import config as diana_config
 

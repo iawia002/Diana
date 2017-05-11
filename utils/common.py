@@ -12,7 +12,7 @@ def raise_error(request, status_code):
     data['status'] = {}
     data['status']['code'] = status_code
     request.set_status(status_code)
-    return request.render('error.html', data=data)
+    return request.render('blog/error.html', data=data)
 
 
 def row2dict(row):

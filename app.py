@@ -27,6 +27,7 @@ class Application(tornado.web.Application):
         handlers = url_wrapper([
             (r'/(.*)/', apps.base.Redirect),  # 保证网址有无'/'结尾，都能指向同一个类。
             (r'', include('apps.blog.urls')),  # 博客
+            (r'/fish', include('apps.fish.urls')),  #
         ])
         template_path = os.path.join(
             os.path.dirname(__file__), 'static/dist/'

@@ -1,0 +1,8 @@
+{% for article in data['articles'] %}
+<div class="article">
+    <h1><a href="/fish/p/{{ article['record_id'] }}">{{ article['title'] }}</a></h1>
+    <p class="time">
+        {{ article['image_num'] }} 张图片 | {{ article['views'] }} 次浏览 | 更新于 {{ article['create_time'] }} | <a href="{{ article['source'] }}" target="_blank">来源</a>
+    </p>
+</div>
+{% end %}
