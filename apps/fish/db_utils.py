@@ -3,27 +3,9 @@
 
 from __future__ import absolute_import
 
-from sqlalchemy.sql import ClauseElement
-
 import config
 from db.sa import Session
 from apps.fish.models import Record
-
-
-def get_or_create(session, model, defaults=None, **kwargs):
-    instance = session.query(model).filter_by(**kwargs).first()
-    if instance:
-        return instance
-    else:
-        params = dict(
-            (k, v) for k, v in kwargs.iteritems()
-            if not isinstance(v, ClauseElement)
-        )
-        params.update(defaults or {})
-        instance = model(**params)
-        # session.add(instance)
-        # session.commit()
-        return instance
 
 
 def article(page):

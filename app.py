@@ -1,9 +1,13 @@
 # coding=utf-8
 
 import os
+import logging
+import datetime
+from concurrent.futures import ThreadPoolExecutor
 
 import tornado.web
 import tornado.ioloop
+from tornado import gen
 from tornado.options import (
     define,
     options,
@@ -11,6 +15,7 @@ from tornado.options import (
 
 import config
 import apps.base
+from apps.fish.crawler.zhihu import jike
 from utils.url import (
     include,
     url_wrapper,
@@ -51,10 +56,27 @@ class Application(tornado.web.Application):
 tornado.options.parse_command_line()
 application = Application()
 
+thread_pool = ThreadPoolExecutor(2)
+
+
+@gen.coroutine
+def loop():
+    while True:
+        logging.info(
+            '{}: update start'.format(
+                datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            )
+        )
+        result = yield thread_pool.submit(jike)
+        logging.info('update result: {}'.format(result))
+        yield gen.sleep(60 * 60 * 0.5)
+
 
 def main():
     application.listen(options.port, xheaders=True)
+    tornado.ioloop.IOLoop.current().spawn_callback(loop)
     tornado.ioloop.IOLoop.current().start()
+
 
 if __name__ == '__main__':
     main()

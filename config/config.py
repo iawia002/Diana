@@ -27,6 +27,8 @@ ARTICLE_PAGE_NUMBER = 10
 SECRET_KEY = 'sfljKLYIOY9&()()*))ljsfl&^%*'
 USER_ID = 1
 
+ZH_COOKIE = ''
+
 
 try:
     from local_config import *  # noqa

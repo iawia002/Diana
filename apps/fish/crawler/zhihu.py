@@ -7,7 +7,10 @@ from bs4 import BeautifulSoup
 import config
 import utils.db
 from db.sa import Session
-from models import Article, UpdateInfo
+from apps.fish.models import (
+    Record,
+    UpdateInfo
+)
 
 
 '''
@@ -37,7 +40,7 @@ def imgs(url):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/601.7.8 (KHTML, like Gecko) Version/9.1.3 Safari/601.7.8',  # noqa
         'Host': 'www.zhihu.com',
-        'Cookie': config.COOKIE,
+        'Cookie': config.ZH_COOKIE,
     }
     ZH_API = (
         'https://www.zhihu.com/api/v4/questions/{question_id}/answers?'
@@ -113,7 +116,7 @@ def jike():
     # 用这次的 URL 列表减去已经存在的 URL 列表，得到这次多出来的 URL
     need_update = list(set(messages_url) - set(already_existing))
     for url in need_update:
-        article = utils.db.get_or_create(session, Article, source=url)
+        article = utils.db.get_instance(session, Record, source=url)
         result = imgs(url)
         article.content = result['images']
         article.title = result['title']
@@ -133,7 +136,7 @@ def update_manually(url):
     session = Session()
 
     # 更新文章
-    article = utils.db.get_or_create(session, Article, source=url)
+    article = utils.db.get_instance(session, Record, source=url)
     result = imgs(url)
     article.content = result['images']
     article.title = result['title']

@@ -1,7 +1,7 @@
-tornado==4.4.2
+tornado==4.5.1
 flake8==2.6.2
 redis==2.10.5
-SQLAlchemy==1.1.7
+SQLAlchemy==1.1.9
 Alembic==0.9.1
 psycopg2==2.6.2
 DBUtils==1.1
@@ -12,3 +12,8 @@ fabric==1.12.0
 mock==2.0.0
 coverage==4.2
 schematics==1.1.1
+
+# fish
+futures==3.1.1
+requests==2.14.2
+BeautifulSoup4==4.6.0
