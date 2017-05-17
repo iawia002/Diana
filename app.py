@@ -12,6 +12,7 @@ from tornado.options import (
     define,
     options,
 )
+from raven.contrib.tornado import AsyncSentryClient
 
 import config
 import apps.base
@@ -55,6 +56,10 @@ class Application(tornado.web.Application):
 # 解析命令行
 tornado.options.parse_command_line()
 application = Application()
+
+# Sentry
+if not options.debug:
+    application.sentry_client = AsyncSentryClient(config.DSN)
 
 thread_pool = ThreadPoolExecutor(2)
 

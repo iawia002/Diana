@@ -23,15 +23,10 @@ Edit | Tags | Article
 ## Quick Start
 ### frontend
 * `npm install` install dependencies
-* `npm run d` start dev environment
-* `npm run build` build(for production environment)
+* `npm run dev --Diana:app=blog` start dev environment
+* `npm run build --Diana:app=blog` build(for production environment)
 
 ### backend
-#### normal way
-* `pip install -r requirements.txt`
-* `fab migrate:local` database migration
-* `fab init:local` Initialize a user(admin/admin) and an article
-* `fab runserver:local` or `python app.py -debug=True`
 
 #### play with docker 🐳
 * `fab migrate` database migration

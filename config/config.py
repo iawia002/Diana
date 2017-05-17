@@ -29,6 +29,9 @@ USER_ID = 1
 
 ZH_COOKIE = ''
 
+# Sentry
+DSN = ''
+
 
 try:
     from local_config import *  # noqa

@@ -2,12 +2,13 @@
 # coding=utf-8
 
 import tornado.web
+from raven.contrib.tornado import SentryMixin
 
 import utils.common
 from mixins import AccessLogMixin
 
 
-class BaseHandler(tornado.web.RequestHandler, AccessLogMixin):
+class BaseHandler(SentryMixin, tornado.web.RequestHandler, AccessLogMixin):
 
     def on_finish(self):
         self.generate_access_log()
@@ -21,7 +22,7 @@ class Redirect(tornado.web.RequestHandler):
         return self.redirect('/' + path)
 
 
-class NotFound(tornado.web.RequestHandler, AccessLogMixin):
+class NotFound(SentryMixin, tornado.web.RequestHandler, AccessLogMixin):
     def on_finish(self):
         self.generate_access_log()
 

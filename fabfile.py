@@ -14,7 +14,8 @@ def runserver(env='docker'):
         )
     else:
         local(
-            'DEBUG=True docker-compose run --rm -p 8004:8004 web'
+            'DEBUG=True docker-compose run --rm -p 8004:8004 web '
+            'python app.py -debug=${DEBUG}'
         )
 
 
@@ -37,6 +38,10 @@ def migrate(env='docker'):
 
 
 def alembic(command='current'):
+    '''
+    alembic upgrade +2
+    alembic downgrade -1
+    '''
     local(
         'docker-compose run --rm web alembic {}'.format(command)
     )
@@ -45,6 +50,14 @@ def alembic(command='current'):
 def shell():
     local(
         'docker-compose run --rm web ipython'
+    )
+
+
+def update_packages():
+    local('docker exec -it diana_web_run_1 pip install -r requirements.txt')
+    local(
+        'docker commit -m "update" -a "iawia002" diana_web_run_1 '
+        'diana_web:latest'
     )
 
 
