@@ -58,8 +58,7 @@ tornado.options.parse_command_line()
 application = Application()
 
 # Sentry
-if not options.debug:
-    application.sentry_client = AsyncSentryClient(config.DSN)
+application.sentry_client = AsyncSentryClient(config.DSN)
 
 thread_pool = ThreadPoolExecutor(2)
 
