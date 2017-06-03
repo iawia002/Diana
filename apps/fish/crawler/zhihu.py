@@ -58,6 +58,9 @@ def imgs(url):
     ).text
     soup = BeautifulSoup(html_text, 'html.parser')
     title = soup.title.string
+    brackets = title.find(')')  # 处理标题前缀是 (30 条消息) 这种情况
+    if title[0] == '(' and brackets != -1:
+        title = title[brackets+1:]
 
     answer_url = ZH_API(
         include=include,

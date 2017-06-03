@@ -15,8 +15,8 @@ class AccessLogMixin(object):
         data = {
             'remote_ip': request.remote_ip,
             'uri': request.uri,
-            'module': self.__class__.__name__,
-            'user_agent': request.headers['User-Agent'],
+            'module': '{}.{}'.format(self.__module__, self.__class__.__name__),
+            'user_agent': request.headers.get('User-Agent'),
             'method': request.method,
             'address': ip_region.memorySearch(
                 request.remote_ip

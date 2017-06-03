@@ -20,7 +20,7 @@ class AccessLog(Base):
         sa.String,
     )
     module = sa.Column(
-        sa.String(10),
+        sa.String(100),
     )
     user_agent = sa.Column(
         sa.String,
