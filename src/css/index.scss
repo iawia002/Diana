@@ -75,53 +75,32 @@
     color: $eee;
   }
 
-  .bg {
-    // height: 100vh;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background: {
-      image: url("../img/Ashe_8.jpg");
-      repeat: no-repeat;
-      size: cover;
-      position: center;
-      // color: $light-gray;
-    }
-    opacity: 0;
-    animation: {
-      name: overlay;
-      duration: .5s;
-      delay: .1s;
-      fill-mode: forwards;
-    }
-    position: absolute;
-  }
+  // .page {
+  //
+  // }
 }
 
-.nav {
-  margin-top: 45px;
-  font-size: 1.2rem;
-  display: inline-block;
-  text-align: center;
-
-  li {
-    float: left;
-    padding: 10px;
+.bg {
+  // height: 100vh;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: {
+    image: url("../img/Ashe_8.jpg");
+    repeat: no-repeat;
+    size: cover;
+    position: center;
+    // color: $light-gray;
   }
-
-  p {
-    border: 0;
+  opacity: 0;
+  animation: {
+    name: overlay;
+    duration: .5s;
+    delay: .1s;
+    fill-mode: forwards;
   }
-
-  a {
-    color: $white;
-    padding: 8px 2px;
-
-    &:hover {
-      border-bottom: 3px solid $white;
-    }
-  }
+  position: absolute;
 }
 
 .last-article {
@@ -151,7 +130,7 @@
 }
 
 .avatar {
-  @include avatar;
+  @include avatar($top: 30px);
   // @media (max-width: 991px) {
   //     width: 240px;
   //     height: 240px;
@@ -167,15 +146,45 @@
   max-width: 700px;
 }
 
-.connect {
+.nav {
   margin: auto;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 20px;
+  width: 100%;
+  padding: 15px 30px;
+  text-align: left;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   a {
     color: $white;
+  }
+
+  .category {
+    display: inline-block;
+
+    a {
+      padding: 10px;
+    }
+
+    a:hover {
+      border-bottom: 3px solid $white;
+    }
+  }
+
+  .connect {
+    display: inline-block;
+    float: right;
+    font-size: 1.4rem;
+
+    a {
+      padding: 5px;
+    }
   }
   // @media (max-width: 991px) {
   //     font-size: 3rem;
@@ -196,7 +205,7 @@
   // }
 
   .avatar {
-    margin-top: 20px;
+    margin-top: 10px;
     width: 100px;
     height: 100px;
   }
@@ -206,13 +215,17 @@
       font-size: 1.4rem;
     }
 
-    p,
-    .connect {
+    p {
       font-size: 1.3rem;
     }
 
+    .last-article {
+      margin-top: 20px;
+    }
+
     .bg-intro {
-      display: none;
+      right: 10px;
+      font-size: 0.9rem;
     }
   }
 }

@@ -17,7 +17,7 @@ $(document).ready(() => {
   window.sr.reveal('h1', { container: '.top', rotate: { y: 65 } });
   window.sr.reveal('.introduction', { container: '.top', rotate: { y: 65 }, duration: 600 });
   window.sr.reveal('.last-article', { container: '.top', rotate: { y: 65 }, duration: 600 });
-  window.sr.reveal('.connect', { container: '.top', rotate: { z: 65 } });
+  window.sr.reveal('.nav', { container: '.top', rotate: { x: 65 } });
   $('html').removeClass('sr');
 
   $('#introduction span').click(() => {

@@ -183,6 +183,10 @@ INDEX_BG = [
         'url': 'http://img.l.jifangcheng.com/92d63674b8b5acebba73df565623cf937c833f98.jpg',  # noqa
         'name': '死兆星 韦鲁斯'
     },
+    {
+        'url': 'http://img.l.jifangcheng.com/75fca8d3005961ab63589c075896ec28f07d7623.png',  # noqa
+        'name': "Whatever you decide to do, just know you won't have to do it alone",  # noqa
+    },
 ]
 
 INDEX_SAYING = [
