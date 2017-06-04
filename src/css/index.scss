@@ -131,14 +131,12 @@
 
 .avatar {
   @include avatar($top: 30px);
-  // @media (max-width: 991px) {
-  //     width: 240px;
-  //     height: 240px;
-  //     border-radius: 120px;
-  // }
-  // @media (max-width: 767px) {
-  //     margin-top: 20px;
-  // }
+
+  @media (max-width: 767px) {
+    margin-top: 10px;
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .article {
@@ -186,12 +184,10 @@
       padding: 5px;
     }
   }
-  // @media (max-width: 991px) {
-  //     font-size: 3rem;
-  // }
-  // @media (max-width: 767px) {
-  //     font-size: 3rem;
-  // }
+
+  @media (max-width: 767px) {
+    padding: 10px 5px;
+  }
 }
 
 .content {
@@ -203,12 +199,6 @@
   // html {
   //   font-size: 14px;
   // }
-
-  .avatar {
-    margin-top: 10px;
-    width: 100px;
-    height: 100px;
-  }
 
   .top {
     h1 {
