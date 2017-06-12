@@ -1,8 +1,8 @@
 'use strict';
 
-import 'CodeMirror/lib/codemirror.css';
-import 'CodeMirror/mode/gfm/gfm.js';
-import 'CodeMirror/theme/solarized.css';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/mode/gfm/gfm.js';
+import 'codemirror/theme/solarized.css';
 
 import '../../../css/editor.scss';
 import 'font-awesome/css/font-awesome.css';
@@ -10,7 +10,7 @@ import 'highlight.js/styles/solarized-dark.css';
 
 import $ from 'jquery';
 import key from 'keymaster';
-import CodeMirror from 'CodeMirror';
+import CodeMirror from 'codemirror';
 import Editor from './editor.js'
 
 

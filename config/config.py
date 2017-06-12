@@ -18,6 +18,12 @@ PSQL_HOST = 'localhost'
 
 # sqlalchemy
 SA_URL = 'postgresql+psycopg2://:@/diana'
+DB = {
+    'user': 'postgres',
+    'password': '',
+    'host': 'postgres',
+    'db': 'diana',
+}
 
 # Time
 TIME_NOW = datetime.datetime.now()
