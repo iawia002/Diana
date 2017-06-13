@@ -8,41 +8,29 @@ import unittest
 import mock
 
 import tornado.web
-from tornado.testing import AsyncHTTPTestCase
+from test.base import BaseTest
 
-from db.sa import (
-    engine,
-    Session
-)
-from app import application
-from apps.model import (
+from apps.blog.models import (
     Tag,
     User,
-    Base,
     Article,
 )
 
-application.settings['xsrf_cookies'] = False
 
+class BlogTest(BaseTest):
 
-class BlogTest(AsyncHTTPTestCase):
-
-    def get_app(self):
-        return application
-
-    def setUp(self):
-        super(BlogTest, self).setUp()
-        Base.metadata.drop_all(engine)
-        Base.metadata.create_all(engine)
-        session = Session()
-        u = User(
+    @classmethod
+    def setUpClass(cls):
+        super(BlogTest, cls).setUpClass()
+        session = cls.Session()
+        user = User(
             username='L',
             password='L',
             avatar='Katarina.png',
             introduction='L'
         )
         article = Article(
-            user=u,
+            user=user,
             title='L',
             introduction='L',
             markdown_content='L',
@@ -50,8 +38,8 @@ class BlogTest(AsyncHTTPTestCase):
         )
         tag = Tag(content='hello')
         article.tag.append(tag)
-        u.tag.append(tag)
-        session.add(u)
+        user.tag.append(tag)
+        session.add(user)
         session.add(article)
         session.commit()
         session.close()
@@ -115,8 +103,8 @@ class BlogTest(AsyncHTTPTestCase):
                 'introduction': 'hello',
                 'markdown_content': 'hello',
                 'compiled_content': 'hello',
-                'tags': '["hello", "tag"]',
-            })
+                'tags[]': ["hello", "tag"],
+            }, True)
         )
         self.assertEqual(response.code, 200)
 
@@ -131,8 +119,8 @@ class BlogTest(AsyncHTTPTestCase):
                 'introduction': 'hello L',
                 'markdown_content': 'hello L',
                 'compiled_content': 'hello L',
-                'tags': '["hello"]',
-            })
+                'tags[]': ["hello"],
+            }, True)
         )
         self.assertEqual(response.code, 200)
 
