@@ -21,7 +21,7 @@ exclude_lines =
     if __name__ == .__main__.:
 
 ignore_errors = True
-include = apps
+# include = apps
 
 [html]
 directory = coverage_html_report

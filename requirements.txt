@@ -11,7 +11,7 @@ ipdb==0.10.2
 IPython==5.3.0
 fabric==1.12.0
 mock==2.0.0
-coverage==4.2
+coverage==4.4.1
 schematics==1.1.1
 raven==6.0.0
 supervisor==3.3.1
