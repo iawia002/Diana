@@ -1,41 +1,38 @@
 dist: trusty
 
 language:
-  - "python"
-  - "node_js"
+  - python
 
 python:
-  - "2.7.13"
-
-node_js:
-  - "7"
+  - 2.7.13
+  # - 3.6  # Supervisor requires Python 2.4 or later but does not work on any version of Python 3.
 
 cache:
   pip: true
   directories:
-    - "node_modules"
+    - node_modules
 
 services:
   - postgresql
 
 addons:
-  postgresql: "9.6"
+  postgresql: 9.6
 
 before_install:
-  - "npm install -g npm"
+  - npm install -g npm
 
 # command to install dependencies
 install:
-  - "pip install codecov"
-  - "pip install -r requirements.txt"
-  - "npm install"
+  - pip install codecov
+  - pip install -r requirements.txt
+  - npm install
 
 before_script:
-  # - "psql -c 'create database diana_test;' -U postgres"
-  - "cp config/local_config_travis.py.tpl config/local_config.py"
-  - "npm run build --Diana:app=blog"
-  - "npm run build --Diana:app=fish"
-  - "export PYTHONPATH=$PYTHONPATH:$(pwd)"
+  # - psql -c 'create database diana_test;' -U postgres
+  - cp config/local_config_travis.py.tpl config/local_config.py
+  - npm run build --Diana:app=blog
+  - npm run build --Diana:app=fish
+  - export PYTHONPATH=$PYTHONPATH:$(pwd)
 
 # command to run tests
 script: coverage run test/runtests.py
