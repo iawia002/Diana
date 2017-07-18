@@ -11,6 +11,7 @@
     {% include 'scrollreveal.html' %}
 </head>
 <body class="bg">
+  <div class="flex-article">
     <div class="model">
         <div class="bg"></div>
         <div class="content">
@@ -42,7 +43,7 @@
 
         {% include 'footer.html' %}
     </div>
-
+  </div>
     <script>
         var disqus_config = function () {
             this.page.url = "https://l.jifangcheng.com/p/{{ data['article']['article_id'] }}";

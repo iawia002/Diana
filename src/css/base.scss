@@ -332,11 +332,17 @@ input {
 
 .tag-nav {
   @include shadow-box;
+  max-width: 80%;
+  margin: 20px auto;
 
   p {
     color: $gray2;
     padding: 15px 20px;
     margin: 0;
     font-size: 1.1rem;
+  }
+
+  @media (max-width: 767px) {
+    max-width: 100%;
   }
 }
