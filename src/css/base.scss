@@ -332,7 +332,7 @@ input {
 
 .tag-nav {
   @include shadow-box;
-  max-width: 80%;
+  max-width: $article-width;
   margin: 20px auto;
 
   p {
