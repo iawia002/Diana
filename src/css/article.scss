@@ -111,6 +111,7 @@
 
 .article {
   @include article;
+  width: 70%;
   max-width: $article-width;
 
   @media (max-width: 767px) {
