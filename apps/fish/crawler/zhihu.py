@@ -102,7 +102,7 @@ def jike():
     即刻：知乎热门钓鱼帖
     '''
     JK_API = (
-        'https://app.jike.ruguoapp.com/1.0/topics/showDetail?'
+        'https://app.jike.ruguoapp.com/1.0/messages/showDetail?'
         'topicId={topic_id}'
     ).format(topic_id='57281cf75f0ba71200ffde92')
     results = requests.get(
