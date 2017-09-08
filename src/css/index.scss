@@ -52,6 +52,18 @@
     }
   }
 
+  .bottom-connect {
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+
+    a {
+      color: $white;
+    }
+  }
+
   h1,
   p {
     // @media (max-width: 991px) {
