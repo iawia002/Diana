@@ -18,6 +18,7 @@
 
 .lbox {
   @include box;
+  padding-bottom: 0;
   background: $white;
 
   input {
