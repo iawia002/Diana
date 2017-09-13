@@ -119,11 +119,11 @@ input {
   }
 }
 
-@mixin avatar($top: 55px, $bottom: 10px) {
+@mixin avatar($top: 55px, $bottom: 10px, $width: 120px) {
   margin: $top auto $bottom;
   padding: 0;
-  width: 120px;
-  height: 120px;
+  width: $width;
+  height: $width;
   box-shadow: 0 2.5px 5px 0 $black;
   border-radius: 60px;
   text-indent: -9999px;

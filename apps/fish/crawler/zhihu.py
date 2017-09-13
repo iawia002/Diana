@@ -1,6 +1,8 @@
 # coding=utf-8
 
 import time
+import logging
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -109,6 +111,11 @@ def jike():
         JK_API,
     )
     if results.status_code != 200:
+        logging.error(
+            '[fish] jike api url failed, status_code: {}'.format(
+                results.status_code
+            )
+        )
         return
     results = results.json()
     messages = results['messages']

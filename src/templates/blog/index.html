@@ -34,6 +34,7 @@ ____ ____ ____ ____ _________ ____ ____ ____ ____ _________ ____ ____ _________ 
           </a>
         </li>
       </nav>
+      <div class="main-content">
         <div class="avatar" style="background-image: url('{{ data['user']['avatar'] }}');"></div>
         <h1>{{ data['user']['username'] }}</h1>
         <div class="introduction" id="introduction">
@@ -44,10 +45,11 @@ ____ ____ ____ ____ _________ ____ ____ ____ ____ _________ ____ ____ _________ 
         </div>
         <br>
         <div class="last-article">
-            <p><i class="fa fa-terminal" aria-hidden="true"></i> <a href="/p/{{ data['last_article']['article_id'] }}">{{ data['last_article']['title'] }}</a></p>
+          <p><i class="fa fa-terminal" aria-hidden="true"></i> <a href="/p/{{ data['last_article']['article_id'] }}">{{ data['last_article']['title'] }}</a></p>
         </div>
+      </div>
 
-        <p class="bg-intro">{{ data['bg']['name'] }}</p>
+      <p class="bg-intro">{{ data['bg']['name'] }}</p>
     </div>
 
     <div class="content">
