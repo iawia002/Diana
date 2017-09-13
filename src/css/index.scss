@@ -45,7 +45,7 @@
   }
 
   .introduction {
-    margin-top: 15px;
+    margin-top: 10px;
 
     span {
       font-size: 1rem;
@@ -116,7 +116,7 @@
 }
 
 .last-article {
-  margin-top: 30px;
+  margin-top: 40px;
 
   p {
     border: 0;
@@ -147,15 +147,18 @@
   left: 0;
   right: 0;
   transform: translateY(-50%);
-  margin-top: -50px;
+  margin-top: -40px;
   padding: 0 10px;
+
+  @media (max-width: 767px) {
+    margin-top: -10px;
+  }
 }
 
 .avatar {
-  @include avatar($top: 30px);
+  @include avatar($top: 0);
 
   @media (max-width: 767px) {
-    margin-top: 10px;
     width: 100px;
     height: 100px;
   }
@@ -232,8 +235,12 @@
       font-size: 1.3rem;
     }
 
+    .introduction {
+      margin-top: 5px;
+    }
+
     .last-article {
-      margin-top: 10px;
+      margin-top: 15px;
     }
 
     .bg-intro {
