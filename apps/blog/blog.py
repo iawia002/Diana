@@ -46,6 +46,7 @@ class Index(BaseHandler):
 
 
 class More(BaseHandler):
+    @utils.auth.login_status
     def get(self):
         next_page = self.get_argument('next_page')
         page = self.get_argument('page')
@@ -64,6 +65,7 @@ class More(BaseHandler):
         # articles = utils.tags.articles_add_tags(articles)
         data = {}
         data['articles'] = articles
+        data['login'] = self.login
         article_list = self.render_string('blog/article_list.html', data=data)
         ret = {
             'next_page': int(next_page) + 1,
@@ -73,6 +75,7 @@ class More(BaseHandler):
 
 
 class Article(BaseHandler):
+    @utils.auth.login_status
     def get(self, article_id):
         session = Session()
         article = session.query(ArticleModel).filter_by(
@@ -94,6 +97,7 @@ class Article(BaseHandler):
         data = {}
         data['article'] = article
         data['user'] = user
+        data['login'] = self.login
         self.render('blog/article.html', data=data)
 
 

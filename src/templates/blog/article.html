@@ -35,6 +35,10 @@
             <p class="time">
               <span><i class="fa fa-eye" aria-hidden="true"></i> {{ data['article']['views'] }}</span>
               <span><i class="fa fa-calendar" aria-hidden="true"></i> {{ data['article']['update_time'] }}</span>
+
+              {% if data['login'] %}
+              <span><a href="/p/{{ data['article']['article_id'] }}/edit" target="_blank">编辑</a></span>
+              {% end %}
             </p>
         </div>
         <div class="article" style="padding: 20px;">

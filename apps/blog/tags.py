@@ -17,6 +17,7 @@ from apps.base import BaseHandler
 
 
 class Tag(BaseHandler):
+    @utils.auth.login_status
     def get(self, tag):
         session = Session()
         tag = utils.tags.tag_url_decode(tag)
@@ -32,6 +33,7 @@ class Tag(BaseHandler):
         user = utils.db.user(user_id=config.USER_ID)
         data['user'] = user
         data['next_page'] = 2
+        data['login'] = self.login
         session.commit()
         session.close()
         self.render('blog/tag.html', data=data)
