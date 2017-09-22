@@ -1,20 +1,24 @@
 {% for article in data['articles'] %}
 <div class="article">
-    <h1><a href="/p/{{ article['article_id'] }}">{{ article['title'] }}</a></h1>
-    <blockquote>{{ article['introduction'] if article['introduction'] else '' }}</blockquote>
-    <div class="tags">
-        {% for tag in article['tags'] %}
-        <a href="/tag/{{ tag['url'] }}">{{ tag['content'] }}<span>{{ tag['number'] }}</span></a>
-        {% end %}
-    </div>
-    <p class="time">
-      <span><i class="fa fa-eye" aria-hidden="true"></i> {{ article['views'] }}</span>
-      <span><i class="fa fa-calendar" aria-hidden="true"></i> {{ article['update_time'] }}</span>
-    </p>
+  <h1><a href="/p/{{ article['article_id'] }}">{{ article['title'] }}</a></h1>
+  <blockquote>{{ article['introduction'] if article['introduction'] else '' }}</blockquote>
+  <div class="tags">
+    {% for tag in article['tags'] %}
+    <a href="/tag/{{ tag['url'] }}">{{ tag['content'] }}<span>{{ tag['number'] }}</span></a>
+    {% end %}
+  </div>
+  <p class="time">
+    <span><i class="fa fa-eye" aria-hidden="true"></i> {{ article['views'] }}</span>
+    <span><i class="fa fa-calendar" aria-hidden="true"></i> {{ article['update_time'] }}</span>
+
+    {% if data['login'] %}
+    <span><a href="/p/{{ article['article_id'] }}/edit" target="_blank">编辑</a></span>
+    {% end %}
+  </p>
 </div>
 {% end %}
 
 <script>
-    // sr.reveal('.article');
-    sr.sync();
+  // sr.reveal('.article');
+  sr.sync();
 </script>
