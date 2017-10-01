@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+import bcrypt
+
 from apps import model
 from db.sa import Session
 
@@ -10,7 +12,10 @@ def init_user():
     user = model.User(
         user_id=1,
         username='admin',
-        password='$2b$12$LnGoWYDTBQ6yryO94dOEd.fXyZJXn8OFUIixaJXseViK2dQTt8X9G',  # noqa
+        password=str(
+            bcrypt.hashpw('admin'.encode('utf-8'), bcrypt.gensalt()),
+            'utf-8'
+        ),
         avatar='http://img.l.jifangcheng.com/Katarina.png',
         introduction='hello',
     )

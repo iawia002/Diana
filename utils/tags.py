@@ -10,7 +10,7 @@ def tag_url_encode(name):
     '''
     base64 不能对 unicode 进行操作，所以要先转换成 byte
     '''
-    return base64.urlsafe_b64encode(name.encode('utf-8'))
+    return str(base64.urlsafe_b64encode(name.encode('utf-8')), 'utf-8')
 
 
 def tag_url_decode(name):
@@ -29,4 +29,4 @@ def single_get_first(string):
 
 
 if __name__ == '__main__':
-    print single_get_first('皎')
+    print(single_get_first('皎'))

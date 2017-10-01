@@ -1,14 +1,16 @@
-#!/usr/bin/env python
 # coding=utf-8
+
+from flask import (
+    request,
+)
+from flask.views import MethodView
 
 from db.sa import Session
 from utils.auth import login_require
 from apps.blog.models import User as UserModel
 
-from apps.base import BaseHandler
 
-
-class User(BaseHandler):
+class User(MethodView):
 
     @login_require
     def post(self):
@@ -16,11 +18,10 @@ class User(BaseHandler):
         user = session.query(UserModel).filter_by(
             user_id=self.user_id
         ).first()
-        introduction = self.get_argument('introduction')
+        introduction = request.form.get('introduction')
         if not introduction:
-            self.set_status(400)
-            return self.write('')
+            return '', 400
         user.introduction = introduction
         session.add(user)
         session.commit()
-        return self.write('')
+        return ''

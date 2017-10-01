@@ -8,11 +8,11 @@
     <title>知乎热门钓鱼帖</title>
 </head>
 <body class="bg">
-    {% include 'top.html' %}
+    {% include 'fish/top.html' %}
     <div class="main">
-        {% include 'article_list.html' %}
+        {% include 'fish/article_list.html' %}
     </div>
     <input type="hidden" value="{{ data['next_page'] }}" id="next_page">
-    {% include 'footer.html' %}
+    {% include 'fish/footer.html' %}
 </body>
 </html>

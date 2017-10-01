@@ -1,38 +1,46 @@
-#!/usr/bin/env python
 # coding=utf-8
 
 import bcrypt
+from flask import (
+    request,
+    redirect,
+    render_template,
+    session as flask_session,
+)
+from flask.views import MethodView
 
 from db.sa import Session
-from apps.base import BaseHandler
 from apps.blog.models import User
 
 
-class Login(BaseHandler):
-
-    '''登录页面'''
-
+class Login(MethodView):
+    '''
+    登录页面
+    '''
     def get(self):
-        return self.render('blog/login.html')
+        return render_template('blog/login.html')
 
     def post(self):
         session = Session()
-        username = self.get_argument('username')
-        password = self.get_argument('password')
-        user = session.query(User).filter_by(username=username).first()
+        username = request.form['username']
+        password = request.form['password']
+        user = session.query(User).filter_by(
+            username=username
+        ).first()
         if user and bcrypt.checkpw(
             password.encode('utf-8'), user.password.encode('utf-8')
         ):
-            self.set_secure_cookie('diana', str(user.user_id))
-            self.redirect('/')
+            flask_session.permanent = True
+            flask_session['diana'] = str(user.user_id)
+            return redirect('/')
         else:
-            self.redirect('/')
+            return redirect('/'), 400
 
 
-class Logout(BaseHandler):
-
-    '''登出页面'''
-
+class Logout(MethodView):
+    '''
+    登出
+    '''
     def get(self):
-        self.clear_all_cookies()
-        self.redirect('/')
+        flask_session.pop('diana', None)
+        return redirect('/')

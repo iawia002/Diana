@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-from tornado.testing import main
-from tornado.test.util import unittest
+import unittest
 
 
 TEST_MODULES = [
@@ -14,4 +13,4 @@ def all():
     return unittest.defaultTestLoader.loadTestsFromNames(TEST_MODULES)
 
 if __name__ == '__main__':
-    main()
+    unittest.main(defaultTest='all')

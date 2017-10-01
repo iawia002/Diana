@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+import os
 import datetime
+
+DEBUG = False
 
 # redis
 REDIS_HOST = '127.0.0.1'
@@ -22,7 +25,7 @@ DB = {
     'user': 'postgres',
     'password': '',
     'host': 'postgres',
-    'db': 'diana',
+    'db': 'diana_test' if os.environ.get('TESTING') else 'diana',
 }
 
 # Time
@@ -40,6 +43,6 @@ DSN = ''
 
 
 try:
-    from local_config import *  # noqa
+    from .local_config import *  # noqa
 except ImportError:
     pass

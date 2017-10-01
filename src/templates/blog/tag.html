@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>{{ data['tag'] }} - 标签 - L</title>
-    {% include 'scrollreveal.html' %}
+    {% include 'blog/scrollreveal.html' %}
 </head>
 <body class="bg">
   <div class="flex-article">
-    {% include 'right.html' %}
+    {% include 'blog/right.html' %}
 
     <div class="left">
         <div class="tag-nav">
             <p><a href="/tags">标签</a><span style="color: #ccc;"> / </span><span>{{ data['tag'] }}</span></p>
         </div>
-        {% include 'article_list.html' %}
+        {% include 'blog/article_list.html' %}
     </div>
     <input type="hidden" value="{{ data['next_page'] }}" id="next_page">
     <input type="hidden" value="tag" id="page">

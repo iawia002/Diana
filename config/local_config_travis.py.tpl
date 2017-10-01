@@ -1,5 +1,6 @@
 # coding=utf-8
 
+
 DB = {
     'user': 'postgres',
     'password': '',

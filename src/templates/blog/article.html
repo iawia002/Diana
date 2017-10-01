@@ -8,7 +8,7 @@
     <meta name="author" content="{{ data['user']['username'] }}">
     <!-- <meta name="description" content=""> -->
     <title>{{ data['article']['title'] }} - L</title>
-    {% include 'scrollreveal.html' %}
+    {% include 'blog/scrollreveal.html' %}
 </head>
 <body class="bg">
   <div class="flex-article">
@@ -21,16 +21,16 @@
         </div>
     </div>
 
-    {% include 'right.html' %}
+    {% include 'blog/right.html' %}
 
     <div class="left">
         <div class="article">
-            {{ data['article']['compiled_content'] }}
+            {{ data['article']['compiled_content']|safe }}
             <hr>
             <div class="tags">
                 {% for tag in data['article']['tags'] %}
                 <a href="/tag/{{ tag['url'] }}">{{ tag['content'] }}<span>{{ tag['number'] }}</span></a>
-                {% end %}
+                {% endfor %}
             </div>
             <p class="time">
               <span><i class="fa fa-eye" aria-hidden="true"></i> {{ data['article']['views'] }}</span>
@@ -38,14 +38,14 @@
 
               {% if data['login'] %}
               <span><a href="/p/{{ data['article']['article_id'] }}/edit" target="_blank">编辑</a></span>
-              {% end %}
+              {% endif %}
             </p>
         </div>
         <div class="article" style="padding: 20px;">
             <div id="disqus_thread"></div>
         </div>
 
-        {% include 'footer.html' %}
+        {% include 'blog/footer.html' %}
     </div>
   </div>
     <script>

@@ -1,13 +1,14 @@
-#!/usr/bin/env python
 # coding=utf-8
-
-from __future__ import absolute_import
 
 from itertools import groupby
 
 from sqlalchemy.sql import (
     func,
 )
+from flask import (
+    render_template,
+)
+from flask.views import MethodView
 
 import config
 import utils.db
@@ -16,11 +17,9 @@ from utils.auth import login_require
 from apps.blog.models import Article
 from models.statistics import AccessLog as AccessLogModel
 
-from apps.base import BaseHandler
 
-
-class Statistics(BaseHandler):
-    def initialize(self):
+class Statistics(MethodView):
+    def __init__(self):
         self.session = Session()
         self.modules = ['Article', 'Tag', 'Tags', 'Index']
         self.queryset = self.get_queryset()
@@ -111,4 +110,4 @@ class Statistics(BaseHandler):
         })
         self.session.close()
         data['user'] = utils.db.user(user_id=config.USER_ID)
-        return self.render('blog/statistics.html', data=data)
+        return render_template('blog/statistics.html', data=data)
