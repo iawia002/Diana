@@ -7,7 +7,7 @@ import datetime
 DEBUG = False
 
 # redis
-REDIS_HOST = '127.0.0.1'
+REDIS_HOST = 'redis'
 REDIS_PORT = 6379
 REDIS_PASSWORD = None
 REDIS_DB = 0

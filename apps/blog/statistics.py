@@ -21,8 +21,6 @@ from models.statistics import AccessLog as AccessLogModel
 class Statistics(MethodView):
     def __init__(self):
         self.session = Session()
-        self.modules = ['Article', 'Tag', 'Tags', 'Index']
-        self.queryset = self.get_queryset()
 
     def get_article_info(self, uri):
         article_id = uri.split('/')[-1]
@@ -40,11 +38,6 @@ class Statistics(MethodView):
             'uri': uri,
             'title': title,
         }
-
-    def get_queryset(self):
-        return self.session.query(AccessLogModel).filter(
-            AccessLogModel.module.in_(self.modules)
-        )
 
     def generate_group_data(self, group, extra_data_type):
         data = {

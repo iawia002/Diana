@@ -87,11 +87,12 @@ ENV/
 src/css/.sass-cache
 node_modules
 npm-debug.log
-/data/*
-!/data/.gitkeep
+/data
 /backup
 /static/dist
 /static/ssl/*
 !/static/ssl/.gitkeep
 local_*.py
 /log
+celerybeat-schedule
+celerybeat.pid

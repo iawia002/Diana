@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 
 import config
 import utils.db
+from app import celery
 from db.sa import Session
 from apps.fish.models import (
     Record,
@@ -99,6 +100,7 @@ def imgs(url):
     return {'title': title, 'images': img_list}
 
 
+@celery.task(name='jike')
 def jike():
     '''
     即刻：知乎热门钓鱼帖

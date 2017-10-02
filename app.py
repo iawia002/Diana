@@ -7,6 +7,7 @@ from flask import Flask
 from raven.contrib.flask import Sentry
 
 import config
+from celery_ser import make_celery
 from mixins.access_log import generate_access_log
 
 from apps.blog.urls import bp as blog
@@ -28,6 +29,7 @@ sentry.init_app(
     logging=True,
     level=logging.ERROR,
 )
+celery = make_celery(app)
 
 
 @app.after_request

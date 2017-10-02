@@ -2,6 +2,12 @@
 version: '2'
 
 services:
+  #redis
+  redis:
+    image: daocloud.io/library/redis:4.0.1
+    volumes:
+      - ./data/redis:/data
+
   # postgres
   postgres:
     image: daocloud.io/library/postgres:9.6.5
@@ -9,7 +15,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_DB=diana
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ./data/postgresql:/var/lib/postgresql/data
 
   # web
   web:
@@ -25,5 +31,6 @@ services:
     ports:
       - '8004:8004'
     links:
+      - redis:redis
       - postgres:postgres
     restart: always
