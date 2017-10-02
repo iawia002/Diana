@@ -4,6 +4,13 @@
 import random
 import datetime
 
+from flask import (
+    jsonify,
+    request,
+    render_template,
+)
+from flask.views import MethodView
+
 import utils.db
 import utils.tags
 import utils.auth
@@ -19,10 +26,8 @@ from apps.blog.models import (
     Article as ArticleModel,
 )
 
-from apps.base import BaseHandler
 
-
-class Index(BaseHandler):
+class Index(MethodView):
     @utils.auth.login_status
     def get(self):
         data = {}
@@ -42,15 +47,15 @@ class Index(BaseHandler):
         data['user'] = user
         data['next_page'] = 2
         data['login'] = self.login
-        self.render('blog/index.html', data=data)
+        return render_template('blog/index.html', data=data)
 
 
-class More(BaseHandler):
+class More(MethodView):
     @utils.auth.login_status
     def get(self):
-        next_page = self.get_argument('next_page')
-        page = self.get_argument('page')
-        tag = self.get_argument('tag')
+        next_page = request.args.get('next_page')
+        page = request.args.get('page')
+        tag = request.args.get('tag')
 
         articles = None
         if page == 'index':
@@ -61,20 +66,22 @@ class More(BaseHandler):
             )
 
         if not articles:
-            return self.write('')
+            return ''
         # articles = utils.tags.articles_add_tags(articles)
         data = {}
         data['articles'] = articles
         data['login'] = self.login
-        article_list = self.render_string('blog/article_list.html', data=data)
+        article_list = render_template(
+            'blog/article_list.html', data=data
+        )
         ret = {
             'next_page': int(next_page) + 1,
             'data': article_list
         }
-        self.write(ret)
+        return jsonify(ret)
 
 
-class Article(BaseHandler):
+class Article(MethodView):
     @utils.auth.login_status
     def get(self, article_id):
         session = Session()
@@ -83,7 +90,7 @@ class Article(BaseHandler):
             user_id=config.USER_ID
         ).first()
         if not article:
-            return utils.common.raise_error(request=self, status_code=404)
+            return utils.common.raise_error(status_code=404)
         # 兼容以前的数据
         if not article.views:
             article.views = 0
@@ -98,10 +105,10 @@ class Article(BaseHandler):
         data['article'] = article
         data['user'] = user
         data['login'] = self.login
-        self.render('blog/article.html', data=data)
+        return render_template('blog/article.html', data=data)
 
 
-class Edit(BaseHandler):
+class Edit(MethodView):
     @utils.auth.login_require
     def get(self, article_id):
         data = {}
@@ -120,19 +127,19 @@ class Edit(BaseHandler):
         data['article_id'] = article_id
         session.commit()
         session.close()
-        self.render('blog/editor.html', data=data)
+        return render_template('blog/editor.html', data=data)
 
     @utils.auth.login_require
     def post(self, article_id):
         article_id = int(article_id)
         data = {
-            'title': self.get_argument('title'),
-            'introduction': self.get_argument('introduction'),
-            'markdown_content': self.get_argument('markdown_content'),
-            'compiled_content': self.get_argument('compiled_content'),
+            'title': request.form.get('title'),
+            'introduction': request.form.get('introduction'),
+            'markdown_content': request.form.get('markdown_content'),
+            'compiled_content': request.form.get('compiled_content'),
             'user_id': self.user_id,
         }
-        tags = self.get_arguments('tags[]')
+        tags = request.form.getlist('tags[]')
 
         session = Session()
         user = session.query(User).filter_by(
@@ -144,7 +151,7 @@ class Edit(BaseHandler):
         ).first()
         if article:
             data.update({'update_time': datetime.datetime.now()})
-            for k, v in data.iteritems():
+            for k, v in data.items():
                 setattr(article, k, v)
         else:
             article = ArticleModel(**data)
@@ -159,3 +166,4 @@ class Edit(BaseHandler):
         session.add(article)
         session.commit()
         session.close()
+        return ''

@@ -7,7 +7,7 @@
 """
 import struct, io, socket, sys
 
-class Ip2Region(object):
+class Ip2Region():
     __headerSip = []
     __headerPtr = []
     __f         = None
@@ -165,7 +165,7 @@ class Ip2Region(object):
         indexLen = eptr - sptr
         self.__f.seek(sptr)
         b = self.__f.read(indexLen + 12)
-        
+
         l, h, mixPtr = (0, int(indexLen/12), 0)
         while l <= h:
             m = int((l+h)/2)
@@ -191,8 +191,8 @@ class Ip2Region(object):
         """
         try:
             self.__f = io.open(dbfile, "rb")
-        except IOError, e:
-            print "[Error]: ", e
+        except IOError as e:
+            print("[Error]: ", e)
             sys.exit()
 
     def returnData(self, dsptr):
@@ -200,9 +200,9 @@ class Ip2Region(object):
         " get ip data from db file by data start ptr
         " param: dsptr
         """
-        dataPtr = dsptr & 0x00FFFFFFL
+        dataPtr = dsptr & 0x00FFFFFF
         dataLen = (dsptr >> 24) & 0xFF
-        
+
         self.__f.seek(dataPtr)
         data = self.__f.read(dataLen)
 

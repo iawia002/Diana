@@ -8,7 +8,7 @@
     <meta name="author" content="{{ data['user']['username'] }}">
     <meta name="description" content="{{ data['user']['introduction'] }}">
     <title>L</title>
-    {% include 'scrollreveal.html' %}
+    {% include 'blog/scrollreveal.html' %}
 </head>
 <body>
   <div>
@@ -19,13 +19,13 @@
       最多访问次数（{{ data['max_views']['views'] }}）的页面：
       {% for item in data['max_views']['data'] %}
       <a href="{{ item['uri'] }}">{{ item['title'] }}</a>
-      {% end %}
+      {% endfor %}
     </p>
     <p>
       最多访问人数（{{ data['max_persons']['views'] }}）的页面：
       {% for item in data['max_persons']['data'] %}
       <a href="{{ item['uri'] }}">{{ item['title'] }}</a>
-      {% end %}
+      {% endfor %}
     </p>
   </div>
   <script>

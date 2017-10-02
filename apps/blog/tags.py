@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+from flask import (
+    render_template,
+)
+from flask.views import MethodView
 
 import config
 import utils.db
@@ -13,17 +17,16 @@ from apps.blog.models import (
     User,
     Tag as TagModel,
 )
-from apps.base import BaseHandler
 
 
-class Tag(BaseHandler):
+class Tag(MethodView):
     @utils.auth.login_status
     def get(self, tag):
         session = Session()
         tag = utils.tags.tag_url_decode(tag)
         t = session.query(TagModel).filter_by(content=tag).first()
         if not t:
-            return utils.common.raise_error(request=self, status_code=404)
+            return utils.common.raise_error(status_code=404)
         articles = utils.db.tag_articles(
             tag=tag, page=1, user_id=config.USER_ID
         )
@@ -36,10 +39,10 @@ class Tag(BaseHandler):
         data['login'] = self.login
         session.commit()
         session.close()
-        self.render('blog/tag.html', data=data)
+        return render_template('blog/tag.html', data=data)
 
 
-class Tags(BaseHandler):
+class Tags(MethodView):
     def get(self):
         session = Session()
         tags = session.query(User).filter_by(
@@ -67,13 +70,12 @@ class Tags(BaseHandler):
         for value in kv:
             kv[value].sort(key=lambda x: x['content'])
 
-        values = sorted(kv.iteritems(), key=lambda x: x[0])
-        keys = kv.keys()
-        keys.sort()
+        values = sorted(kv.items(), key=lambda x: x[0])
+        keys = sorted(kv.keys())
 
         data = {}
         data['keys'] = keys
         data['values'] = values
         user = utils.db.user(user_id=config.USER_ID)
         data['user'] = user
-        self.render('blog/tags.html', data=data)
+        return render_template('blog/tags.html', data=data)

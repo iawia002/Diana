@@ -7,16 +7,23 @@ from fabric.api import (
 )
 
 
-def runserver(env='docker'):
-    if env == 'local':
-        local(
-            'python app.py -debug=True'
-        )
-    else:
-        local(
-            'DEBUG=True docker-compose run --rm -p 8004:8004 web '
-            'python app.py -debug=${DEBUG}'
-        )
+def runserver():
+    local(
+        'docker-compose run --rm -p 8004:8004 web python app.py'
+    )
+
+
+def command(cmd):
+    local(
+        'docker-compose run --rm -p 8004:8004 web {}'.format(cmd)
+    )
+
+
+def test():
+    local(
+        'docker-compose run -e TESTING=True --rm web '
+        'coverage run test/runtests.py'
+    )
 
 
 def makemigrations(msg=''):

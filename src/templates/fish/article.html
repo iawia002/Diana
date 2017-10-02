@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    {% include 'top.html' %}
+    {% include 'fish/top.html' %}
 
     <div class="main">
         <div class="article">
@@ -28,13 +28,13 @@
             </p>
             {% for img in data['article']['content'] %}
                 <img data-src="{{ img }}" class="lazyload" />
-            {% end %}
+            {% endfor %}
         </div>
         <!-- <div class="article" style="padding: 20px;">
             <div id="disqus_thread"></div>
         </div> -->
     </div>
 
-    {% include 'footer.html' %}
+    {% include 'fish/footer.html' %}
 </body>
 </html>

@@ -19,7 +19,7 @@ def get_or_create(session, model, defaults=None, **kwargs):
         return instance
     else:
         params = dict(
-            (k, v) for k, v in kwargs.iteritems()
+            (k, v) for k, v in kwargs.items()
             if not isinstance(v, ClauseElement)
         )
         params.update(defaults or {})
@@ -35,7 +35,7 @@ def get_instance(session, model, defaults=None, **kwargs):
         return instance
     else:
         params = dict(
-            (k, v) for k, v in kwargs.iteritems()
+            (k, v) for k, v in kwargs.items()
             if not isinstance(v, ClauseElement)
         )
         params.update(defaults or {})

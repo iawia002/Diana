@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>所有标签 - L</title>
-    {% include 'scrollreveal.html' %}
+    {% include 'blog/scrollreveal.html' %}
 </head>
 <body class="bg">
   <div class="flex-article">
-    {% include 'right.html' %}
+    {% include 'blog/right.html' %}
 
     <div class="left">
         <div class="tag-nav">
@@ -20,7 +20,7 @@
             <ul>
                 {% for key in data['keys'] %}
                 <li><a href="#{{ key }}">{{ key }}</a></li>
-                {% end %}
+                {% endfor %}
             </ul>
 
             {% for value in data['values'] %}
@@ -29,9 +29,9 @@
             <div class="tags">
                 {% for tag in value[1] %}
                 <a href="/tag/{{ tag['url'] }}">{{ tag['content'] }}<span>{{ tag['number'] }}</span></a>
-                {% end %}
+                {% endfor %}
             </div>
-            {% end %}
+            {% endfor %}
         </div>
     </div>
   </div>

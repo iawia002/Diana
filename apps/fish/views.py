@@ -1,44 +1,50 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+from flask import (
+    jsonify,
+    request,
+    render_template,
+)
+from flask.views import MethodView
+
 import utils.common
 from db.sa import Session
 from apps.fish import db_utils
-from apps.base import BaseHandler
 from apps.fish.models import Record
 
 
-class Index(BaseHandler):
+class Index(MethodView):
     def get(self):
         data = {}
         articles = db_utils.article(page=1)
         data['articles'] = articles
         data['next_page'] = 2
-        self.render('fish/index.html', data=data)
+        return render_template('fish/index.html', data=data)
 
 
-class More(BaseHandler):
+class More(MethodView):
     def get(self):
-        next_page = self.get_argument('next_page')
+        next_page = request.args.get('next_page')
         try:
             next_page = int(next_page)
         except ValueError:
-            return self.write('')
+            return ''
         articles = db_utils.article(page=next_page)
 
         if not articles:
-            return self.write('')
+            return ''
         data = {}
         data['articles'] = articles
-        article_list = self.render_string('fish/article_list.html', data=data)
+        article_list = render_template('fish/article_list.html', data=data)
         ret = {
             'next_page': next_page + 1,
             'data': article_list
         }
-        self.write(ret)
+        return jsonify(ret)
 
 
-class Article(BaseHandler):
+class Article(MethodView):
     def get(self, record_id):
         session = Session()
         article = session.query(Record).filter(
@@ -57,4 +63,4 @@ class Article(BaseHandler):
         session.close()
         data = {}
         data['article'] = article_data
-        self.render('fish/article.html', data=data)
+        return render_template('fish/article.html', data=data)

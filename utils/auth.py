@@ -1,22 +1,20 @@
-#!/usr/bin/env python
 # coding=utf-8
 
-try:
-    import urlparse  # py2  # noqa
-except ImportError:
-    import urllib.parse as urlparse  # py3  # noqa
+from flask import (
+    session,
+    redirect,
+)
 
 
 def login_require(func):
     def wrapper(*args, **kwargs):
         self = args[0]
-        user_id = self.get_secure_cookie('diana')
+        user_id = session.get('diana')
         if user_id:
             self.user_id = user_id
             return func(*args, **kwargs)
         else:
-            return self.redirect('/')
-
+            return redirect('/')
     return wrapper
 
 
@@ -24,19 +22,7 @@ def login_status(func):
     def wrapper(*args, **kwargs):
         self = args[0]
         self.login = False
-        user_id = self.get_secure_cookie('diana')
-        if user_id:
+        if 'diana' in session:
             self.login = True
         return func(*args, **kwargs)
     return wrapper
-
-
-# def next():
-#     if "?" not in url:
-#         if urlparse.urlsplit(url).scheme:
-#             # if login url is absolute, make next absolute too
-#             next_url = self.request.full_url()
-#         else:
-#             next_url = self.request.uri
-#         url += "?" + urlencode(dict(next=next_url))
-#     self.redirect(url)

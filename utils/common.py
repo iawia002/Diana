@@ -3,16 +3,19 @@
 
 import random
 
+from flask import (
+    render_template,
+)
+
 import config
 
 
-def raise_error(request, status_code):
+def raise_error(status_code):
     data = {}
     data['bg'] = random.choice(config.INDEX_BG)
     data['status'] = {}
     data['status']['code'] = status_code
-    request.set_status(status_code)
-    return request.render('blog/error.html', data=data)
+    return render_template('blog/error.html', data=data), status_code
 
 
 def row2dict(row):

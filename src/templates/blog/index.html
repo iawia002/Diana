@@ -8,7 +8,7 @@
     <meta name="author" content="{{ data['user']['username'] }}">
     <meta name="description" content="{{ data['user']['introduction'] }}">
     <title>L</title>
-    {% include 'scrollreveal.html' %}
+    {% include 'blog/scrollreveal.html' %}
 <!--
 ____ ____ ____ ____ _________ ____ ____ ____ ____ _________ ____ ____ _________ ____
 ||T |||h |||e |||y |||_______|||C |||a |||l |||l |||_______|||M |||e |||_______|||L ||
@@ -41,7 +41,7 @@ ____ ____ ____ ____ _________ ____ ____ ____ ____ _________ ____ ____ _________ 
           <p>{{ data['user']['introduction'] }}</p>
           {% if data['login'] %}
           <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
-          {% end %}
+          {% endif %}
         </div>
         <div class="last-article">
           <p><i class="fa fa-terminal" aria-hidden="true"></i> <a href="/p/{{ data['last_article']['article_id'] }}">{{ data['last_article']['title'] }}</a></p>
@@ -52,12 +52,11 @@ ____ ____ ____ ____ _________ ____ ____ ____ ____ _________ ____ ____ _________ 
     </div>
 
     <div class="content">
-        {% include 'article_list.html' %}
+        {% include 'blog/article_list.html' %}
     </div>
     <input type="hidden" value="{{ data['next_page'] }}" id="next_page">
     <input type="hidden" value="index" id="page">
     <input type="hidden" value="" id="tag">
-    {% module xsrf_form_html() %}
 
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

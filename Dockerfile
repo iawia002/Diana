@@ -1,4 +1,4 @@
-FROM daocloud.io/library/python:2.7.13
+FROM daocloud.io/library/python:3.6.2
 ENV PYTHONUNBUFFERED=1
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone

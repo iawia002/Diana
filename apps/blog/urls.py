@@ -1,5 +1,6 @@
-#!/usr/bin/env python
 # coding=utf-8
+
+from flask import Blueprint
 
 from apps.blog import (
     auth,
@@ -9,16 +10,21 @@ from apps.blog import (
     user,
 )
 
+bp = Blueprint('blog', __name__, url_prefix='/')
 
-urls = [
-    (r'/', blog.Index),  # 首页
-    (r'/login', auth.Login),  # 登录页面
-    (r'/logout', auth.Logout),  # 登出页面
-    (r'/p/(\d+)', blog.Article),
-    (r'/p/(\d+)/edit', blog.Edit),
-    (r'/tag/(.*)', tags.Tag),
-    (r'/tags', tags.Tags),
-    (r'/more', blog.More),
-    (r'/user', user.User),
-    (r'/statistics', statistics.Statistics),
-]
+bp.add_url_rule('login', view_func=auth.Login.as_view('login'))
+bp.add_url_rule('logout', view_func=auth.Logout.as_view('logout'))
+bp.add_url_rule('', view_func=blog.Index.as_view('index'))
+bp.add_url_rule(
+    'p/<int:article_id>', view_func=blog.Article.as_view('article')
+)
+bp.add_url_rule(
+    'p/<int:article_id>/edit', view_func=blog.Edit.as_view('article_edit')
+)
+bp.add_url_rule('more', view_func=blog.More.as_view('more'))
+bp.add_url_rule('tag/<string:tag>', view_func=tags.Tag.as_view('tag'))
+bp.add_url_rule('tags', view_func=tags.Tags.as_view('tags'))
+bp.add_url_rule('user', view_func=user.User.as_view('user'))
+bp.add_url_rule(
+    'statistics', view_func=statistics.Statistics.as_view('statistics')
+)
