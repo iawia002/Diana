@@ -14,7 +14,6 @@ def generate_access_log():
     data = {
         'remote_ip': request.remote_addr,
         'uri': request.path,
-        'module': '',
         'user_agent': request.headers.get('User-Agent'),
         'method': request.method,
         'address': ip_region.memorySearch(

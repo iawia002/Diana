@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # coding=utf-8
 
 import sqlalchemy as sa
@@ -18,9 +17,6 @@ class AccessLog(Base):
     )
     uri = sa.Column(
         sa.String,
-    )
-    module = sa.Column(
-        sa.String(100),
     )
     user_agent = sa.Column(
         sa.String,
