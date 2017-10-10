@@ -3,8 +3,6 @@
 import os
 
 
-PSQL_HOST = 'postgres'
-SA_URL = 'postgresql+psycopg2://postgres:@postgres/diana'
 DB = {
     'user': 'postgres',
     'password': '',

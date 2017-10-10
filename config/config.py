@@ -22,8 +22,6 @@ REDIS_HOST_PORT = '%(host)s:%(port)s' % {
 PSQL_HOST = 'localhost'
 
 # sqlalchemy
-# Alembic 要用这个 url
-SA_URL = 'postgresql+psycopg2://:@/diana'
 DB = {
     'user': 'postgres',
     'password': '',

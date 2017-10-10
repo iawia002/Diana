@@ -8,6 +8,7 @@ from raven.contrib.flask import Sentry
 from flask_sqlalchemy import SQLAlchemy
 
 import config
+from db.sa import build_sa_url
 from celery_ser import make_celery
 
 
@@ -18,9 +19,7 @@ app.config.update(
     SESSION_COOKIE_NAME='diana',
     PERMANENT_SESSION_LIFETIME=datetime.timedelta(days=365),
     SESSION_REFRESH_EACH_REQUEST=False,
-    SQLALCHEMY_DATABASE_URI=(
-        'postgresql+psycopg2://{user}:{password}@{host}/{db}'
-    ).format(
+    SQLALCHEMY_DATABASE_URI=build_sa_url(
         user=config.DB['user'],
         password=config.DB['password'],
         host=config.DB['host'],

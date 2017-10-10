@@ -12,11 +12,21 @@ from apps.blog import models  # noqa
 from apps.fish import models  # noqa
 from models import statistics  # noqa
 import config as diana_config
+from db.sa import build_sa_url
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-config.set_main_option('sqlalchemy.url', diana_config.SA_URL)
+config.set_main_option(
+    'sqlalchemy.url',
+    build_sa_url(
+        user=diana_config.DB['user'],
+        password=diana_config.DB['password'],
+        host=diana_config.DB['host'],
+        db=diana_config.DB['db'],
+    )
+)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
