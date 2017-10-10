@@ -1,35 +1,33 @@
 # coding=utf-8
 
-import sqlalchemy as sa
-
-from models import Base
+from main import db
 
 
-class AccessLog(Base):
+class AccessLog(db.Model):
     __tablename__ = 'access_log'
 
-    id = sa.Column(
-        sa.Integer,
+    id = db.Column(
+        db.Integer,
         primary_key=True,
     )
-    remote_ip = sa.Column(
-        sa.String(15),
+    remote_ip = db.Column(
+        db.String(15),
     )
-    uri = sa.Column(
-        sa.String,
+    uri = db.Column(
+        db.String,
     )
-    user_agent = sa.Column(
-        sa.String,
+    user_agent = db.Column(
+        db.String,
     )
-    method = sa.Column(
-        sa.String(7),
+    method = db.Column(
+        db.String(7),
     )
-    views = sa.Column(
-        sa.Integer,
+    views = db.Column(
+        db.Integer,
         default=0,
     )
-    address = sa.Column(
-        sa.String(100),
+    address = db.Column(
+        db.String(100),
     )
 
     def __repr__(self):

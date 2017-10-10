@@ -6,7 +6,7 @@ from alembic import context
 from sqlalchemy import engine_from_config, pool
 from logging.config import fileConfig
 
-from models import Base
+from main import db
 # 因为 Base 单独定义在 models 里，所以下面必须要单独引入所有 model 文件，不然 Base.metadata.tables 为空
 from apps.blog import models  # noqa
 from apps.fish import models  # noqa
@@ -26,7 +26,7 @@ fileConfig(config.config_file_name)
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = Base.metadata
+target_metadata = db.Model.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

@@ -12,21 +12,18 @@ from flask.views import MethodView
 
 import config
 import utils.db
-from db.sa import Session
+from main import db
 from utils.auth import login_require
 from apps.blog.models import Article
 from models.statistics import AccessLog as AccessLogModel
 
 
 class Statistics(MethodView):
-    def __init__(self):
-        self.session = Session()
-
     def get_article_info(self, uri):
         article_id = uri.split('/')[-1]
         try:
             article_id = int(article_id)
-            title = self.session.query(Article).filter_by(
+            title = Article.query.filter_by(
                 article_id=article_id
             ).first().title
         except Exception:
@@ -58,18 +55,18 @@ class Statistics(MethodView):
 
     def get_page_data(self):
         # 总共不重复的页面
-        uri = self.session.query(AccessLogModel.uri).group_by(
+        uri = db.session.query(AccessLogModel.uri).group_by(
             AccessLogModel.uri
         ).all()
         # 最多访问数可能有并列最多的
         page_data = []
         for item in uri:
-            persons = self.session.query(AccessLogModel).filter_by(
+            persons = db.session.query(AccessLogModel).filter_by(
                 uri=item
             ).distinct(AccessLogModel.remote_ip)
             page_data.append({
                 'uri': item[0],
-                'views': self.session.query(
+                'views': db.session.query(
                     func.sum(AccessLogModel.views)
                 ).filter_by(uri=item).scalar(),
                 'persons': persons.count(),
@@ -89,10 +86,10 @@ class Statistics(MethodView):
     @login_require
     def get(self):
         data = {
-            'unique_visitors': self.session.query(AccessLogModel).distinct(
+            'unique_visitors': db.session.query(AccessLogModel).distinct(
                 AccessLogModel.remote_ip,
             ).count(),
-            'views': self.session.query(
+            'views': db.session.query(
                 func.sum(AccessLogModel.views)
             ).scalar(),
         }
@@ -101,6 +98,5 @@ class Statistics(MethodView):
             'max_views': page_data[0],
             'max_persons': page_data[1],
         })
-        self.session.close()
         data['user'] = utils.db.user(user_id=config.USER_ID)
         return render_template('blog/statistics.html', data=data)

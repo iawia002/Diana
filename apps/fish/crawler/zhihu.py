@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 import config
 import utils.db
-from app import celery
+from main import celery
 from db.sa import Session
 from apps.fish.models import (
     Record,
@@ -74,13 +74,13 @@ def imgs(url):
     r = requests.get(answer_url, headers=headers)
     answer_num = r.json()['paging']['totals']
 
-    page = answer_num / limit
+    page = int(answer_num / limit)
     if answer_num % limit != 0:
         page += 1
     answers = []
 
     time.sleep(2)  # 睡眠 2 s，知乎有反爬虫策略
-    for item in xrange(page):
+    for item in range(page):
         answer_url = ZH_API(
             include=include,
             limit=limit,

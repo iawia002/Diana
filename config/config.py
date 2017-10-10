@@ -5,6 +5,8 @@ import os
 import datetime
 
 DEBUG = False
+HOST = '0.0.0.0'
+PORT = 8004
 
 # redis
 REDIS_HOST = 'redis'
@@ -20,6 +22,7 @@ REDIS_HOST_PORT = '%(host)s:%(port)s' % {
 PSQL_HOST = 'localhost'
 
 # sqlalchemy
+# Alembic 要用这个 url
 SA_URL = 'postgresql+psycopg2://:@/diana'
 DB = {
     'user': 'postgres',

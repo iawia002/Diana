@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 
 import config
 from app import app
-from models import Base
+from main import db
 from db.sa import build_engine
 
 
@@ -30,8 +30,8 @@ class BaseTest(unittest.TestCase):
         conn.execute('create database {}'.format(test_db))
         conn.close()
         test_engine = build_engine(db=test_db)
-        Base.metadata.drop_all(test_engine)
-        Base.metadata.create_all(test_engine)
+        db.Model.metadata.drop_all(test_engine)
+        db.Model.metadata.create_all(test_engine)
         Session = sessionmaker(bind=test_engine)
         cls.Session = Session
 

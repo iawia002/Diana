@@ -2,44 +2,42 @@
 
 import datetime
 
-import sqlalchemy as sa
-
-from models import Base
+from main import db
 
 
-class Record(Base):
+class Record(db.Model):
     '''
     所有钓鱼帖的记录
     '''
     __tablename__ = 'fish_record'
 
-    record_id = sa.Column(
-        sa.Integer,
+    record_id = db.Column(
+        db.Integer,
         primary_key=True,
     )
-    create_time = sa.Column(
-        sa.DateTime,
+    create_time = db.Column(
+        db.DateTime,
         default=datetime.datetime.now,
     )
-    update_time = sa.Column(
-        sa.DateTime,
+    update_time = db.Column(
+        db.DateTime,
         default=datetime.datetime.now,
         onupdate=datetime.datetime.now,
     )
-    title = sa.Column(
-        sa.String(100),
+    title = db.Column(
+        db.String(100),
     )
-    content = sa.Column(
-        sa.ARRAY(sa.String),
+    content = db.Column(
+        db.ARRAY(db.String),
     )
-    image_num = sa.Column(
-        sa.Integer,
+    image_num = db.Column(
+        db.Integer,
     )
-    source = sa.Column(
-        sa.String(1000),
+    source = db.Column(
+        db.String(1000),
     )
-    views = sa.Column(
-        sa.Integer,
+    views = db.Column(
+        db.Integer,
         default=0,
     )
 
@@ -60,7 +58,7 @@ class Record(Base):
         }
 
 
-class UpdateInfo(Base):
+class UpdateInfo(db.Model):
     '''
     只有一条记录
 
@@ -68,15 +66,15 @@ class UpdateInfo(Base):
     '''
     __tablename__ = 'fish_update_info'
 
-    update_id = sa.Column(
-        sa.Integer,
+    update_id = db.Column(
+        db.Integer,
         primary_key=True,
     )
-    content = sa.Column(
-        sa.ARRAY(sa.String),
+    content = db.Column(
+        db.ARRAY(db.String),
     )
-    last_update_time = sa.Column(
-        sa.DateTime,
+    last_update_time = db.Column(
+        db.DateTime,
         default=datetime.datetime.now,
         onupdate=datetime.datetime.now,
     )

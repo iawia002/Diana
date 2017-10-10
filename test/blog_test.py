@@ -60,6 +60,12 @@ class BlogTest(BaseTest):
         response = self.client.get('/1')
         self.assertEqual(response.status_code, 404)
 
+    def test_statistics(self):
+        with self.client:
+            self.login(self.username, self.password)
+            response = self.client.get('/statistics')
+            self.assertEqual(response.status_code, 200)
+
     def test_more_index(self):
         response = self.client.get('/more', data={
             'next_page': 2,
