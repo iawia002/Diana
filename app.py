@@ -3,13 +3,12 @@
 # import logging
 
 import config
-
-from mixins.access_log import generate_access_log
-
+import utils.common
 from main import app
 from apps.blog.urls import bp as blog
 from apps.fish.urls import bp as fish
 from apps.auth.urls import bp as auth
+from mixins.access_log import generate_access_log
 
 
 # logger = logging.getLogger('werkzeug')
@@ -30,6 +29,15 @@ def access_log(response):
     #         response.status
     #     ))
     return response
+
+
+# error
+app.register_error_handler(
+    404, lambda e: utils.common.raise_error(status_code=404)
+)
+app.register_error_handler(
+    500, lambda e: utils.common.raise_error(status_code=500)
+)
 
 
 # url

@@ -7,12 +7,12 @@ import bcrypt
 
 from test.base import BaseTest
 
+from utils import tags
 from apps.blog.models import (
     Tag,
-    User,
     Article,
 )
-from utils import tags
+from apps.auth.models import User
 
 
 class BlogTest(BaseTest):
