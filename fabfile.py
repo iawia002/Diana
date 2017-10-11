@@ -26,6 +26,20 @@ def test():
     )
 
 
+def celery_worker():
+    local(
+        'docker-compose run --rm web '
+        'celery -A app.celery worker --autoscale=10,1 -l INFO'
+    )
+
+
+def celery_beat():
+    local(
+        'docker-compose run --rm web '
+        'celery -A app.celery beat -l INFO'
+    )
+
+
 def makemigrations(msg=''):
     local(
         'docker-compose run --rm web alembic revision '

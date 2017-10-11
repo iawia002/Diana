@@ -1,45 +1,50 @@
 # coding=utf-8
 
-import logging
-import datetime
-
-from flask import Flask
-from raven.contrib.flask import Sentry
+# import logging
 
 import config
-from mixins.access_log import generate_access_log
-
+import utils.common
+from main import app
 from apps.blog.urls import bp as blog
 from apps.fish.urls import bp as fish
+from apps.auth.urls import bp as auth
+from mixins.access_log import generate_access_log
 
 
-app = Flask(__name__, template_folder='static/dist')
-app.config.update(
-    DEBUG=config.DEBUG,
-    SECRET_KEY=config.SECRET_KEY,
-    SESSION_COOKIE_NAME='diana',
-    PERMANENT_SESSION_LIFETIME=datetime.timedelta(days=365),
-    SESSION_REFRESH_EACH_REQUEST=False,
-)
-sentry = Sentry()
-sentry.init_app(
-    app,
-    dsn=config.DSN,
-    logging=True,
-    level=logging.ERROR,
-)
+# logger = logging.getLogger('werkzeug')
+# logger.addHandler(logging.StreamHandler())
 
 
 @app.after_request
 def access_log(response):
     generate_access_log()
+
+    # if response.status_code != 500:
+    #     logger.error('{} {} {} {} {} {}'.format(
+    #         datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+    #         request.remote_addr,
+    #         request.method,
+    #         request.scheme,
+    #         request.full_path,
+    #         response.status
+    #     ))
     return response
+
+
+# error
+app.register_error_handler(
+    404, lambda e: utils.common.raise_error(status_code=404)
+)
+app.register_error_handler(
+    500, lambda e: utils.common.raise_error(status_code=500)
+)
 
 
 # url
 app.register_blueprint(blog)
 app.register_blueprint(fish)
+app.register_blueprint(auth)
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8004)
+    app.run(host=config.HOST, port=config.PORT)

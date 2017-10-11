@@ -3,13 +3,13 @@
 
 import bcrypt
 
-from apps import model
 from db.sa import Session
+from apps.blog import models
 
 
 def init_user():
     session = Session()
-    user = model.User(
+    user = models.User(
         user_id=1,
         username='admin',
         password=str(
@@ -26,7 +26,7 @@ def init_user():
 
 def init_article():
     session = Session()
-    article = model.Article(
+    article = models.Article(
         user_id=1,
         title='hello',
         introduction='<p>hello</p>',

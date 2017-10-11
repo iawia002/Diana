@@ -1,15 +1,10 @@
-#!/usr/bin/env python
 # coding=utf-8
-
-from __future__ import absolute_import
 
 import datetime
 
-import sqlalchemy as sa
-from sqlalchemy.orm import relationship
-
 import utils.tags
-from models import Base
+from main import db
+from apps.auth.models import user_tag
 
 
 '''
@@ -20,120 +15,56 @@ from models import Base
 标签表只有 id 和 content
 '''
 
-tag_article = sa.Table(
+tag_article = db.Table(
     'tag_article',
-    Base.metadata,
-    sa.Column('article_id', sa.Integer, sa.ForeignKey('article.article_id')),
-    sa.Column('tag_id', sa.Integer, sa.ForeignKey('tags.tag_id')),
-)
-
-user_tag = sa.Table(
-    'user_tag',
-    Base.metadata,
-    sa.Column('user_id', sa.Integer, sa.ForeignKey('users.user_id')),
-    sa.Column('tag_id', sa.Integer, sa.ForeignKey('tags.tag_id')),
+    db.Model.metadata,
+    db.Column('article_id', db.Integer, db.ForeignKey('article.article_id')),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tags.tag_id')),
 )
 
 
-class User(Base):
-    __tablename__ = 'users'
-
-    user_id = sa.Column(
-        sa.Integer,
-        primary_key=True,
-    )
-    username = sa.Column(
-        sa.String(100),
-        nullable=False,
-        unique=True,
-    )
-    password = sa.Column(
-        sa.String(128),
-        nullable=False,
-    )
-    avatar = sa.Column(
-        sa.String(200),
-    )
-    introduction = sa.Column(
-        sa.String(100),
-        nullable=False,
-    )
-    join_time = sa.Column(
-        sa.DateTime,
-        default=datetime.datetime.now,
-    )
-    last_login = sa.Column(
-        sa.DateTime,
-        default=datetime.datetime.now,
-    )
-    tag = relationship(
-        'apps.blog.models.Tag',
-        secondary=user_tag,
-        back_populates='user',
-    )
-    article = relationship(
-        'apps.blog.models.Article',
-        back_populates='user',
-        order_by='desc(apps.blog.models.Article.create_time)',
-        lazy='dynamic',
-    )
-
-    def __repr__(self):
-        return '<User(name={})>'.format(self.username)
-
-    def to_json(self):
-        return {
-            'user_id': self.user_id,
-            'username': self.username,
-            'avatar': self.avatar,
-            'introduction': self.introduction,
-            'join_time': self.join_time,
-            'last_login': self.last_login,
-        }
-
-
-class Article(Base):
+class Article(db.Model):
     __tablename__ = 'article'
 
-    article_id = sa.Column(
-        sa.Integer,
+    article_id = db.Column(
+        db.Integer,
         primary_key=True,
     )
-    title = sa.Column(
-        sa.String(100)
-        # sa.Unicode(100)
+    title = db.Column(
+        db.String(100)
+        # db.Unicode(100)
     )
-    markdown_content = sa.Column(
-        sa.Text
-        # sa.UnicodeText
+    markdown_content = db.Column(
+        db.Text
+        # db.UnicodeText
     )
-    create_time = sa.Column(
-        sa.DateTime,
+    create_time = db.Column(
+        db.DateTime,
         default=datetime.datetime.now,
     )
-    update_time = sa.Column(
-        sa.DateTime,
+    update_time = db.Column(
+        db.DateTime,
         default=datetime.datetime.now,
     )
-    introduction = sa.Column(
-        sa.String(1000)
+    introduction = db.Column(
+        db.String(1000)
     )
-    compiled_content = sa.Column(
-        sa.Text
+    compiled_content = db.Column(
+        db.Text
     )
-    views = sa.Column(
-        sa.Integer,
+    views = db.Column(
+        db.Integer,
         default=0,
     )
-    user = relationship(
-        'apps.blog.models.User',
+    user = db.relationship(
+        'apps.auth.models.User',
         back_populates='article',
     )
-    user_id = sa.Column(
-        sa.Integer,
-        sa.ForeignKey('users.user_id'),
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey('users.user_id'),
     )
-    tag = relationship(
+    tag = db.relationship(
         'apps.blog.models.Tag',
         secondary=tag_article,
         back_populates='article',
@@ -162,30 +93,30 @@ class Article(Base):
         }
 
 
-class Tag(Base):
+class Tag(db.Model):
     __tablename__ = 'tags'
 
-    tag_id = sa.Column(
-        sa.Integer,
+    tag_id = db.Column(
+        db.Integer,
         primary_key=True,
     )
-    content = sa.Column(
-        sa.String(100),
+    content = db.Column(
+        db.String(100),
         unique=True,
     )
-    create_time = sa.Column(
-        sa.DateTime,
+    create_time = db.Column(
+        db.DateTime,
         default=datetime.datetime.now,
     )
-    article = relationship(
+    article = db.relationship(
         'apps.blog.models.Article',
         secondary=tag_article,
         back_populates='tag',
         order_by='desc(apps.blog.models.Article.create_time)',
         lazy='dynamic',
     )
-    user = relationship(
-        'apps.blog.models.User',
+    user = db.relationship(
+        'apps.auth.models.User',
         secondary=user_tag,
         back_populates='tag',
     )

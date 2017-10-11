@@ -12,19 +12,15 @@ import utils.tags
 import utils.auth
 import utils.common
 import utils.json_utils
-from db.sa import Session
-from apps.blog.models import (
-    User,
-    Tag as TagModel,
-)
+from apps.auth.models import User
+from apps.blog.models import Tag as TagModel
 
 
 class Tag(MethodView):
     @utils.auth.login_status
     def get(self, tag):
-        session = Session()
         tag = utils.tags.tag_url_decode(tag)
-        t = session.query(TagModel).filter_by(content=tag).first()
+        t = TagModel.query.filter_by(content=tag).first()
         if not t:
             return utils.common.raise_error(status_code=404)
         articles = utils.db.tag_articles(
@@ -37,21 +33,16 @@ class Tag(MethodView):
         data['user'] = user
         data['next_page'] = 2
         data['login'] = self.login
-        session.commit()
-        session.close()
         return render_template('blog/tag.html', data=data)
 
 
 class Tags(MethodView):
     def get(self):
-        session = Session()
-        tags = session.query(User).filter_by(
+        tags = User.query.filter_by(
             user_id=config.USER_ID
         ).first().tag
         # 所有标签要排除空标签
         tags = [tag.to_json() for tag in tags if len(tag.article.all()) > 0]
-        session.commit()
-        session.close()
         tags_keys = [
             utils.tags.single_get_first(
                 tag['content'][0]

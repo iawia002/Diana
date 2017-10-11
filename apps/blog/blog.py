@@ -18,13 +18,12 @@ import utils.common
 import utils.json_utils
 
 import config
-from db.sa import Session
-
+from main import db
 from apps.blog.models import (
     Tag,
-    User,
     Article as ArticleModel,
 )
+from apps.auth.models import User
 
 
 class Index(MethodView):
@@ -32,14 +31,11 @@ class Index(MethodView):
     def get(self):
         data = {}
         data['bg'] = random.choice(config.INDEX_BG)
-        session = Session()
-        data['last_article'] = session.query(User).filter_by(
+        data['last_article'] = User.query.filter_by(
             user_id=config.USER_ID
         ).first().article[0]
         if data['last_article']:
             data['last_article'] = data['last_article'].to_json()
-        session.commit()
-        session.close()
 
         articles = utils.db.article(page=1, user_id=config.USER_ID)
         user = utils.db.user(user_id=config.USER_ID)
@@ -84,8 +80,7 @@ class More(MethodView):
 class Article(MethodView):
     @utils.auth.login_status
     def get(self, article_id):
-        session = Session()
-        article = session.query(ArticleModel).filter_by(
+        article = ArticleModel.query.filter_by(
             article_id=article_id,
             user_id=config.USER_ID
         ).first()
@@ -96,10 +91,9 @@ class Article(MethodView):
             article.views = 0
         # 更新浏览次数
         article.views += 1
-        session.add(article)
-        session.commit()
+        db.session.add(article)
+        db.session.commit()
         article = article.to_json()
-        session.close()
         user = utils.db.user(user_id=config.USER_ID)
         data = {}
         data['article'] = article
@@ -112,8 +106,7 @@ class Edit(MethodView):
     @utils.auth.login_require
     def get(self, article_id):
         data = {}
-        session = Session()
-        article = session.query(ArticleModel).filter_by(
+        article = ArticleModel.query.filter_by(
             article_id=article_id,
             user_id=self.user_id
         ).first()
@@ -125,8 +118,6 @@ class Edit(MethodView):
             data['article_markdown_content'] = ''
             data['article_title'] = ''
         data['article_id'] = article_id
-        session.commit()
-        session.close()
         return render_template('blog/editor.html', data=data)
 
     @utils.auth.login_require
@@ -141,11 +132,10 @@ class Edit(MethodView):
         }
         tags = request.form.getlist('tags[]')
 
-        session = Session()
-        user = session.query(User).filter_by(
+        user = User.query.filter_by(
             user_id=self.user_id
         ).first()
-        article = session.query(ArticleModel).filter_by(
+        article = ArticleModel.query.filter_by(
             article_id=article_id,
             user_id=self.user_id
         ).first()
@@ -159,11 +149,10 @@ class Edit(MethodView):
         # 文章标签更新方法：先把以前的全部删除再全部新建
         article.tag[:] = []
         for tag in tags:
-            tag = utils.db.get_or_create(session, Tag, content=tag)
+            tag = utils.db.get_or_create(db.session, Tag, content=tag)
             article.tag.append(tag)
             user.tag.append(tag)
-        session.add(user)
-        session.add(article)
-        session.commit()
-        session.close()
+        db.session.add(user)
+        db.session.add(article)
+        db.session.commit()
         return ''

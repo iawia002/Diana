@@ -9,7 +9,7 @@ from flask import (
 from flask.views import MethodView
 
 import utils.common
-from db.sa import Session
+from main import db
 from apps.fish import db_utils
 from apps.fish.models import Record
 
@@ -46,8 +46,7 @@ class More(MethodView):
 
 class Article(MethodView):
     def get(self, record_id):
-        session = Session()
-        article = session.query(Record).filter(
+        article = Record.query.filter(
             Record.record_id == record_id,
         ).first()
         if not article:
@@ -57,10 +56,9 @@ class Article(MethodView):
             article.views = 0
         # 更新浏览次数
         article.views += 1
-        session.add(article)
-        session.commit()
+        db.session.add(article)
+        db.session.commit()
         article_data = article.json
-        session.close()
         data = {}
         data['article'] = article_data
         return render_template('fish/article.html', data=data)

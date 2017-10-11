@@ -5,9 +5,11 @@ import os
 import datetime
 
 DEBUG = False
+HOST = '0.0.0.0'
+PORT = 8004
 
 # redis
-REDIS_HOST = '127.0.0.1'
+REDIS_HOST = 'redis'
 REDIS_PORT = 6379
 REDIS_PASSWORD = None
 REDIS_DB = 0
@@ -20,7 +22,6 @@ REDIS_HOST_PORT = '%(host)s:%(port)s' % {
 PSQL_HOST = 'localhost'
 
 # sqlalchemy
-SA_URL = 'postgresql+psycopg2://:@/diana'
 DB = {
     'user': 'postgres',
     'password': '',

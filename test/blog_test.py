@@ -7,12 +7,12 @@ import bcrypt
 
 from test.base import BaseTest
 
+from utils import tags
 from apps.blog.models import (
     Tag,
-    User,
     Article,
 )
-from utils import tags
+from apps.auth.models import User
 
 
 class BlogTest(BaseTest):
@@ -59,6 +59,12 @@ class BlogTest(BaseTest):
     def test_404(self):
         response = self.client.get('/1')
         self.assertEqual(response.status_code, 404)
+
+    def test_statistics(self):
+        with self.client:
+            self.login(self.username, self.password)
+            response = self.client.get('/statistics')
+            self.assertEqual(response.status_code, 200)
 
     def test_more_index(self):
         response = self.client.get('/more', data={

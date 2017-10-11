@@ -6,17 +6,22 @@ from alembic import context
 from sqlalchemy import engine_from_config, pool
 from logging.config import fileConfig
 
-from models import Base
+from main import db
 # 因为 Base 单独定义在 models 里，所以下面必须要单独引入所有 model 文件，不然 Base.metadata.tables 为空
 from apps.blog import models  # noqa
 from apps.fish import models  # noqa
 from models import statistics  # noqa
 import config as diana_config
+from db.sa import build_sa_url
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-config.set_main_option('sqlalchemy.url', diana_config.SA_URL)
+config.set_main_option(
+    'sqlalchemy.url',
+    build_sa_url()
+)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
@@ -26,7 +31,7 @@ fileConfig(config.config_file_name)
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = Base.metadata
+target_metadata = db.Model.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

@@ -3,7 +3,6 @@
 from flask import Blueprint
 
 from apps.blog import (
-    auth,
     blog,
     statistics,
     tags,
@@ -12,8 +11,6 @@ from apps.blog import (
 
 bp = Blueprint('blog', __name__, url_prefix='/')
 
-bp.add_url_rule('login', view_func=auth.Login.as_view('login'))
-bp.add_url_rule('logout', view_func=auth.Logout.as_view('logout'))
 bp.add_url_rule('', view_func=blog.Index.as_view('index'))
 bp.add_url_rule(
     'p/<int:article_id>', view_func=blog.Article.as_view('article')

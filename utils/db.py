@@ -1,55 +1,40 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-from __future__ import absolute_import  # 有模块和本文件同名
-
 from sqlalchemy.sql import ClauseElement
 
 import config
-from db.sa import Session
-from apps.blog.models import (
-    Tag,
-    User,
-)
+from apps.blog.models import Tag
+from apps.auth.models import User
+
+
+def get_instance(session, model, defaults=None, commit=False, **kwargs):
+    instance = session.query(model).filter_by(**kwargs).first()
+    if instance:
+        return instance
+    else:
+        params = dict(
+            (k, v) for k, v in kwargs.items()
+            if not isinstance(v, ClauseElement)
+        )
+        params.update(defaults or {})
+        instance = model(**params)
+        if commit:
+            session.add(instance)
+            session.commit()
+        return instance
 
 
 def get_or_create(session, model, defaults=None, **kwargs):
-    instance = session.query(model).filter_by(**kwargs).first()
-    if instance:
-        return instance
-    else:
-        params = dict(
-            (k, v) for k, v in kwargs.items()
-            if not isinstance(v, ClauseElement)
-        )
-        params.update(defaults or {})
-        instance = model(**params)
-        session.add(instance)
-        session.commit()
-        return instance
-
-
-def get_instance(session, model, defaults=None, **kwargs):
-    instance = session.query(model).filter_by(**kwargs).first()
-    if instance:
-        return instance
-    else:
-        params = dict(
-            (k, v) for k, v in kwargs.items()
-            if not isinstance(v, ClauseElement)
-        )
-        params.update(defaults or {})
-        instance = model(**params)
-        return instance
+    return get_instance(
+        session, model, defaults=defaults, commit=True, **kwargs
+    )
 
 
 def user(user_id):
-    session = Session()
-    user = session.query(User).filter_by(
+    user = User.query.filter_by(
         user_id=user_id
     ).first().to_json()
-    session.commit()
-    session.close()
     return user
 
 
@@ -62,25 +47,21 @@ def article(page, user_id):
     page 从 1 开始
     '''
     page = int(page)
-    session = Session()
-    articles = session.query(User).filter_by(
+    articles = User.query.filter_by(
         user_id=user_id
     ).first().article[
         (page-1)*config.ARTICLE_PAGE_NUMBER: page*config.ARTICLE_PAGE_NUMBER
     ]
     articles = articles_to_json(articles)
-    session.commit()
-    session.close()
     return articles
 
 
 def tag_articles(tag, page, user_id):
     page = int(page)
-    session = Session()
-    user = session.query(User).filter_by(
+    user = User.query.filter_by(
         user_id=user_id
     ).first()
-    tag = session.query(Tag).filter_by(
+    tag = Tag.query.filter_by(
         content=tag
     ).first()
     if user not in tag.user:
@@ -89,6 +70,4 @@ def tag_articles(tag, page, user_id):
         (page-1)*config.ARTICLE_PAGE_NUMBER: page*config.ARTICLE_PAGE_NUMBER
     ]
     articles = articles_to_json(articles)
-    session.commit()
-    session.close()
     return articles
