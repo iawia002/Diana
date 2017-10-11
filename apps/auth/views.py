@@ -9,7 +9,7 @@ from flask import (
 )
 from flask.views import MethodView
 
-from apps.blog.models import User
+from apps.auth.models import User
 
 
 class Login(MethodView):

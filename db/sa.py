@@ -7,7 +7,10 @@ from sqlalchemy.orm import sessionmaker
 import config
 
 
-def build_sa_url(user, password, host, db):
+def build_sa_url(
+    user=config.DB['user'], password=config.DB['password'],
+    host=config.DB['host'], db=config.DB['db']
+):
     sa_url = 'postgresql+psycopg2://{user}:{password}@{host}/{db}'.format(
         user=user, password=password, host=host, db=db
     )

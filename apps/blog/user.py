@@ -7,7 +7,7 @@ from flask.views import MethodView
 
 from main import db
 from utils.auth import login_require
-from apps.blog.models import User as UserModel
+from apps.auth.models import User as UserModel
 
 
 class User(MethodView):

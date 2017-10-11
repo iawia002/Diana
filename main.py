@@ -19,12 +19,7 @@ app.config.update(
     SESSION_COOKIE_NAME='diana',
     PERMANENT_SESSION_LIFETIME=datetime.timedelta(days=365),
     SESSION_REFRESH_EACH_REQUEST=False,
-    SQLALCHEMY_DATABASE_URI=build_sa_url(
-        user=config.DB['user'],
-        password=config.DB['password'],
-        host=config.DB['host'],
-        db=config.DB['db'],
-    ),
+    SQLALCHEMY_DATABASE_URI=build_sa_url(),
     SQLALCHEMY_POOL_SIZE=200,
     SQLALCHEMY_MAX_OVERFLOW=10,
     SQLALCHEMY_TRACK_MODIFICATIONS=False,

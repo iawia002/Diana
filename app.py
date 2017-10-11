@@ -9,6 +9,7 @@ from mixins.access_log import generate_access_log
 from main import app
 from apps.blog.urls import bp as blog
 from apps.fish.urls import bp as fish
+from apps.auth.urls import bp as auth
 
 
 # logger = logging.getLogger('werkzeug')
@@ -34,6 +35,7 @@ def access_log(response):
 # url
 app.register_blueprint(blog)
 app.register_blueprint(fish)
+app.register_blueprint(auth)
 
 
 if __name__ == '__main__':

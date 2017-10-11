@@ -41,7 +41,7 @@ class BaseTest(unittest.TestCase):
 
     def login(self, username, password):
         return self.client.post(
-            '/login',
+            '/auth/login',
             data=dict(
                 username=username,
                 password=password

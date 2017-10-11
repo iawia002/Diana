@@ -4,10 +4,8 @@
 from sqlalchemy.sql import ClauseElement
 
 import config
-from apps.blog.models import (
-    Tag,
-    User,
-)
+from apps.blog.models import Tag
+from apps.auth.models import User
 
 
 def get_instance(session, model, defaults=None, commit=False, **kwargs):

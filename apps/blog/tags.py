@@ -12,10 +12,8 @@ import utils.tags
 import utils.auth
 import utils.common
 import utils.json_utils
-from apps.blog.models import (
-    User,
-    Tag as TagModel,
-)
+from apps.auth.models import User
+from apps.blog.models import Tag as TagModel
 
 
 class Tag(MethodView):

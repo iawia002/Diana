@@ -20,12 +20,7 @@ from db.sa import build_sa_url
 config = context.config
 config.set_main_option(
     'sqlalchemy.url',
-    build_sa_url(
-        user=diana_config.DB['user'],
-        password=diana_config.DB['password'],
-        host=diana_config.DB['host'],
-        db=diana_config.DB['db'],
-    )
+    build_sa_url()
 )
 
 # Interpret the config file for Python logging.

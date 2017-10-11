@@ -21,9 +21,9 @@ import config
 from main import db
 from apps.blog.models import (
     Tag,
-    User,
     Article as ArticleModel,
 )
+from apps.auth.models import User
 
 
 class Index(MethodView):
