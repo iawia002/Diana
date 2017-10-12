@@ -31,6 +31,7 @@ before_script:
   - cp config/local_config_travis.py.tpl config/local_config.py
   - npm run build --Diana:app=blog
   - npm run build --Diana:app=fish
+  - npm run build --Diana:app=auth
   - export PYTHONPATH=$PYTHONPATH:$(pwd)
 
 # command to run tests

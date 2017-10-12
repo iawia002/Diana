@@ -1,14 +1,14 @@
-'use strict';
-
-import '../common/more.js';
-
-import '../../../css/article.scss';
-import 'font-awesome/css/font-awesome.css';
+/* eslint-env browser */
 
 import $ from 'jquery';
 
+import 'font-awesome/css/font-awesome.css';
+import '../../../css/blog/article.scss';
+
+import '../common/more';
+
 
 $(document).ready(() => {
-  sr.reveal('.article', {reset: true});
+  window.sr.reveal('.article', { reset: true });
   $('html').removeClass('sr');
 });

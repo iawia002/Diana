@@ -1,8 +1,10 @@
-import '../css/article.scss';
+/* eslint-env browser */
 
 import 'lazysizes';
 import $ from 'jquery';
-import ImageGallery from '../../image_gallery.js'
+import ImageGallery from '../../image_gallery';
+
+import '../../../css/fish/article.scss';
 
 
 $(document).ready(() => {

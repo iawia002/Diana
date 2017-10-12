@@ -3,12 +3,12 @@
 import $ from 'jquery';
 
 import 'font-awesome/css/font-awesome.css';
-import '../css/login.scss';
+import '../../../css/auth/login.scss';
 
 
 $(document).ready(() => {
-  sr.reveal('.avatar', { rotate: { x: 65 } });
-  sr.reveal('input', { rotate: { y: 65 }, duration: 600 });
-  sr.reveal('button');
+  window.sr.reveal('.avatar', { rotate: { x: 65 } });
+  window.sr.reveal('input', { rotate: { y: 65 }, duration: 600 });
+  window.sr.reveal('button');
   $('html').removeClass('sr');
 });

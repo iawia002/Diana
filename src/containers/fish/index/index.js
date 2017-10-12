@@ -1,2 +1,2 @@
-import '../css/article.scss';
-import '../common/more.js';
+import '../../../css/fish/article.scss';
+import '../common/more';
