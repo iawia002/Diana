@@ -8,7 +8,7 @@ import notie from 'notie';
 
 import '../common/more';
 import utils from '../../utils';
-import '../../../css/index.scss';
+import '../../../css/blog/index.scss';
 
 
 $(document).ready(() => {

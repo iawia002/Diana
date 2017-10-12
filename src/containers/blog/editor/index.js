@@ -13,7 +13,7 @@ import 'codemirror/mode/gfm/gfm';
 
 import Editor from './editor';
 
-import '../../../css/editor.scss';
+import '../../../css/blog/editor.scss';
 
 
 const editor = new Editor();

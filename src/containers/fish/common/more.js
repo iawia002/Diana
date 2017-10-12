@@ -1,20 +1,22 @@
+/* eslint-env browser */
+
 import $ from 'jquery';
 
-const more = (next_page) => {
+const more = (nextPage) => {
   $.ajax({
     url: '/fish/more',
     method: 'GET',
     data: {
-      'next_page': next_page,
+      next_page: nextPage,
     },
     success: (data) => {
       if (data) {
-        $('.main').append(data['data'])
-        $('#next_page').val(data['next_page'])
+        $('.main').append(data.data);
+        $('#next_page').val(data.next_page);
       }
-    }
+    },
   });
-}
+};
 
 $(window).scroll(() => {
   const scrollTop = $(window).scrollTop();
@@ -22,7 +24,7 @@ $(window).scroll(() => {
   const windowHeight = $(window).height();
   if (scrollTop + windowHeight === scrollHeight) {
     more(
-      $('#next_page').val()
+      $('#next_page').val(),
     );
   }
 });

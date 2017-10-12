@@ -1,12 +1,14 @@
-'use strict';
-
-import 'font-awesome/css/font-awesome.css';
-import 'highlight.js/styles/solarized-light.css';
-import '../../../css/article.scss';
+/* eslint-env browser */
 
 import $ from 'jquery';
 import hljs from 'highlight.js';
-import ImageGallery from '../../image_gallery.js'
+
+import 'font-awesome/css/font-awesome.css';
+import 'highlight.js/styles/solarized-light.css';
+import '../../../css/blog/article.scss';
+
+import ImageGallery from '../../image_gallery';
+
 
 hljs.initHighlightingOnLoad();
 
@@ -15,7 +17,7 @@ $(document).ready(() => {
   $('pre code').each((i, block) => {
     hljs.highlightBlock(block);
   });
-  sr.reveal('.article', {viewFactor: 0.000001});
+  window.sr.reveal('.article', { viewFactor: 0.000001 });
   $('html').removeClass('sr');
 
   const iv = new ImageGallery('.article', 'src');

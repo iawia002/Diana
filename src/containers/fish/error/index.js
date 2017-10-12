@@ -1,2 +1,2 @@
 
-import '../css/article.scss';
+import '../../../css/fish/article.scss';

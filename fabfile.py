@@ -47,15 +47,10 @@ def makemigrations(msg=''):
     )
 
 
-def migrate(env='docker'):
-    if env == 'local':
-        local(
-            'alembic upgrade head'
-        )
-    else:
-        local(
-            'docker-compose run --rm web alembic upgrade head'
-        )
+def migrate():
+    local(
+        'docker-compose run --rm web alembic upgrade head'
+    )
 
 
 def alembic(command='current'):
@@ -82,15 +77,10 @@ def update_packages():
     )
 
 
-def init(env='docker'):
-    if env == 'local':
-        local(
-            'python db/init.py'
-        )
-    else:
-        local(
-            'docker-compose run --rm web python db/init.py'
-        )
+def init():
+    local(
+        'docker-compose run --rm web python db/init.py'
+    )
 
 
 def watch():

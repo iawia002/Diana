@@ -1,12 +1,12 @@
-'use strict';
-
-import '../../../css/article.scss';
-import 'font-awesome/css/font-awesome.css';
+/* eslint-env browser */
 
 import $ from 'jquery';
 
+import 'font-awesome/css/font-awesome.css';
+import '../../../css/blog/article.scss';
+
 
 $(document).ready(() => {
-  sr.reveal('.article', {viewFactor: 0.000001});
+  window.sr.reveal('.article', { viewFactor: 0.000001 });
   $('html').removeClass('sr');
 });
