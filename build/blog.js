@@ -23,7 +23,6 @@ module.exports = {
     index: [`${PATHS.app}index`],
     tag: [`${PATHS.app}tag`],
     tags: [`${PATHS.app}tags`],
-    login: [`${PATHS.app}login`],
     error: [`${PATHS.app}error`],
   },
 
@@ -66,13 +65,6 @@ module.exports = {
       hash: true,
       filename: 'tags.html',
       chunks: ['vendor', 'tags', 'commons'],
-      inject: 'body',
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../src/templates/blog/login.html'),
-      hash: true,
-      filename: 'login.html',
-      chunks: ['vendor', 'login', 'commons'],
       inject: 'body',
     }),
     new HtmlWebpackPlugin({

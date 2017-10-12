@@ -17,7 +17,7 @@ class Login(MethodView):
     登录页面
     '''
     def get(self):
-        return render_template('blog/login.html')
+        return render_template('auth/login.html')
 
     def post(self):
         username = request.form['username']
