@@ -6,7 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>登录</title>
-    {% include 'blog/scrollreveal.html' %}
+
+    <script src="/static/libs/scrollreveal.min.js"></script>
+    <script>
+      window.sr = ScrollReveal();
+
+      if (sr.isSupported()) {
+        document.documentElement.classList.add('sr');
+      }
+    </script>
 </head>
 <body class="bg">
     <div class="login">

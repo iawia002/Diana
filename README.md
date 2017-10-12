@@ -18,7 +18,7 @@ Edit | Tags | Article
 * __sass__
 
 ### backend
-* __Tornado__ as web framework
+* __Flask__ as web framework
 * __PostgreSQL__ as database
 * __SQLAlchemy__ as ORM
 
