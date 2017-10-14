@@ -7,10 +7,11 @@ from fabric.api import (
 )
 
 
-def runserver():
-    local(
-        'docker-compose run --rm -p 8004:8004 web python app.py'
-    )
+def runserver(_type='normal'):
+    cmd = 'docker-compose run --rm -p 8004:8004 web '
+    if _type == 'normal':
+        cmd += 'python app.py'
+    local(cmd)
 
 
 def command(cmd):
