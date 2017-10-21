@@ -18,9 +18,6 @@ REDIS_HOST_PORT = '%(host)s:%(port)s' % {
     'port': REDIS_PORT
 }
 
-# PSQL
-PSQL_HOST = 'localhost'
-
 # sqlalchemy
 DB = {
     'user': 'postgres',

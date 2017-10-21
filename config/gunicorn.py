@@ -11,7 +11,8 @@ workers = multiprocessing.cpu_count() * 2
 worker_class = 'gevent'
 
 access_log_format = (
-    '%(t)s %(h)s %(u)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s" %(T)s %(D)s'
+    '%(t)s %({X-Real-IP}i)s %(u)s "%(r)s" '
+    '%(s)s %(b)s "%(f)s" "%(a)s" %(T)s %(D)s'
 )
 
 if app_config.DEBUG:

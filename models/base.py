@@ -11,6 +11,9 @@ class CreateTimeMixin:
         db.DateTime,
         default=datetime.datetime.now,
     )
+
+
+class UpdateTimeMixin(CreateTimeMixin):
     update_time = db.Column(
         db.DateTime,
         default=datetime.datetime.now,
