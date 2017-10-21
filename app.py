@@ -32,7 +32,7 @@ def access_log(response):
 # app.url_map.strict_slashes = False
 
 # url
-apps = ['blog', 'auth', 'fun', 'fish']
+apps = ['blog', 'auth', 'fish']
 for _app in apps:
     url = import_module('apps.{}.urls'.format(_app))
     app.register_blueprint(url.bp)

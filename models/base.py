@@ -13,5 +13,6 @@ class CreateTimeMixin:
     )
     update_time = db.Column(
         db.DateTime,
+        default=datetime.datetime.now,
         onupdate=datetime.datetime.now,
     )

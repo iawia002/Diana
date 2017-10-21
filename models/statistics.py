@@ -23,10 +23,6 @@ class AccessLog(CreateTimeMixin, db.Model):
     method = db.Column(
         db.String(7),
     )
-    views = db.Column(
-        db.Integer,
-        default=0,
-    )
     address = db.Column(
         db.String(100),
     )
