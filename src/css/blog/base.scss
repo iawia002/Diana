@@ -1,5 +1,4 @@
 // base
-@import "~normalize.css";
 @import "../base";
 
 
@@ -118,9 +117,12 @@
     }
   }
 
+  code {
+    word-wrap: break-word;
+  }
+
   pre code {
     padding: 10px 20px;
-    word-wrap: break-word;
   }
 
   li code,

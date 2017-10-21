@@ -2,9 +2,6 @@
 
 from itertools import groupby
 
-from sqlalchemy.sql import (
-    func,
-)
 from flask import (
     render_template,
 )
@@ -66,15 +63,15 @@ class Statistics(MethodView):
             ).distinct(AccessLogModel.remote_ip)
             page_data.append({
                 'uri': item[0],
-                'views': db.session.query(
-                    func.sum(AccessLogModel.views)
-                ).filter_by(uri=item).scalar(),
+                'views': db.session.query(AccessLogModel).filter_by(
+                    uri=item
+                ).count(),
                 'persons': persons.count(),
                 'person_instance': persons,
             })
 
         # 排序，按个数分组
-        page_data.sort(reverse=True, key=lambda x: x['views'])
+        page_data.sort(key=lambda x: x['views'], reverse=True)
         max_views_group = groupby(page_data, lambda x: x['views'])
         max_view_data = self.generate_group_data(max_views_group, 'persons')
 
@@ -89,9 +86,7 @@ class Statistics(MethodView):
             'unique_visitors': db.session.query(AccessLogModel).distinct(
                 AccessLogModel.remote_ip,
             ).count(),
-            'views': db.session.query(
-                func.sum(AccessLogModel.views)
-            ).scalar(),
+            'views': db.session.query(AccessLogModel).count(),
         }
         page_data = self.get_page_data()
         data.update({

@@ -1,9 +1,10 @@
 # coding=utf-8
 
 from main import db
+from models.base import CreateTimeMixin
 
 
-class AccessLog(db.Model):
+class AccessLog(CreateTimeMixin, db.Model):
     __tablename__ = 'access_log'
 
     id = db.Column(
@@ -21,10 +22,6 @@ class AccessLog(db.Model):
     )
     method = db.Column(
         db.String(7),
-    )
-    views = db.Column(
-        db.Integer,
-        default=0,
     )
     address = db.Column(
         db.String(100),

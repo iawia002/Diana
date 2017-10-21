@@ -3,7 +3,6 @@
 
 from flask import request
 
-import utils.db
 from main import db
 from utils import ip_region
 
@@ -20,9 +19,5 @@ def generate_access_log():
             request.remote_addr
         )['region'].decode('utf-8'),
     }
-    access_log = utils.db.get_instance(db.session, AccessLog, **data)
-    if not access_log.views:
-        access_log.views = 0
-    access_log.views += 1
-    db.session.add(access_log)
+    db.session.add(AccessLog(**data))
     db.session.commit()

@@ -17,18 +17,41 @@ services:
     volumes:
       - ./data/postgresql:/var/lib/postgresql/data
 
-  # web
-  web:
-    build: .
-    command: gunicorn app:app -c python:config.gunicorn
+  # base
+  web_base:
+    image: iawia002/diana
     volumes:
       - .:/code
       - /etc/localtime:/etc/localtime
     environment:
       - PYTHONPATH=/code
+    restart: always
+
+  # web
+  web:
+    extends:
+      service: web_base
+    command: gunicorn app:app -c python:config.gunicorn
     ports:
       - '8004:8004'
     links:
       - redis:redis
       - postgres:postgres
-    restart: always
+
+  # celery
+  celery:
+    extends:
+      service: web_base
+    command: celery -A main.celery worker --autoscale=10,1 -l INFO
+    links:
+      - redis:redis
+      - postgres:postgres
+
+  # beat
+  beat:
+    extends:
+      service: web_base
+    command: celery -A main.celery beat -l INFO
+    links:
+      - redis:redis
+      - postgres:postgres

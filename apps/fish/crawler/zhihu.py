@@ -1,5 +1,6 @@
 # coding=utf-8
 
+import re
 import time
 import logging
 
@@ -50,11 +51,7 @@ def imgs(url):
         'include={include}&sort_by=default&limit={limit}&offset={offset}'
     ).format
 
-    url = url.split('?')[0]
-    if url[-1] == '/':
-        question_id = url.split('/')[-2]
-    else:
-        question_id = url.split('/')[-1]
+    question_id = re.match(r'.*www.zhihu.com/question/(\d+)', url).group(1)
     html_text = requests.get(
         url,
         headers=headers,
