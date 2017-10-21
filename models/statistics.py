@@ -1,9 +1,10 @@
 # coding=utf-8
 
 from main import db
+from models.base import CreateTimeMixin
 
 
-class AccessLog(db.Model):
+class AccessLog(CreateTimeMixin, db.Model):
     __tablename__ = 'access_log'
 
     id = db.Column(
