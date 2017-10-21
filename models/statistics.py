@@ -20,6 +20,9 @@ class AccessLog(CreateTimeMixin, db.Model):
     user_agent = db.Column(
         db.String,
     )
+    referrer = db.Column(
+        db.String,
+    )
     method = db.Column(
         db.String(7),
     )
