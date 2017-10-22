@@ -46,9 +46,7 @@ class More(MethodView):
 
 class Article(MethodView):
     def get(self, record_id):
-        article = Record.query.filter(
-            Record.record_id == record_id,
-        ).first()
+        article = Record.query.filter_by(record_id=record_id).first()
         if not article:
             return utils.common.raise_error(request=self, status_code=404)
         # 兼容以前的数据

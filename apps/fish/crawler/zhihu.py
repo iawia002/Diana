@@ -3,6 +3,7 @@
 import re
 import time
 import logging
+import datetime
 
 import requests
 from bs4 import BeautifulSoup
@@ -130,6 +131,7 @@ def jike():
         article.content = result['images']
         article.title = result['title']
         article.image_num = len(result['images'])
+        article.update_time = datetime.datetime.now()
         session.add(article)
     total = []
     total.extend(already_existing)
@@ -150,6 +152,7 @@ def update_manually(url):
     article.content = result['images']
     article.title = result['title']
     article.image_num = len(result['images'])
+    article.update_time = datetime.datetime.now()
 
     # 更新记录
     update_record = session.query(UpdateInfo).first()

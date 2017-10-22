@@ -3,10 +3,10 @@
 import datetime
 
 from main import db
-from models.base import UpdateTimeMixin
+from models.base import CreateTimeMixin
 
 
-class Record(UpdateTimeMixin, db.Model):
+class Record(CreateTimeMixin, db.Model):
     '''
     所有钓鱼帖的记录
     '''
@@ -31,6 +31,11 @@ class Record(UpdateTimeMixin, db.Model):
     views = db.Column(
         db.Integer,
         default=0,
+    )
+    update_time = db.Column(
+        # 不能自动更新，因为每次访问 views 都会更新，会导致更新时间也变化
+        db.DateTime,
+        default=datetime.datetime.now,
     )
 
     def __repr__(self):
