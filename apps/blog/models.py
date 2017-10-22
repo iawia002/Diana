@@ -5,6 +5,7 @@ import datetime
 import utils.tags
 from main import db
 from apps.auth.models import user_tag
+from models.base import CreateTimeMixin
 
 
 '''
@@ -23,7 +24,7 @@ tag_article = db.Table(
 )
 
 
-class Article(db.Model):
+class Article(CreateTimeMixin, db.Model):
     __tablename__ = 'article'
 
     article_id = db.Column(
@@ -38,11 +39,8 @@ class Article(db.Model):
         db.Text
         # db.UnicodeText
     )
-    create_time = db.Column(
-        db.DateTime,
-        default=datetime.datetime.now,
-    )
     update_time = db.Column(
+        # 不能自动更新，因为每次访问 views 都会更新，会导致更新时间也变化
         db.DateTime,
         default=datetime.datetime.now,
     )
@@ -93,7 +91,7 @@ class Article(db.Model):
         }
 
 
-class Tag(db.Model):
+class Tag(CreateTimeMixin, db.Model):
     __tablename__ = 'tags'
 
     tag_id = db.Column(
@@ -103,10 +101,6 @@ class Tag(db.Model):
     content = db.Column(
         db.String(100),
         unique=True,
-    )
-    create_time = db.Column(
-        db.DateTime,
-        default=datetime.datetime.now,
     )
     article = db.relationship(
         'apps.blog.models.Article',

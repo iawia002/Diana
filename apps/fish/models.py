@@ -3,9 +3,10 @@
 import datetime
 
 from main import db
+from models.base import UpdateTimeMixin
 
 
-class Record(db.Model):
+class Record(UpdateTimeMixin, db.Model):
     '''
     所有钓鱼帖的记录
     '''
@@ -14,15 +15,6 @@ class Record(db.Model):
     record_id = db.Column(
         db.Integer,
         primary_key=True,
-    )
-    create_time = db.Column(
-        db.DateTime,
-        default=datetime.datetime.now,
-    )
-    update_time = db.Column(
-        db.DateTime,
-        default=datetime.datetime.now,
-        onupdate=datetime.datetime.now,
     )
     title = db.Column(
         db.String(100),

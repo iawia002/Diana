@@ -1,6 +1,5 @@
 # coding=utf-8
 
-# import logging
 from importlib import import_module
 
 import config
@@ -9,23 +8,9 @@ from main import app
 from mixins.access_log import generate_access_log
 
 
-# logger = logging.getLogger('werkzeug')
-# logger.addHandler(logging.StreamHandler())
-
-
 @app.after_request
 def access_log(response):
     generate_access_log()
-
-    # if response.status_code != 500:
-    #     logger.error('{} {} {} {} {} {}'.format(
-    #         datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-    #         request.remote_addr,
-    #         request.method,
-    #         request.scheme,
-    #         request.full_path,
-    #         response.status
-    #     ))
     return response
 
 
