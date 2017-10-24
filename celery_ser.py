@@ -2,7 +2,6 @@
 
 from celery import (
     Celery,
-    # platforms,
 )
 from raven import Client
 from raven.contrib.celery import register_signal, register_logger_signal
@@ -37,5 +36,3 @@ def make_celery(app):
     celery.Task = ContextTask
     return celery
 
-
-# platforms.C_FORCE_ROOT = True
