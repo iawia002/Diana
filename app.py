@@ -14,7 +14,7 @@ def access_log(response):
     return response
 
 
-# app.url_map.strict_slashes = False
+app.url_map.strict_slashes = False
 
 # url
 apps = ['blog', 'auth', 'fun', 'fish']
