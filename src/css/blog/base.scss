@@ -63,6 +63,11 @@
     color: $color-555;
   }
 
+  h2 {
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid $underline;
+  }
+
   ul {
     padding-left: 3rem;
 

@@ -26,7 +26,6 @@
     <div class="left">
         <div class="article">
             {{ data['article']['compiled_content']|safe }}
-            <hr>
             <div class="tags">
                 {% for tag in data['article']['tags'] %}
                 <a href="/tag/{{ tag['url'] }}">{{ tag['content'] }}<span>{{ tag['number'] }}</span></a>
