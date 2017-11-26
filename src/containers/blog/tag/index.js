@@ -10,5 +10,6 @@ import '../common/more';
 
 $(document).ready(() => {
   window.sr.reveal('.article', { reset: true });
+  window.sr.reveal('.footer', { reset: true });
   $('html').removeClass('sr');
 });

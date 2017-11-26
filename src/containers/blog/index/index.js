@@ -13,6 +13,7 @@ import '../../../css/blog/index.scss';
 
 $(document).ready(() => {
   window.sr.reveal('.article', { reset: true });
+  window.sr.reveal('.footer', { reset: true });
   window.sr.reveal('.avatar', { container: '.top', rotate: { x: 65 } });
   window.sr.reveal('h1', { container: '.top', rotate: { y: 65 } });
   window.sr.reveal('.introduction', { container: '.top', rotate: { y: 65 }, duration: 600 });

@@ -1,79 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans">
 <head>
-    <meta charset="UTF-8">
-    <meta name="renderer" content="webkit" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="author" content="{{ data['user']['username'] }}">
-    <!-- <meta name="description" content=""> -->
-    <title>{{ data['article']['title'] }} - L</title>
-    {% include 'blog/scrollreveal.html' %}
+  <meta charset="UTF-8">
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="author" content="{{ data['user']['username'] }}">
+  <!-- <meta name="description" content=""> -->
+  <title>{{ data['article']['title'] }} - L</title>
+  {% include 'blog/scrollreveal.html' %}
 </head>
+
 <body class="bg">
   <div class="flex-article">
     <div class="model">
-        <div class="bg"></div>
-        <div class="content">
-            <img src="" alt="" data-id="" id="content-model">
-            <p></p>
-            <a class="origin" href="" target="_blank">查看原图</a>
-        </div>
+      <div class="bg"></div>
+      <div class="content">
+        <img src="" alt="" data-id="" id="content-model">
+        <p></p>
+        <a class="origin" href="" target="_blank">查看原图</a>
+      </div>
     </div>
 
     {% include 'blog/right.html' %}
 
     <div class="left">
-        <div class="article">
-            {{ data['article']['compiled_content']|safe }}
-            <div class="tags">
-                {% for tag in data['article']['tags'] %}
-                <a href="/tag/{{ tag['url'] }}">{{ tag['content'] }}<span>{{ tag['number'] }}</span></a>
-                {% endfor %}
-            </div>
-            <p class="time">
-              <span><i class="fa fa-eye" aria-hidden="true"></i> {{ data['article']['views'] }}</span>
-              <span><i class="fa fa-calendar" aria-hidden="true"></i> {{ data['article']['update_time'] }}</span>
-
-              {% if data['login'] %}
-              <span><a href="/p/{{ data['article']['article_id'] }}/edit" target="_blank">编辑</a></span>
-              {% endif %}
-            </p>
+      <div class="article">
+        {{ data['article']['compiled_content']|safe }}
+        <div class="tags">
+          {% for tag in data['article']['tags'] %}
+          <a href="/tag/{{ tag['url'] }}">{{ tag['content'] }}<span>{{ tag['number'] }}</span></a>
+          {% endfor %}
         </div>
-        <div class="article" style="padding: 20px;">
-            <div id="disqus_thread"></div>
-        </div>
+        <p class="time">
+          <span><i class="fa fa-eye" aria-hidden="true"></i> {{ data['article']['views'] }}</span>
+          <span><i class="fa fa-calendar" aria-hidden="true"></i> {{ data['article']['update_time'] }}</span>
 
-        {% include 'blog/footer.html' %}
+          {% if data['login'] %}
+          <span><a href="/p/{{ data['article']['article_id'] }}/edit" target="_blank">编辑</a></span>
+          {% endif %}
+        </p>
+      </div>
+      <div class="article" style="padding: 20px;">
+        <div id="disqus_thread"></div>
+      </div>
+
+      {% include 'blog/footer.html' %}
     </div>
   </div>
-    <script>
-        var disqus_config = function () {
-            this.page.url = "https://l.jifangcheng.com/p/{{ data['article']['article_id'] }}";
-            this.page.identifier = "{{ data['article']['article_id'] }}";
-            this.page.shortname = "theycallmel";
-            this.page.title = "{{ data['article']['title'] }}";
-        };
-        (function() {
-            var d = document, s = d.createElement('script');
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://l.jifangcheng.com/p/{{ data['article']['article_id'] }}";
+      this.page.identifier = "{{ data['article']['article_id'] }}";
+      this.page.shortname = "theycallmel";
+      this.page.title = "{{ data['article']['title'] }}";
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
 
-            s.src = '//a.disquscdn.com/embed.js';
-            s.async = true;
+      s.src = '//a.disquscdn.com/embed.js';
+      s.async = true;
 
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-81813308-1', 'auto');
-        ga('send', 'pageview');
-    </script>
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </body>
+
 </html>
