@@ -14,11 +14,7 @@ const more = (nextPage, page, tag) => {
     },
     success: (data) => {
       if (data) {
-        if (page === 'index') {
-          $('.content').append(data.data);
-        } else if (page === 'tag') {
-          $('.left').append(data.data);
-        }
+        $('.footer').before(data.data);
         $('#next_page').val(data.next_page);
       }
     },
