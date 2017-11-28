@@ -8,8 +8,6 @@ python:
 
 cache:
   pip: true
-  directories:
-    - node_modules
 
 services:
   - postgresql
