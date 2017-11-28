@@ -1,33 +1,30 @@
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const PATHS = {
-  app: path.join(__dirname, '../src/containers/'),
-  build: path.join(__dirname, '../static/dist/'),
-  nodeModules: path.join(__dirname, '../node_modules/'),
-};
 
 const appName = process.env.npm_package_config_app;
 const app = require(`./${appName}.js`);  // eslint-disable-line
 
 module.exports = (env) => {
-  const DEBUG = env ? env.dev : false;  // true or false
+  const DEBUG = env ? env.dev : false; // true or false
   const config = {
     entry: app.entry,
 
     output: {
       filename: '[name].[chunkhash].js',
       path: app.paths.build,
-      publicPath: app.publicPath,  // 在将 JS 文件插入到 HTML 中时会用到这个路径
+      publicPath: app.publicPath, // 在将 JS 文件插入到 HTML 中时会用到这个路径
     },
 
     plugins: [
       new webpack.optimize.OccurrenceOrderPlugin(),
-      new webpack.optimize.UglifyJsPlugin({
+      new UglifyJsPlugin({
         sourceMap: DEBUG,
-        compress: {
-          warnings: DEBUG,
+        uglifyOptions: {
+          compress: {
+            warnings: DEBUG,
+          },
         },
       }),
 
@@ -56,7 +53,7 @@ module.exports = (env) => {
             {
               loader: 'babel-loader',
               options: {
-                presets: ['es2015', 'stage-1'],
+                presets: ['env'],
               },
             },
           ],
@@ -70,22 +67,14 @@ module.exports = (env) => {
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: [
-              'css-loader',
               {
-                loader: 'postcss-loader',
+                loader: 'css-loader',
                 options: {
-                  plugins: () => {
-                    const autoprefixer = require('autoprefixer');  // eslint-disable-line global-require
-                    return [autoprefixer];
-                  },
+                  importLoaders: 1,
                 },
               },
-              {
-                loader: 'sass-loader',
-                options: {
-                  includePaths: [PATHS.nodeModules],
-                },
-              },
+              'postcss-loader',
+              'sass-loader',
             ],
           }),
         },
