@@ -1,0 +1,119 @@
+// base
+@import "../base";
+
+
+.bg {
+  background: $light-gray;
+}
+
+.top {
+  width: 100%;
+  height: auto;
+  padding: 40px 20px 20px;
+  color: $white;
+  text-align: center;
+  background: #43cea2;
+  background: linear-gradient(to right, #43cea2, #185a9d);
+
+  h1 {
+    padding: 10px;
+
+    font: {
+      size: 2rem;
+      weight: normal;
+    }
+
+    a {
+      color: $white;
+      padding: 0px 7px;
+      border-bottom: 2px solid transparent;
+
+      &:hover {
+        color: $white;
+        border-bottom: 2px solid $white;
+      }
+    }
+  }
+
+  p {
+    padding: 10px 20px;
+    display: inline-block;
+    color: $white;
+    border-left: 3px solid white;
+  }
+}
+
+.avatar {
+  @include avatar;
+}
+
+nav {
+  margin: auto;
+  margin-top: 10px;
+  width: 100%;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    margin-bottom: -3px;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  a {
+    color: $white;
+    display: inline-block;
+    float: left;
+    padding: 7px 10px;
+    font-size: 1.2rem;
+    border-bottom: 3px solid transparent;
+
+    &:hover {
+      color: $white;
+      cursor: pointer;
+      border-bottom: 3px solid $white;
+    }
+  }
+}
+
+.content {
+  width: 100%;
+  overflow: hidden;
+  max-width: $content-max-width;
+  display: flex;
+
+  div {
+    @include base-shadow-box;
+
+    width: 30%;
+    float: left;
+    padding: 0px;
+    margin: 30px;
+
+    img {
+      max-width: 100%;
+      height: 250px;
+    }
+
+    h1 {
+      padding: 20px 20px 0px;
+
+      font: {
+        size: 1.2rem;
+        weight: normal;
+      }
+    }
+
+    p {
+      padding: 20px;
+    }
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 767px) {
+    flex-wrap: wrap;
+  }
+}

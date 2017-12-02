@@ -15,11 +15,10 @@
 }
 
 @mixin shadow-box {
-  background: $white;
+  @include base-shadow-box;
+
   max-width: 640px;
   margin: 40px auto;
-  overflow: hidden;
-  box-shadow: 0 0 20px $light-black;
 }
 
 @mixin article {

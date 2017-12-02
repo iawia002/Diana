@@ -136,6 +136,11 @@ class BlogTest(BaseTest):
         self.assertEqual(response.status_code, 200)
         self.assertIn('hello', str(response.data))
 
+    def test_fun(self):
+        response = self.client.get('/fun')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('Just For Fun', str(response.data))
+
 
 if __name__ == '__main__':
     unittest.main()

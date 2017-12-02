@@ -118,3 +118,25 @@ input {
     display: none;
   }
 }
+
+@mixin base-shadow-box {
+  background: $white;
+  overflow: hidden;
+  box-shadow: 0 0 20px $light-black;
+}
+
+@mixin avatar($bg: "moon.png", $width: 120px) {
+  margin: 0 auto;
+  padding: 0;
+  width: $width;
+  height: $width;
+  border-radius: 60px;
+  text-indent: -9999px;
+  background: url("../../img/#{$bg}");
+  background-size: 100%;
+
+  @media (max-width: 767px) {
+    width: $width - 20px;
+    height: $width - 20px;
+  }
+}

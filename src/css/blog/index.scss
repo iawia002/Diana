@@ -172,7 +172,7 @@
 .nav {
   margin: auto;
   width: 100%;
-  max-width: 1280px;
+  max-width: $content-max-width;
   padding: 15px 30px;
   text-align: left;
   font-size: 1.1rem;
@@ -199,15 +199,10 @@
     a:hover {
       border-bottom: 3px solid $white;
     }
-  }
 
-  .connect {
-    display: inline-block;
-    float: right;
-    font-size: 1.4rem;
-
-    a {
-      padding: 5px;
+    i {
+      font-size: 1.4rem;
+      vertical-align: middle;
     }
   }
 

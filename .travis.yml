@@ -30,7 +30,7 @@ before_script:
   - npm run build --Diana:app=blog
   - npm run build --Diana:app=fish
   - npm run build --Diana:app=auth
-  # - npm run build --Diana:app=fun
+  - npm run build --Diana:app=fun
   - export PYTHONPATH=$PYTHONPATH:$(pwd)
 
 # command to run tests
