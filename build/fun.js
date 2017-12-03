@@ -32,5 +32,11 @@ module.exports = {
       chunks: ['vendor', 'index', 'commons'],
       inject: 'body',
     }),
+
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, '../src/templates/fun/footer.html'),
+      filename: 'footer.html',
+      inject: false,
+    }),
   ],
 };

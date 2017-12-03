@@ -170,14 +170,18 @@
 
     a {
       padding: 10px;
+      vertical-align: middle;
     }
 
     a:hover {
       border-bottom: 3px solid $white;
     }
 
-    i {
-      font-size: 1.5rem;
+    .emoji {
+      font: {
+        size: 1.6rem;
+        weight: normal;
+      }
       vertical-align: middle;
     }
   }
