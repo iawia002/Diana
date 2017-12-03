@@ -14,7 +14,7 @@
   background: {
     color: $light-gray;
   }
-  font-size: 30px;
+  font-size: 1.8rem;
   color: $white;
   text-align: center;
   position: relative;
@@ -64,18 +64,6 @@
     }
   }
 
-  h1,
-  p {
-    // @media (max-width: 991px) {
-    //     font-size: 3.5rem;
-    //     padding-top: 20px;
-    // }
-    // @media (max-width: 767px) {
-    //     font-size: 3.5rem;
-    //     padding-top: 20px;
-    // }
-  }
-
   .bg-intro {
     border: 0;
     position: absolute;
@@ -86,10 +74,6 @@
     margin: 0;
     color: $eee;
   }
-
-  // .page {
-  //
-  // }
 }
 
 .bg {
@@ -121,14 +105,6 @@
   p {
     border: 0;
     font-size: 1.3rem;
-    // @media (max-width: 991px) {
-    //     font-size: 3rem;
-    //     padding-top: 20px;
-    // }
-    // @media (max-width: 767px) {
-    //     font-size: 3rem;
-    //     padding-top: 20px;
-    // }
   }
 
   a {
@@ -136,7 +112,7 @@
 
     &:hover {
       text-decoration: underline;
-      // text-decoration-skip: ink;
+      text-decoration-skip: ink;
     }
   }
 }
@@ -201,7 +177,7 @@
     }
 
     i {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       vertical-align: middle;
     }
   }
@@ -217,19 +193,8 @@
 }
 
 @media (max-width: 767px) {
-  // html {
-  //   font-size: 14px;
-  // }
 
   .top {
-    h1 {
-      font-size: 1.4rem;
-    }
-
-    p {
-      font-size: 1.2rem;
-    }
-
     .introduction {
       margin-top: 5px;
     }
@@ -240,7 +205,6 @@
 
     .bg-intro {
       right: 10px;
-      font-size: 0.9rem;
     }
   }
 }

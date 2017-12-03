@@ -20,6 +20,18 @@ html {
   font: {
     size: 16px;
   }
+
+  @media (max-width: 991px){
+    font-size: 15px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 575px) {
+    font-size: 13px;
+  }
 }
 
 * {

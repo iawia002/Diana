@@ -110,6 +110,10 @@ nav {
 
     @media (max-width: 767px) {
       width: 100%;
+      margin: {
+        left: 0;
+        right: 0;
+      }
     }
   }
 

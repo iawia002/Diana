@@ -78,25 +78,9 @@
   }
 }
 
-@media (max-width: 991px){
-  html {
-    font-size: 15px;
-  }
-}
-
 @media (max-width: 767px) {
-  html {
-    font-size: 14px;
-  }
-
   .avatar {
     width: 100px;
     height: 100px;
-  }
-}
-
-@media (max-width: 575px) {
-  html {
-    font-size: 13px;
   }
 }
