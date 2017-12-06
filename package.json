@@ -18,19 +18,19 @@
   "bugs": "https://github.com/iawia002/Diana/issues",
   "dependencies": {
     "animate.css": "^3.5.2",
-    "balloon-css": "^0.3.0",
-    "codemirror": "^5.26.0",
-    "font-awesome": "^4.6.3",
+    "balloon-css": "^0.5.0",
+    "codemirror": "^5.32.0",
+    "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
-    "highlight.js": "^9.10.0",
-    "jquery": "^3.0.0",
+    "highlight.js": "^9.12.0",
+    "jquery": "^3.2.1",
     "keymaster": "^1.6.2",
-    "lazysizes": "^3.0.0",
+    "lazysizes": "^4.0.1",
     "lodash.map": "^4.6.0",
-    "marked": "^0.3.6",
-    "normalize.css": "^6.0.0",
+    "marked": "^0.3.7",
+    "normalize.css": "^7.0.0",
     "notie": "^4.3.0",
-    "scrollreveal": "^3.3.1"
+    "scrollreveal": "^3.3.6"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.6",
