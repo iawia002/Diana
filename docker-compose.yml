@@ -19,10 +19,9 @@ services:
 
   # base
   web_base:
-    image: iawia002/diana
+    image: iawia002/diana:latest
     volumes:
       - .:/code
-      - /etc/localtime:/etc/localtime
     environment:
       - PYTHONPATH=/code
     restart: always
