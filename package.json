@@ -27,7 +27,7 @@
     "keymaster": "^1.6.2",
     "lazysizes": "^4.0.1",
     "lodash.map": "^4.6.0",
-    "marked": "^0.3.7",
+    "marked": "^0.3.9",
     "normalize.css": "^7.0.0",
     "notie": "^4.3.0",
     "scrollreveal": "^3.3.6"
