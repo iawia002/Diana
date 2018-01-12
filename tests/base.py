@@ -11,8 +11,6 @@ from db.sa import build_engine
 
 
 test_db = config.DB['db']
-if '_test' not in test_db:  # 单元测试环境只有一个数据库，测试和 web 都在 diana_test 中
-    test_db = '{}_test'.format(test_db)
 
 
 class BaseTest(unittest.TestCase):

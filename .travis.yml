@@ -33,7 +33,7 @@ before_script:
   - export PYTHONPATH=$PYTHONPATH:$(pwd)
 
 # command to run tests
-script: coverage run test/runtests.py
+script: TESTING=True coverage run tests/runtests.py
 
 after_success:
   - codecov

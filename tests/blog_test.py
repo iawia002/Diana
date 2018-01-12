@@ -5,7 +5,7 @@ import unittest
 
 import bcrypt
 
-from test.base import BaseTest
+from tests.base import BaseTest
 
 from utils import tags
 from apps.blog.models import (
