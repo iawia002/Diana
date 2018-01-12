@@ -23,7 +23,7 @@ def command(cmd):
 def test():
     local(
         'docker-compose run -e TESTING=True --rm web '
-        'coverage run test/runtests.py'
+        'coverage run tests/runtests.py'
     )
 
 
