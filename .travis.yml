@@ -1,5 +1,8 @@
 dist: trusty
 
+# Use container-based instead of full VMs for faster startup.
+sudo: false
+
 language:
   - python
 
