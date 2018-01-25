@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -41,7 +42,10 @@ module.exports = (env) => {
 
     resolve: {
       modules: ['node_modules'],
-      extensions: ['.js', '.jsx', '.json', '.css'],
+      extensions: ['.js', '.jsx', '.json', '.css', '.scss'],
+      alias: {
+        src: path.resolve(__dirname, '../src'),
+      },
     },
 
     module: {

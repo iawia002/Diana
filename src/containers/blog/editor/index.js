@@ -1,19 +1,17 @@
-/* eslint-env browser */
-
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/solarized.css';
 
 import 'font-awesome/css/font-awesome.css';
 import 'highlight.js/styles/solarized-dark.css';
 
+import 'src/css/blog/editor.scss';
+
 import $ from 'jquery';
 import key from 'keymaster';
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/gfm/gfm';
 
-import Editor from './editor';
-
-import '../../../css/blog/editor.scss';
+import Editor from 'src/containers/blog/editor/editor';
 
 
 const editor = new Editor();

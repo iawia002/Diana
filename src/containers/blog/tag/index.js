@@ -1,11 +1,9 @@
-/* eslint-env browser */
-
 import $ from 'jquery';
 
 import 'font-awesome/css/font-awesome.css';
-import '../../../css/blog/article.scss';
+import 'src/css/blog/article.scss';
 
-import '../common/more';
+import 'src/containers/blog/common/more';
 
 
 $(document).ready(() => {

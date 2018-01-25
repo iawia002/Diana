@@ -1,9 +1,7 @@
-/* eslint-env browser */
-
 import $ from 'jquery';
 
 import 'font-awesome/css/font-awesome.css';
-import '../../../css/auth/login.scss';
+import 'src/css/auth/login.scss';
 
 
 $(document).ready(() => {
