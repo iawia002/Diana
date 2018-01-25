@@ -1,10 +1,8 @@
-/* eslint-env browser */
-
 import $ from 'jquery';
 
 import 'balloon-css/balloon.css';
 import 'font-awesome/css/font-awesome.css';
-import '../../../css/blog/index.scss';
+import 'src/css/blog/index.scss';
 
 
 $(document).ready(() => {

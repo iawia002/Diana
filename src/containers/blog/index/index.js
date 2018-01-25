@@ -1,14 +1,12 @@
-/* eslint-env browser */
-
 import 'balloon-css/balloon.css';
 import 'font-awesome/css/font-awesome.css';
 import 'notie/dist/notie.min.css';
 import $ from 'jquery';
 import notie from 'notie';
 
-import '../common/more';
-import utils from '../../utils';
-import '../../../css/blog/index.scss';
+import 'src/containers/blog/common/more';
+import utils from 'src/containers/utils';
+import 'src/css/blog/index.scss';
 
 
 $(document).ready(() => {

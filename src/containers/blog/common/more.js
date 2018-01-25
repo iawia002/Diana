@@ -1,5 +1,3 @@
-/* eslint-env browser */
-
 import $ from 'jquery';
 
 

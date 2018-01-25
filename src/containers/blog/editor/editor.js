@@ -4,7 +4,7 @@ import $ from 'jquery';
 import notie from 'notie';
 import marked from 'marked';
 import hljs from 'highlight.js';
-import utils from '../../utils';
+import utils from 'src/containers/utils';
 
 
 hljs.configure({

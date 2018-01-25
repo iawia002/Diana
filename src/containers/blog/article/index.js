@@ -1,13 +1,11 @@
-/* eslint-env browser */
-
 import $ from 'jquery';
 import hljs from 'highlight.js';
 
+import ImageGallery from 'src/containers/image_gallery';
+
 import 'font-awesome/css/font-awesome.css';
 import 'highlight.js/styles/solarized-light.css';
-import '../../../css/blog/article.scss';
-
-import ImageGallery from '../../image_gallery';
+import 'src/css/blog/article.scss';
 
 
 hljs.initHighlightingOnLoad();
