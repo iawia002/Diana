@@ -1,5 +1,8 @@
 dist: trusty
 
+matrix:
+  fast_finish: true
+
 # Use container-based instead of full VMs for faster startup.
 sudo: false
 
@@ -41,5 +44,6 @@ script: TESTING=True coverage run tests/runtests.py
 after_success:
   - codecov
 
-matrix:
-  fast_finish: true
+branches:
+  only:
+    - master
