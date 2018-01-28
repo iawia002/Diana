@@ -190,6 +190,14 @@ INDEX_BG = [
         'url': 'http://img.l.jifangcheng.com/58fb63c6769e0c99009a2285ab40293c329ce09e.jpg',  # noqa
         'name': '巨神峰',
     },
+    {
+        'url': 'http://img.l.jifangcheng.com/ad110fbf0cbe66dcf71cf1df789410bacbf6ef76.jpg',  # noqa
+        'name': '腥红之月 黛安娜',
+    },
+    {
+        'url': 'http://img.l.jifangcheng.com/8a0959def49216466ec0d1b7afe161320603bad0.jpg',  # noqa
+        'name': '暮光星灵 佐伊',
+    },
 ]
 
 INDEX_SAYING = [
