@@ -32,12 +32,6 @@ class IndexView(MethodView):
     def get(self):
         data = {}
         data['bg'] = random.choice(config.INDEX_BG)
-        data['last_article'] = User.query.filter_by(
-            user_id=config.USER_ID
-        ).first().article[0]
-        if data['last_article']:
-            data['last_article'] = data['last_article'].to_json()
-
         articles = utils.db.article(page=1, user_id=config.USER_ID)
         user = utils.db.user(user_id=config.USER_ID)
         data['articles'] = articles
