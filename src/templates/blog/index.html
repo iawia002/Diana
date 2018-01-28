@@ -36,16 +36,12 @@ ____ ____ ____ ____ _________ ____ ____ ____ ____ _________ ____ ____ _________ 
       </li>
     </nav>
     <div class="main-content">
-      <div class="avatar" style="background-image: url('{{ data['user']['avatar'] }}');"></div>
       <h1>{{ data['user']['username'] }}</h1>
       <div class="introduction" id="introduction">
         <p>{{ data['user']['introduction'] }}</p>
         {% if data['login'] %}
         <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
         {% endif %}
-      </div>
-      <div class="last-article">
-        <p><i class="fa fa-terminal" aria-hidden="true"></i> <a href="/p/{{ data['last_article']['article_id'] }}">{{ data['last_article']['title'] }}</a></p>
       </div>
     </div>
 
