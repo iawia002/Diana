@@ -46,3 +46,6 @@ class BaseTest(unittest.TestCase):
             ),
             follow_redirects=True
         )
+
+    def logout(self):
+        return self.client.get('/auth/logout', follow_redirects=True)

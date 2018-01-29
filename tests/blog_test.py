@@ -13,6 +13,7 @@ from apps.blog.models import (
     Article,
 )
 from apps.auth.models import User
+from apps.fish.models import Record
 
 
 class BlogTest(BaseTest):
@@ -44,6 +45,14 @@ class BlogTest(BaseTest):
         user.tag.append(tag)
         session.add(user)
         session.add(article)
+
+        fish_record = Record(
+            title='hello',
+            content=['hello'],
+            image_num=1,
+            source='hello',
+        )
+        session.add(fish_record)
         session.commit()
         session.close()
 
@@ -56,6 +65,9 @@ class BlogTest(BaseTest):
         response = self.client.get('/p/1')
         self.assertEqual(response.status_code, 200)
 
+        response = self.client.get('/p/100')
+        self.assertEqual(response.status_code, 404)
+
     def test_404(self):
         response = self.client.get('/1')
         self.assertEqual(response.status_code, 404)
@@ -66,21 +78,54 @@ class BlogTest(BaseTest):
             response = self.client.get('/statistics')
             self.assertEqual(response.status_code, 200)
 
-    def test_more_index(self):
-        response = self.client.get('/more', data={
-            'next_page': 2,
-            'page': 'index',
-            'tag': ''
-        })
+    def test_login_get(self):
+        response = self.client.get('/auth/login')
         self.assertEqual(response.status_code, 200)
 
+    def test_login_post(self):
+        response = self.client.post(
+            '/auth/login',
+            data={
+                'username': 'L',
+                'password': 'L',
+            },
+        )
+        self.assertEqual(response.status_code, 302)
+
+        response = self.client.post(
+            '/auth/login',
+            data={
+                'username': 'L',
+                'password': 'hello',
+            },
+        )
+        self.assertEqual(response.status_code, 400)
+
+    def test_logout(self):
+        response = self.client.get('/auth/logout')
+        self.assertEqual(response.status_code, 302)
+
+    def test_more_index(self):
+        for page in range(1, 2):
+            response = self.client.get('/more', query_string={
+                'next_page': page,
+                'page': 'index',
+                'tag': ''
+            })
+            self.assertEqual(response.status_code, 200)
+
     def test_more_tag(self):
-        response = self.client.get('/more', data={
-            'next_page': 2,
+        response = self.client.get('/more', query_string={
+            'next_page': 1,
             'page': 'tag',
             'tag': 'hello'
         })
         self.assertEqual(response.status_code, 200)
+
+    def test_unauthorized_edit(self):
+        self.logout()
+        response = self.client.get('/p/0/edit')
+        self.assertEqual(response.status_code, 302)
 
     def test_edit_get_new(self):
         with self.client:
@@ -127,18 +172,46 @@ class BlogTest(BaseTest):
 
     def test_tag(self):
         tag = tags.tag_url_encode('hello')
-        response = self.client.get('/tag/%s' % tag)
+        response = self.client.get('/tag/{}'.format(tag))
         self.assertEqual(response.status_code, 200)
         self.assertIn('hello', str(response.data))
+
+        response = self.client.get('/tag/aa')
+        self.assertEqual(response.status_code, 404)
 
     def test_tags(self):
         response = self.client.get('/tags')
         self.assertEqual(response.status_code, 200)
         self.assertIn('hello', str(response.data))
 
+    def test_user_api(self):
+        with self.client:
+            self.login(self.username, self.password)
+            response = self.client.post(
+                '/user',
+                data={
+                    'introduction': 'hello L',
+                },
+            )
+            self.assertEqual(response.status_code, 200)
+
     def test_fish(self):
         response = self.client.get('/fish')
         self.assertEqual(response.status_code, 200)
+
+    def test_fish_article(self):
+        response = self.client.get('/fish/p/1')
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.get('/fish/p/100')
+        self.assertEqual(response.status_code, 404)
+
+    def test_fish_more(self):
+        for page in range(1, 2):
+            response = self.client.get('/fish/more', query_string={
+                'next_page': page,
+            })
+            self.assertEqual(response.status_code, 200)
 
 
 if __name__ == '__main__':

@@ -27,6 +27,13 @@ def test():
     )
 
 
+def test_func(func):
+    local(
+        'docker-compose run -e TESTING=True --rm web '
+        'python tests/blog_test.py BlogTest.{}'.format(func)
+    )
+
+
 def celery_worker():
     local(
         'docker-compose run --rm web '
