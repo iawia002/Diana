@@ -29,7 +29,7 @@ class More(MethodView):
         try:
             next_page = int(next_page)
         except ValueError:
-            return ''
+            return '', 400
         articles = db_utils.article(page=next_page)
 
         if not articles:

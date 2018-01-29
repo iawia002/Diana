@@ -106,7 +106,7 @@ class BlogTest(BaseTest):
         self.assertEqual(response.status_code, 302)
 
     def test_more_index(self):
-        for page in range(1, 2):
+        for page in range(1, 3):
             response = self.client.get('/more', query_string={
                 'next_page': page,
                 'page': 'index',
@@ -115,12 +115,13 @@ class BlogTest(BaseTest):
             self.assertEqual(response.status_code, 200)
 
     def test_more_tag(self):
-        response = self.client.get('/more', query_string={
-            'next_page': 1,
-            'page': 'tag',
-            'tag': 'hello'
-        })
-        self.assertEqual(response.status_code, 200)
+        for page in range(1, 3):
+            response = self.client.get('/more', query_string={
+                'next_page': page,
+                'page': 'tag',
+                'tag': 'hello'
+            })
+            self.assertEqual(response.status_code, 200)
 
     def test_unauthorized_edit(self):
         self.logout()
@@ -195,6 +196,9 @@ class BlogTest(BaseTest):
             )
             self.assertEqual(response.status_code, 200)
 
+            response = self.client.post('/user')
+            self.assertEqual(response.status_code, 400)
+
     def test_fish(self):
         response = self.client.get('/fish')
         self.assertEqual(response.status_code, 200)
@@ -207,7 +211,12 @@ class BlogTest(BaseTest):
         self.assertEqual(response.status_code, 404)
 
     def test_fish_more(self):
-        for page in range(1, 2):
+        response = self.client.get('/fish/more', query_string={
+            'next_page': 'a',
+        })
+        self.assertEqual(response.status_code, 400)
+
+        for page in range(1, 3):
             response = self.client.get('/fish/more', query_string={
                 'next_page': page,
             })
