@@ -51,8 +51,8 @@ def imgs(url):
         'https://www.zhihu.com/api/v4/questions/{question_id}/answers?'
         'include={include}&sort_by=default&limit={limit}&offset={offset}'
     ).format
-
-    question_id = re.match(r'.*www.zhihu.com/question/(\d+)', url).group(1)
+    # url 已经处理过了，https://www.zhihu.com/question/21052148
+    question_id = url.split('/')[-1]
     html_text = requests.get(
         url,
         headers=headers,
@@ -123,9 +123,12 @@ def jike():
     for message in messages:
         link_url = message['linkUrl']
         if link_url.startswith('jike://'):
-            messages_url.append(message['personalUpdate']['linkInfo']['link'])
-        else:
-            messages_url.append(link_url)
+            link_url = message['personalUpdate']['linkInfo']['link']
+        # 把 URL 先处理了，返回整个问题的 URL
+        question_url = re.match(
+            r'(.*www.zhihu.com/question/\d+)', link_url
+        ).group(1)
+        messages_url.append(question_url)
     session = Session()
     update_record = session.query(UpdateInfo).first()
     already_existing = update_record.content
