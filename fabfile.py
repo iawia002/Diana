@@ -77,11 +77,19 @@ def shell():
     )
 
 
-def update_packages():
-    local('docker exec -it diana_web_run_1 pip install -r requirements.txt')
+def upgrade_packages():
+    '''更新依赖
+    '''
     local(
-        'docker commit -m "update" -a "iawia002" diana_web_run_1 '
-        'diana_web:latest'
+        'docker-compose run --no-deps --name diana_upgrade web '
+        'pip install -r requirements.txt'
+    )
+    local(
+        'docker commit -m "update" -a "iawia002" diana_upgrade '
+        'iawia002/diana:latest'
+    )
+    local(
+        'docker rm --force diana_upgrade'
     )
 
 

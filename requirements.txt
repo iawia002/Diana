@@ -2,10 +2,10 @@ flask==0.12.2
 flake8==3.5.0
 blinker==1.4
 redis==2.10.6
-SQLAlchemy==1.1.15
+SQLAlchemy==1.2.2
 Flask-SQLAlchemy==2.3.2
 Flask-WTF==0.14.2
-Alembic==0.9.6
+Alembic==0.9.7
 psycopg2==2.7.3.2
 pinyin==0.4.0
 bcrypt==3.1.4
@@ -14,7 +14,7 @@ ipdb==0.10.3
 fabric==1.14.0
 coverage==4.4.2
 schematics==2.0.1
-raven==6.3.0
+raven==6.5.0
 gevent==1.2.2
 gunicorn==19.7.1
 Celery==4.1.0
