@@ -126,8 +126,9 @@ def jike():
             link_url = message['personalUpdate']['linkInfo']['link']
         # 把 URL 先处理了，返回整个问题的 URL（即刻返回的 URL 有些是一个具体答案的 URL）
         question_url = re.match(
-            r'(.*www.zhihu.com/question/\d+)', link_url
+            r'.*?(www.zhihu.com/question/\d+)', link_url
         ).group(1)
+        question_url = 'https://{}'.format(question_url)
         messages_url.append(question_url)
     session = Session()
     update_record = session.query(UpdateInfo).first()
