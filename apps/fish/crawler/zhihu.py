@@ -119,7 +119,13 @@ def jike():
         return
     results = results.json()
     messages = results['messages']
-    messages_url = [message['linkUrl'] for message in messages]
+    messages_url = []
+    for message in messages:
+        link_url = message['linkUrl']
+        if link_url.startswith('jike://'):
+            messages_url.append(message['personalUpdate']['linkInfo']['link'])
+        else:
+            messages_url.append(link_url)
     session = Session()
     update_record = session.query(UpdateInfo).first()
     already_existing = update_record.content
@@ -166,7 +172,7 @@ def update_manually(url):
     session.add(update_record)
     try:
         session.commit()
-    except:
+    except Exception:
         session.rollback()
         raise
     session.close()
