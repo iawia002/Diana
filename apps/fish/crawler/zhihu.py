@@ -182,7 +182,7 @@ def update_manually(url):
     session.close()
 
 
-def batch_update(urls):
+def batch_update(*urls):
     for url in urls:
         update_manually(url)
 
