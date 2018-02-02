@@ -198,6 +198,10 @@ INDEX_BG = [
         'url': 'http://img.l.jifangcheng.com/8a0959def49216466ec0d1b7afe161320603bad0.jpg',  # noqa
         'name': '暮光星灵 佐伊',
     },
+    {
+        'url': 'http://img.l.jifangcheng.com/604afb9e814691de953f629409c4a1b1c86956e6.jpg',  # noqa
+        'name': '要说再见了吗',
+    },
 ]
 
 INDEX_SAYING = [
