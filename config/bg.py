@@ -200,7 +200,7 @@ INDEX_BG = [
     },
     {
         'url': 'http://img.l.jifangcheng.com/604afb9e814691de953f629409c4a1b1c86956e6.jpg',  # noqa
-        'name': '要说再见了吗',
+        'name': '',
     },
     {
         'url': 'http://img.l.jifangcheng.com/926dbe6553fe4dbe23c00274e418858f088040a4.png',  # noqa
@@ -209,6 +209,10 @@ INDEX_BG = [
     {
         'url': 'http://img.l.jifangcheng.com/db26fe7e0a38787fb1349068b9f49c34c8e504ae.jpg',  # noqa
         'name': 'ANNIE: Origins',
+    },
+    {
+        'url': 'http://img.l.jifangcheng.com/ee8a9ab96f2cca9380f5ac1a96e982dcfdc6be31.jpg',  # noqa
+        'name': '虚空之女 卡莎 Kaisa',
     },
 ]
 
