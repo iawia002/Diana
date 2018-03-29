@@ -123,7 +123,8 @@ def jike():
     for message in messages:
         link_url = message['linkUrl']
         if link_url.startswith('jike://'):
-            link_url = message['personalUpdate']['linkInfo']['linkUrl']
+            link_info = message['personalUpdate']['linkInfo']
+            link_url = link_info.get('link') or link_info.get('linkUrl')
         # 把 URL 先处理了，返回整个问题的 URL（即刻返回的 URL 有些是一个具体答案的 URL）
         question_url = re.match(
             r'.*?(www.zhihu.com/question/\d+)', link_url
