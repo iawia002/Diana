@@ -1,0 +1,80 @@
+// 编辑器
+@import "base";
+
+.editor-content {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin box {
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  padding: 20px;
+  float: left;
+}
+
+.lbox {
+  @include box;
+  padding-bottom: 0;
+  background: $white;
+  position: relative;
+
+  input {
+    padding: 10px 0;
+    outline: 0 none;
+    border: 0;
+    width: 100%;
+    border-bottom: 1px solid $beige;
+    margin-bottom: 10px;
+  }
+}
+
+.topbar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 9;
+  padding: 5px;
+  display: inline-block;
+  color: $green;
+
+  &:hover {
+    cursor: pointer;
+    color: $dark-green;
+  }
+}
+
+.rbox {
+  @include box;
+  @include article;
+  box-shadow: none;
+  background: $light-beige;
+  overflow: auto;
+  margin: 0;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.source {
+  width: 100%;
+  height: 100%;
+  outline: 0 none;
+  border: 0;
+  resize: none;
+  line-height: normal;
+  overflow: scroll;
+}
+
+.CodeMirror {
+  height: 100%;
+  width: 100%;
+}
+
+.cm-s-solarized.CodeMirror {
+  box-shadow: none;
+}

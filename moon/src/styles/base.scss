@@ -1,0 +1,161 @@
+// base
+@import "~normalize.css";
+@import "variable";
+
+body {
+  background: $white;
+  font: {
+    family: $font;
+    weight: normal;
+  }
+  letter-spacing: 0.5px;
+  color: $black;
+}
+
+body,
+html,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font: {
+    size: 16px;
+  }
+
+  @media (max-width: 991px){
+    font-size: 15px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 575px) {
+    font-size: 13px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: $green;
+  color: $white;
+}
+
+a,
+button {
+  transition: background 0.4s, color 0.5s;
+  color: $green;
+  text-decoration: none;
+
+  &:hover {
+    color: $black;
+  }
+}
+
+// div {
+//   transition-property: box-shadow;
+//   transition-duration: 0.5s;
+//   // &:hover {
+//   //
+//   // }
+// }
+
+p {
+  color: $black;
+  margin: 0;
+
+  &.img {
+    padding: 0 0 10px !important;
+    text-align: center;
+  }
+}
+
+h1 {
+  margin: 0;
+}
+
+li,
+ul {
+  list-style-type: none;
+}
+
+label {
+  font-weight: normal;
+}
+
+hr {
+  clear: both;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid $eee;
+  height: 0;
+}
+
+button {
+  border: 0;
+  background: none;
+}
+
+input {
+  outline: 0;
+}
+
+@media (max-width: 767px) {
+  .hidden-xs {
+    display: none;
+  }
+
+  .visible-xs {
+    display: block !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .hidden-sm {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .hidden-md {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hidden-lg {
+    display: none;
+  }
+}
+
+@mixin base-shadow-box {
+  background: $white;
+  overflow: hidden;
+  box-shadow: 0 0 20px $light-black;
+}
+
+@mixin avatar($bg: "moon.png", $width: 120px) {
+  margin: 0 auto;
+  padding: 0;
+  width: $width;
+  height: $width;
+  border-radius: 60px;
+  text-indent: -9999px;
+  background: url("../../img/#{$bg}");
+  background-size: 100%;
+
+  @media (max-width: 767px) {
+    width: $width - 20px;
+    height: $width - 20px;
+  }
+}
+
+.footer {
+  max-width: 640px;
+  margin: 40px auto;
+  text-align: center;
+}

@@ -11,6 +11,13 @@ from mixins.access_log import generate_access_log
 @app.after_request
 def access_log(response):
     generate_access_log()
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add(
+        'Access-Control-Allow-Headers', 'Content-Type,Authorization'
+    )
+    response.headers.add(
+        'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS'
+    )
     return response
 
 

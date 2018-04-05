@@ -1,0 +1,232 @@
+// 右侧栏
+@import "base";
+@import "animate";
+// @media (max-width: 1199){ //<=1199的设备 }
+// @media (max-width: 991px){ //<=991的设备 }
+// @media (max-width: 767px){ //<=768的设备 }
+
+.gray-bg {
+  background: $light-gray;
+}
+
+.flex-article {
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+
+  @media (max-width: 767px) {
+    display: block;
+  }
+}
+
+.right-wrapper {
+  flex: 0 0 300px;
+}
+
+.right {
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  // overflow: hidden;
+  color: $white;
+  font-size: 1rem;
+  background: {
+    repeat: no-repeat;
+    size: cover;
+    position: center;
+    color: $white;
+  }
+  // box-shadow: 0 0 10px $light-black;
+  box-shadow: 0 0 15px $black;
+
+  ul {
+    padding: 0;
+    margin: 0;
+    // text-align: center;
+  }
+
+  li {
+    padding: 10px;
+    display: block;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  h1 {
+    font: {
+      size: 1.5rem;
+      weight: normal;
+    }
+    text-align: center;
+  }
+
+  p {
+    // border-left: 3px solid lighten($black, 20%);
+    padding: 10px;
+    margin: 0 auto 15px;
+    // display: block;
+    // width: 70%;
+    text-align: center;
+    color: inherit;
+  }
+
+  a {
+    color: inherit !important;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.top-nav {
+  display: none;
+  overflow: hidden;
+
+  .avatar {
+    @include avatar($top: 20px, $bottom: 10px, $width: 100px);
+  }
+
+  text-align: center;
+
+  h1 {
+    padding: 5px 0;
+    font: {
+      size: 1.2rem;
+      weight: normal;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+.avatar {
+  @include avatar;
+}
+
+.article {
+  @include article;
+  width: 70%;
+  max-width: $article-width;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    margin: 25px auto;
+  }
+}
+
+.left {
+  width: 100%;
+  padding: 40px 0 20px;
+  overflow: hidden;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    padding-top: 0;
+  }
+}
+
+.all-tags {
+  li,
+  ul {
+    margin: 0;
+    font-size: 1.2rem;
+    list-style-type: none;
+  }
+
+  ul {
+    padding: 20px 20px 0;
+    overflow: hidden;
+    display: block;
+
+    p {
+      padding: 0 0 5px;
+      font-size: 1.2rem;
+    }
+  }
+
+  li {
+    float: left;
+    padding: 5px;
+  }
+
+  p {
+    padding: {
+      top: 0;
+      bottom: 0;
+    }
+  }
+
+  hr {
+    margin: {
+      left: 20px;
+      right: 20px;
+    }
+  }
+
+  div:last-child {
+    padding-bottom: 20px;
+  }
+}
+
+.show {
+  display: block !important;
+}
+
+.model-open {
+  overflow: hidden;
+}
+
+.model {
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  position: fixed;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  display: none;
+
+  .bg {
+    position: absolute;
+    background: $black;
+    opacity: 0.7;
+    width: 100%;
+    height: 100%;
+  }
+
+  .content {
+    p {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $white;
+      // text-align: center;
+    }
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      margin: 0 auto;
+      padding: 10px;
+    }
+
+    .origin {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      color: $white;
+    }
+  }
+}
