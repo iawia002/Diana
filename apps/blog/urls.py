@@ -7,6 +7,7 @@ from apps.blog import views
 bp = Blueprint('blog', __name__)
 
 bp.add_url_rule('/', view_func=views.IndexView.as_view('index'))
+bp.add_url_rule('/bg', view_func=views.BgView.as_view('bg'))
 bp.add_url_rule(
     '/p/<int:article_id>', view_func=views.ArticleView.as_view('article')
 )

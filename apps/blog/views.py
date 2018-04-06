@@ -298,3 +298,8 @@ class StatisticsView(MethodView):
         })
         data['user'] = utils.db.user(user_id=config.USER_ID)
         return jsonify(data)
+
+
+class BgView(MethodView):
+    def get(self):
+        return jsonify(random.choice(config.INDEX_BG))
