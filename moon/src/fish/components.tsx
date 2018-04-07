@@ -17,7 +17,7 @@ export class ArticleContentView extends React.Component<ContentProps, {}> {
     return (
         <div className="article">
           <h1><a href={`/fish/p/${article.record_id}`}>{article.title}</a></h1>
-          <p className="time">
+          <p className="fish-time">
             {article.image_num} 张图片 |&nbsp;
             {article.views} 次浏览 |&nbsp;
             更新于 {article.create_time} |&nbsp;

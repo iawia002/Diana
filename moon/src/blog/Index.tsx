@@ -1,6 +1,7 @@
 import * as React from 'react';
-import axios, { AxiosResponse, AxiosError }  from 'axios';
+import { AxiosResponse, AxiosError } from 'axios';
 
+import { request } from '../request';
 import  { LoadMoreView } from './utils';
 import { ArticleListView, Footer } from './components';
 
@@ -16,7 +17,7 @@ export default class Index extends LoadMoreView<{}> {
   componentDidMount() {
     super.componentDidMount.apply(this);
     var self = this;
-    axios.get('http://0.0.0.0:8004')
+    request.get('/')
       .then(function (response: AxiosResponse) {
         self.setState({ data: response.data, page: 'index' });
       })

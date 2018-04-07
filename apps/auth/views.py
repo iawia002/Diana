@@ -2,10 +2,10 @@
 
 import bcrypt
 from flask import (
+    jsonify,
     session,
     request,
     redirect,
-    render_template,
 )
 from flask.views import MethodView
 
@@ -16,12 +16,9 @@ class Login(MethodView):
     '''
     登录页面
     '''
-    def get(self):
-        return render_template('auth/login.html')
-
     def post(self):
-        username = request.form['username']
-        password = request.form['password']
+        username = request.json['username']
+        password = request.json['password']
         user = User.query.filter_by(
             username=username
         ).first()
@@ -30,9 +27,9 @@ class Login(MethodView):
         ):
             session.permanent = True
             session['diana'] = str(user.user_id)
-            return redirect('/')
+            return jsonify({})
         else:
-            return redirect('/'), 400
+            return jsonify({}), 400
 
 
 class Logout(MethodView):

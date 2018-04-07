@@ -1,10 +1,6 @@
 // 登录
 @import "base";
 
-.bg {
-  background: $light-gray;
-}
-
 .avatar {
   @include avatar($top: 80px, $bottom: 50px);
 }

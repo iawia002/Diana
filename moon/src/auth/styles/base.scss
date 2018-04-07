@@ -1,5 +1,5 @@
 // base
-@import "../base";
+@import "../../styles/base";
 
 
 @mixin avatar($top: 55px, $bottom: 10px, $width: 120px) {
@@ -10,6 +10,5 @@
   box-shadow: 0 2.5px 5px 0 $black;
   border-radius: 60px;
   text-indent: -9999px;
-  background: url("../../img/Katarina.png");
   background-size: 100%;
 }

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import axios, { AxiosResponse, AxiosError }  from 'axios';
+import { AxiosResponse, AxiosError } from 'axios';
 import * as marked from 'marked';
 import * as hljs from 'highlight.js';
 import { UnControlled as CodeMirror, IInstance } from 'react-codemirror2';
 import { ScrollInfo } from 'codemirror';
 var notie = require('notie');
 
+import { request } from '../request';
 import { getCookie } from '../utils';
 
 import 'codemirror/mode/gfm/gfm';
@@ -58,7 +59,7 @@ export default class EditorView extends React.Component<
     document.title = '编辑 - L';
     const { id } = this.props.match.params;
     const self = this;
-    axios.get(`http://0.0.0.0:8004/p/${id}/edit/`)
+    request.get(`/p/${id}/edit`)
       .then(function (response: AxiosResponse) {
         self.setState({
           article_id: response.data.article_id,
@@ -115,7 +116,7 @@ export default class EditorView extends React.Component<
       _xsrf: xsrf,
     };
 
-    axios.post(`http://0.0.0.0:8004/p/${article_id}/edit/`, data)
+    request.post(`/p/${article_id}/edit`, data)
       .then(function (response: AxiosResponse) {
         notie.alert({ type: 'success', text: 'success' });
       })

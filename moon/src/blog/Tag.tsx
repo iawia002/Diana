@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import axios, { AxiosResponse, AxiosError }  from 'axios';
+import { AxiosResponse, AxiosError } from 'axios';
 
+import { request } from '../request';
 import  { LoadMoreView } from './utils';
 import { ArticleListView, Footer, RightView } from './components';
 
@@ -16,7 +17,7 @@ export default class TagView extends LoadMoreView<RouteComponentProps<MatchParam
     super.componentDidMount.apply(this);
     const { tag } = this.props.match.params;
     var self = this;
-    axios.get(`http://0.0.0.0:8004/tag/${tag}`)
+    request.get(`/tag/${tag}`)
       .then(function (response: AxiosResponse) {
         self.setState({
           data: response.data,

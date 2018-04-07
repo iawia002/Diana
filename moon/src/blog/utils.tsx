@@ -24,12 +24,11 @@ export class LoadMoreView<P> extends React.Component<P, State> {
   }
 
   handleScroll() {
-    const { data } = this.state;
     const scrollTop = window.scrollY;
     const scrollHeight = window.document.body.scrollHeight;
     const windowHeight = window.document.body.offsetHeight;
     if (scrollTop + windowHeight === scrollHeight) {
-      this.loadMore(data.next_page, this.state.page, this.state.tag);
+      this.loadMore(this.state.data.next_page, this.state.page, this.state.tag);
     }
   }
 }

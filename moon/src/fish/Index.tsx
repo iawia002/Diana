@@ -1,6 +1,7 @@
 import * as React from 'react';
-import axios, { AxiosResponse, AxiosError }  from 'axios';
+import { AxiosResponse, AxiosError } from 'axios';
 
+import { request } from '../request';
 import  { LoadMoreView } from './utils';
 import { ArticleListView, Footer, FishTop } from './components';
 
@@ -15,7 +16,7 @@ export default class FishIndex extends LoadMoreView<{}> {
     document.title = '知乎热门钓鱼帖 - L';
     super.componentDidMount.apply(this);
     var self = this;
-    axios.get('http://0.0.0.0:8004/fish')
+    request.get('/fish')
       .then(function (response: AxiosResponse) {
         self.setState({ data: response.data});
       })

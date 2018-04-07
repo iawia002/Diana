@@ -9,8 +9,7 @@ from flask import (
 def login_require(func):
     def wrapper(*args, **kwargs):
         self = args[0]
-        # user_id = session.get('diana')
-        user_id = 1
+        user_id = session.get('diana')
         if user_id:
             self.user_id = user_id
             return func(*args, **kwargs)

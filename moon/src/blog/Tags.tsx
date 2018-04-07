@@ -1,6 +1,7 @@
 import * as React from 'react';
-import axios, { AxiosResponse, AxiosError }  from 'axios';
+import { AxiosResponse, AxiosError } from 'axios';
 
+import { request } from '../request';
 import { Tags } from './Interface';
 import { RightView, Footer } from './components';
 
@@ -8,7 +9,7 @@ export default class TagsView extends React.Component<{}, {data: Tags}> {
   componentDidMount() {
     document.title = '所有标签 - L';
     var self = this;
-    axios.get('http://0.0.0.0:8004/tags')
+    request.get('/tags')
       .then(function (response: AxiosResponse) {
         self.setState({ data: response.data });
       })

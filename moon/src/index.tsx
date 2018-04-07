@@ -13,6 +13,8 @@ import EditorView from './blog/Editor';
 import FishIndex from './fish/Index';
 import FishArticleView from './fish/Article';
 
+import LoginView from './auth/Login';
+
 const AppRouter = () => {
   return (
     <BrowserRouter>
@@ -24,6 +26,7 @@ const AppRouter = () => {
         <Route exact={true} path="/p/:id/edit" component={EditorView} />
         <Route exact={true} path="/fish" component={FishIndex} />
         <Route exact={true} path="/fish/p/:id" component={FishArticleView} />
+        <Route exact={true} path="/auth/login" component={LoginView} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
