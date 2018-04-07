@@ -209,7 +209,7 @@ class UserView(MethodView):
         user = User.query.filter_by(
             user_id=self.user_id
         ).first()
-        introduction = request.form.get('introduction')
+        introduction = request.json.get('introduction')
         if not introduction:
             return '', 400
         user.introduction = introduction

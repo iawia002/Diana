@@ -2,13 +2,16 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import registerServiceWorker from './registerServiceWorker';
 import { NotFound } from './common';
 import Index from './blog/Index';
 import ArticleView from './blog/Article';
 import TagsView from './blog/Tags';
 import TagView from './blog/Tag';
 import EditorView from './blog/Editor';
-import registerServiceWorker from './registerServiceWorker';
+
+import FishIndex from './fish/Index';
+import FishArticleView from './fish/Article';
 
 const AppRouter = () => {
   return (
@@ -19,6 +22,8 @@ const AppRouter = () => {
         <Route exact={true} path="/tags" component={TagsView} />
         <Route exact={true} path="/tag/:tag" component={TagView} />
         <Route exact={true} path="/p/:id/edit" component={EditorView} />
+        <Route exact={true} path="/fish" component={FishIndex} />
+        <Route exact={true} path="/fish/p/:id" component={FishArticleView} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>

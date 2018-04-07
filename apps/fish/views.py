@@ -4,7 +4,6 @@
 from flask import (
     jsonify,
     request,
-    render_template,
 )
 from flask.views import MethodView
 
@@ -20,7 +19,7 @@ class Index(MethodView):
         articles = db_utils.article(page=1)
         data['articles'] = articles
         data['next_page'] = 2
-        return render_template('fish/index.html', data=data)
+        return jsonify(data)
 
 
 class More(MethodView):
@@ -33,15 +32,12 @@ class More(MethodView):
         articles = db_utils.article(page=next_page)
 
         if not articles:
-            return ''
-        data = {}
-        data['articles'] = articles
-        article_list = render_template('fish/article_list.html', data=data)
-        ret = {
+            return jsonify({})
+        data = {
+            'articles': articles,
             'next_page': next_page + 1,
-            'data': article_list
         }
-        return jsonify(ret)
+        return jsonify(data)
 
 
 class Article(MethodView):
@@ -57,6 +53,7 @@ class Article(MethodView):
         db.session.add(article)
         db.session.commit()
         article_data = article.json
-        data = {}
-        data['article'] = article_data
-        return render_template('fish/article.html', data=data)
+        data = {
+            'article': article_data,
+        }
+        return jsonify(data)
