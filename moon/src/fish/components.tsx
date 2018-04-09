@@ -8,14 +8,17 @@ interface ContentProps {
 }
 
 export class ArticleContentView extends React.Component<ContentProps, {}> {
+  public selector: HTMLDivElement;
   render() {
     const { article, listMode } = this.props;
     var imgs = [];
-    for (var img of article.content) {
-      imgs.push(<img data-src={img} className="lazyload" />);
+    for (var i = 0; i < article.content.length; i++) {
+      imgs.push(
+        <img data-src={article.content[i]} className="lazyload" key={i} />
+      );
     }
     return (
-        <div className="article">
+        <div className="article" ref={(ref) => this.selector = ref as HTMLDivElement}>
           <h1><a href={`/fish/p/${article.record_id}`}>{article.title}</a></h1>
           <p className="fish-time">
             {article.image_num} 张图片 |&nbsp;

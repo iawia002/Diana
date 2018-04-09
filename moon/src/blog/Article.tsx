@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { match } from 'react-router-dom';
 import { AxiosResponse, AxiosError } from 'axios';
 
 import { request } from '../request';
 import { Article, User } from './Interface';
 import { ArticleContentView, Footer, RightView } from './components';
+import { ImageGallery } from '../components/ImageGallery';
 
 import 'highlight.js/styles/solarized-dark.css';
 import './styles/article.scss';
@@ -19,9 +20,21 @@ interface State {
   article: Article;
 }
 
-export default class ArticleView extends React.Component<
-  RouteComponentProps<MatchParams>, {data: State}
-> {
+interface Props {
+  match: match<MatchParams>;
+  setSelector(selector: HTMLDivElement, attr: string): void;
+}
+
+class ArticleView extends React.Component<Props, {data: State}> {
+  private selector: HTMLDivElement;
+
+  proc(wrappedComponentInstance: ArticleContentView) {
+    if (wrappedComponentInstance && !this.selector) {
+      this.selector = wrappedComponentInstance.selector;
+      this.props.setSelector(this.selector, 'src');
+    }
+  }
+
   componentDidMount() {
     const { id } = this.props.match.params;
     var self = this;
@@ -45,10 +58,17 @@ export default class ArticleView extends React.Component<
       <div className="flex-article gray-bg">
         <RightView user={user} />
         <div className="left">
-          <ArticleContentView login={login} article={article} listMode={false} />
+          <ArticleContentView
+            login={login}
+            article={article}
+            listMode={false}
+            ref={ref => this.proc(ref as ArticleContentView)}
+          />
           <Footer/>
         </div>
       </div>
     );
   }
 }
+
+export default ImageGallery(ArticleView);

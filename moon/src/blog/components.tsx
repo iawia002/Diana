@@ -9,6 +9,7 @@ interface ContentProps {
 }
 
 export class ArticleContentView extends React.Component<ContentProps, {}> {
+  public selector: HTMLDivElement;
   render() {
     const { article, login, listMode } = this.props;
     var tags = [];
@@ -20,7 +21,7 @@ export class ArticleContentView extends React.Component<ContentProps, {}> {
       );
     }
     return (
-      <div className="article">
+      <div className="article" ref={(ref) => this.selector = ref as HTMLDivElement}>
         {
           listMode ?
             <><h1><a href={`/p/${article.article_id}`}>{article.title}</a></h1>
@@ -56,7 +57,12 @@ export class ArticleListView extends React.Component<Props, {}> {
     var elements = [];
     for (var article of articles) {
       elements.push(
-        <ArticleContentView key={article.article_id} article={article} login={login} listMode={true} />
+        <ArticleContentView
+          key={article.article_id}
+          article={article}
+          login={login}
+          listMode={true}
+        />
       );
     }
     return (
