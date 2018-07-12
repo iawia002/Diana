@@ -91,6 +91,7 @@ def upgrade_packages():
     local(
         'docker rm --force diana_upgrade'
     )
+    local('docker push iawia002/diana:latest')
 
 
 def init():
