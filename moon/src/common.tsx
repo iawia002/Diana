@@ -1,12 +1,13 @@
 import * as React from 'react';
-import axios, { AxiosResponse }  from 'axios';
+import { AxiosResponse }  from 'axios';
 
+import { request } from './request';
 import { Bg } from './blog/Interface';
 
 export class NotFound extends React.Component<{}, {data: Bg}> {
   componentDidMount() {
     var self = this;
-    axios.get('http://0.0.0.0:8004/bg')
+    request.get('/bg')
       .then(function (response: AxiosResponse) {
         self.setState({ data: response.data });
       });

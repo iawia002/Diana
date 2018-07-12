@@ -138,7 +138,6 @@ export default class EditorView extends React.Component<
             <i className="fa fa-check" aria-hidden="true" /> 保存
           </a>
           <CodeMirror
-            autoFocus={true}
             autoScroll={true}
             autoCursor={false}
             value={state.article_markdown_content}

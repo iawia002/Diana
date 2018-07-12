@@ -1,6 +1,7 @@
 import * as React from 'react';
-import axios, { AxiosResponse }  from 'axios';
+import { AxiosResponse }  from 'axios';
 
+import { request } from '../request';
 import { State } from './Interface';
 
 export class LoadMoreView<P> extends React.Component<P, State> {
@@ -10,7 +11,7 @@ export class LoadMoreView<P> extends React.Component<P, State> {
 
   loadMore(nextPage: number, page: string, tag: string) {
     var self = this;
-    axios.get('http://0.0.0.0:8004/more', {params: {next_page: nextPage, page, tag}})
+    request.get('/more', {params: {next_page: nextPage, page, tag}})
       .then(function (response: AxiosResponse) {
         if (!response.data.articles) {
           return;

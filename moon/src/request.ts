@@ -1,6 +1,8 @@
 import axios from 'axios';
 
+import config from './config';
+
 export const request = axios.create({
-  baseURL: 'http://0.0.0.0:8004',
+  baseURL: config.api,
   withCredentials: true,
 });

@@ -15,10 +15,11 @@ def access_log(response):
         'Access-Control-Allow-Origin', 'http://localhost:3000'
     )
     response.headers.add(
-        'Access-Control-Allow-Headers', 'Content-Type,Authorization'
+        'Access-Control-Allow-Headers', 'Content-Type, Authorization'
     )
     response.headers.add(
-        'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS'
+        'Access-Control-Allow-Methods',
+        'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'
     )
     response.headers.add(
         'Access-Control-Allow-Credentials', 'true'
