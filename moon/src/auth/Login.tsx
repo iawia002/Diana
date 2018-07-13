@@ -39,15 +39,16 @@ export default class LoginView extends React.Component<{}, LoginState> {
   handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     const { username, password } = this.state;
     const self = this;
-    request.post('/auth/login/', {
-      username,
-      password,
-    })
-      .then(function (response: AxiosResponse) {
+    request
+      .post('/auth/login/', {
+        username,
+        password,
+      })
+      .then(function(response: AxiosResponse) {
         notie.alert({ type: 'success', text: '登录成功' });
         self.setState({ login: true });
       })
-      .catch(function (error: AxiosError) {
+      .catch(function(error: AxiosError) {
         console.log(error);
         notie.alert({ type: 'error', text: '登录失败' });
       });
@@ -56,13 +57,15 @@ export default class LoginView extends React.Component<{}, LoginState> {
 
   render() {
     if (this.state.login) {
-      return (<Redirect to="/" />);
+      return <Redirect to="/" />;
     }
     return (
       <div className="login">
         <div
           className="avatar"
-          style={{backgroundImage: 'url("https://obmfhf1m3.qnssl.com/Katarina.png")'}}
+          style={{
+            backgroundImage: 'url("https://obmfhf1m3.qnssl.com/Katarina.png")',
+          }}
         />
         <form onSubmit={this.handleSubmit}>
           <input
