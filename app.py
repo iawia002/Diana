@@ -11,20 +11,21 @@ from mixins.access_log import generate_access_log
 @app.after_request
 def access_log(response):
     generate_access_log()
-    if app.config.get('ENV') != 'production':
-        response.headers.add(
-            'Access-Control-Allow-Origin', 'http://localhost:3000'
-        )
-        response.headers.add(
-            'Access-Control-Allow-Headers', 'Content-Type, Authorization'
-        )
-        response.headers.add(
-            'Access-Control-Allow-Methods',
-            'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'
-        )
-        response.headers.add(
-            'Access-Control-Allow-Credentials', 'true'
-        )
+    response.headers.add(
+        'Access-Control-Allow-Origin',
+        'https://api.jifangcheng.com'
+        if app.config.get('ENV') == 'production' else 'http://localhost:3000'
+    )
+    response.headers.add(
+        'Access-Control-Allow-Headers', 'Content-Type, Authorization'
+    )
+    response.headers.add(
+        'Access-Control-Allow-Methods',
+        'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'
+    )
+    response.headers.add(
+        'Access-Control-Allow-Credentials', 'true'
+    )
     return response
 
 
