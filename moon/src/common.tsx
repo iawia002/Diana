@@ -1,26 +1,25 @@
 import * as React from 'react';
-import { AxiosResponse }  from 'axios';
+import { AxiosResponse } from 'axios';
 
 import { request } from './request';
 import { Bg } from './blog/Interface';
 
-export class NotFound extends React.Component<{}, {data: Bg}> {
+export class NotFound extends React.Component<{}, { data: Bg }> {
   componentDidMount() {
     var self = this;
-    request.get('/bg')
-      .then(function (response: AxiosResponse) {
-        self.setState({ data: response.data });
-      });
+    request.get('/bg').then(function(response: AxiosResponse) {
+      self.setState({ data: response.data });
+    });
   }
 
   render() {
     const { state } = this;
     if (!state) {
-      return (<div/>);
+      return <div />;
     }
     const { data } = state;
     return (
-      <div className="top" style={{height: '100%'}}>
+      <div className="top" style={{ height: '100%' }}>
         <div className="bg" style={{ backgroundImage: `url(${data.url})` }} />
         <h1
           style={{

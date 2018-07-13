@@ -33,8 +33,5 @@ const AppRouter = () => {
   );
 };
 
-ReactDOM.render(
-  <AppRouter />,
-  document.getElementById('root') as HTMLElement
-);
+ReactDOM.render(<AppRouter />, document.getElementById('root') as HTMLElement);
 registerServiceWorker();

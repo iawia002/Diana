@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { match } from 'react-router-dom';
 import { AxiosResponse, AxiosError } from 'axios';
+const Disqus = require('disqus-react');
 
 import { request } from '../request';
 import { Article, User } from './Interface';
@@ -25,7 +26,7 @@ interface Props {
   setSelector(selector: HTMLDivElement, attr: string): void;
 }
 
-class ArticleView extends React.Component<Props, {data: State}> {
+class ArticleView extends React.Component<Props, { data: State }> {
   private selector: HTMLDivElement;
 
   proc(wrappedComponentInstance: ArticleContentView) {
@@ -38,12 +39,13 @@ class ArticleView extends React.Component<Props, {data: State}> {
   componentDidMount() {
     const { id } = this.props.match.params;
     var self = this;
-    request.get(`/p/${id}`)
-      .then(function (response: AxiosResponse) {
+    request
+      .get(`/p/${id}`)
+      .then(function(response: AxiosResponse) {
         self.setState({ data: response.data });
         document.title = `${response.data.article.title} - L`;
       })
-      .catch(function (error: AxiosError) {
+      .catch(function(error: AxiosError) {
         console.log(error);
       });
   }
@@ -51,9 +53,15 @@ class ArticleView extends React.Component<Props, {data: State}> {
   render() {
     const { state } = this;
     if (!state) {
-      return (<div/>);
+      return <div />;
     }
     const { login, article, user } = state.data;
+    const disqusShortname = 'theycallmel';
+    const disqusConfig = {
+      url: `https://l.jifangcheng.com/p/${article.article_id}`,
+      identifier: article.article_id,
+      title: article.title,
+    };
     return (
       <div className="flex-article gray-bg">
         <RightView user={user} />
@@ -64,7 +72,13 @@ class ArticleView extends React.Component<Props, {data: State}> {
             listMode={false}
             ref={ref => this.proc(ref as ArticleContentView)}
           />
-          <Footer/>
+          <div className="article" style={{ padding: '20px' }}>
+            <Disqus.DiscussionEmbed
+              shortname={disqusShortname}
+              config={disqusConfig}
+            />
+          </div>
+          <Footer />
         </div>
       </div>
     );

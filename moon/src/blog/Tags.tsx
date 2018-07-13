@@ -5,15 +5,16 @@ import { request } from '../request';
 import { Tags } from './Interface';
 import { RightView, Footer } from './components';
 
-export default class TagsView extends React.Component<{}, {data: Tags}> {
+export default class TagsView extends React.Component<{}, { data: Tags }> {
   componentDidMount() {
     document.title = '所有标签 - L';
     var self = this;
-    request.get('/tags')
-      .then(function (response: AxiosResponse) {
+    request
+      .get('/tags')
+      .then(function(response: AxiosResponse) {
         self.setState({ data: response.data });
       })
-      .catch(function (error: AxiosError) {
+      .catch(function(error: AxiosError) {
         console.log(error);
       });
   }
@@ -21,13 +22,15 @@ export default class TagsView extends React.Component<{}, {data: Tags}> {
   render() {
     const { state } = this;
     if (!state) {
-      return (<div/>);
+      return <div />;
     }
     const { keys, values, user } = state.data;
     var keyElements = [];
     for (var key of keys) {
       keyElements.push(
-        <li key={key}><a href={`#${key}`}>{key}</a></li>
+        <li key={key}>
+          <a href={`#${key}`}>{key}</a>
+        </li>
       );
     }
     var valueElements = [];
@@ -36,14 +39,17 @@ export default class TagsView extends React.Component<{}, {data: Tags}> {
       for (var tag of value[1]) {
         tags.push(
           <a key={tag.tag_id} href={`/tag/${tag.url}`}>
-            {tag.content}<span>{tag.number}</span>
+            {tag.content}
+            <span>{tag.number}</span>
           </a>
         );
       }
       valueElements.push(
         <div key={value[0]}>
           <hr />
-          <p id={value[0]}><a href={`#${value[0]}`}>{value[0]}</a></p>
+          <p id={value[0]}>
+            <a href={`#${value[0]}`}>{value[0]}</a>
+          </p>
           <div className="tags">{tags}</div>
         </div>
       );
@@ -60,7 +66,7 @@ export default class TagsView extends React.Component<{}, {data: Tags}> {
 
             {valueElements}
           </div>
-          <Footer/>
+          <Footer />
         </div>
       </div>
     );

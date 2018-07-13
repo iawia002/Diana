@@ -46,7 +46,8 @@ const md = marked.setOptions({
 });
 
 export default class EditorView extends React.Component<
-  RouteComponentProps<MatchParams>, State
+  RouteComponentProps<MatchParams>,
+  State
 > {
   private output: HTMLDivElement | null;
 
@@ -59,16 +60,18 @@ export default class EditorView extends React.Component<
     document.title = '编辑 - L';
     const { id } = this.props.match.params;
     const self = this;
-    request.get(`/p/${id}/edit`)
-      .then(function (response: AxiosResponse) {
+    request
+      .get(`/p/${id}/edit`)
+      .then(function(response: AxiosResponse) {
         self.setState({
           article_id: response.data.article_id,
-          article_markdown_content: response.data.article_markdown_content || '',
+          article_markdown_content:
+            response.data.article_markdown_content || '',
           article_title: response.data.article_id || '',
           rendered: md.parse(response.data.article_markdown_content || ''),
         });
       })
-      .catch(function (error: AxiosError) {
+      .catch(function(error: AxiosError) {
         console.log(error);
       });
   }
@@ -77,7 +80,7 @@ export default class EditorView extends React.Component<
     const percentage = data.top / (data.height - data.clientHeight);
     const node = this.output as HTMLElement;
     const outputHeight = node.scrollHeight - node.offsetHeight;
-    node.scrollTo({top: percentage * outputHeight});
+    node.scrollTo({ top: percentage * outputHeight });
   }
 
   handleRender(value: string) {
@@ -107,20 +110,21 @@ export default class EditorView extends React.Component<
     const data = {
       article_id: article_id,
       title: node.getElementsByTagName('h1')[0].innerHTML,
-      introduction: node.getElementsByTagName('blockquote')[0] ?
-        node.getElementsByTagName('blockquote')[0].innerHTML
-      : '',
+      introduction: node.getElementsByTagName('blockquote')[0]
+        ? node.getElementsByTagName('blockquote')[0].innerHTML
+        : '',
       markdown_content: article_markdown_content,
       compiled_content: node.innerHTML,
       tags,
       _xsrf: xsrf,
     };
 
-    request.post(`/p/${article_id}/edit`, data)
-      .then(function (response: AxiosResponse) {
+    request
+      .post(`/p/${article_id}/edit`, data)
+      .then(function(response: AxiosResponse) {
         notie.alert({ type: 'success', text: 'success' });
       })
-      .catch(function (error: AxiosError) {
+      .catch(function(error: AxiosError) {
         console.log(error);
         notie.alert({ type: 'error', text: 'error' });
       });
@@ -129,7 +133,7 @@ export default class EditorView extends React.Component<
   render() {
     const { state } = this;
     if (!state) {
-      return (<div/>);
+      return <div />;
     }
     return (
       <div className="editor-content">
@@ -156,8 +160,8 @@ export default class EditorView extends React.Component<
         </div>
         <div
           className="rbox"
-          ref={(output) => this.output = output}
-          dangerouslySetInnerHTML={{__html: state.rendered }}
+          ref={output => (this.output = output)}
+          dangerouslySetInnerHTML={{ __html: state.rendered }}
         />
       </div>
     );
