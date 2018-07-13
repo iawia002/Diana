@@ -7,7 +7,6 @@ from itertools import groupby
 from flask import (
     jsonify,
     request,
-    render_template,
 )
 from flask.views import MethodView
 
@@ -38,7 +37,7 @@ class IndexView(MethodView):
         data['user'] = user
         data['next_page'] = 2
         data['login'] = self.login
-        return render_template('blog/index.html', data=data)
+        return jsonify(data)
 
 
 class MoreView(MethodView):
@@ -57,17 +56,11 @@ class MoreView(MethodView):
             )
 
         if not articles:
-            return ''
-        # articles = utils.tags.articles_add_tags(articles)
-        data = {}
-        data['articles'] = articles
-        data['login'] = self.login
-        article_list = render_template(
-            'blog/article_list.html', data=data
-        )
+            return jsonify({})
         ret = {
+            'articles': articles,
             'next_page': int(next_page) + 1,
-            'data': article_list
+            'login': self.login,
         }
         return jsonify(ret)
 
@@ -94,7 +87,7 @@ class ArticleView(MethodView):
         data['article'] = article
         data['user'] = user
         data['login'] = self.login
-        return render_template('blog/article.html', data=data)
+        return jsonify(data)
 
 
 class EditView(MethodView):
@@ -113,19 +106,19 @@ class EditView(MethodView):
             data['article_markdown_content'] = ''
             data['article_title'] = ''
         data['article_id'] = article_id
-        return render_template('blog/editor.html', data=data)
+        return jsonify(data)
 
     @utils.auth.login_require
     def post(self, article_id):
         article_id = int(article_id)
         data = {
-            'title': request.form.get('title'),
-            'introduction': request.form.get('introduction'),
-            'markdown_content': request.form.get('markdown_content'),
-            'compiled_content': request.form.get('compiled_content'),
+            'title': request.json.get('title'),
+            'introduction': request.json.get('introduction'),
+            'markdown_content': request.json.get('markdown_content'),
+            'compiled_content': request.json.get('compiled_content'),
             'user_id': self.user_id,
         }
-        tags = request.form.getlist('tags[]')
+        tags = request.json.get('tags')
 
         user = User.query.filter_by(
             user_id=self.user_id
@@ -170,7 +163,7 @@ class TagView(MethodView):
         data['user'] = user
         data['next_page'] = 2
         data['login'] = self.login
-        return render_template('blog/tag.html', data=data)
+        return jsonify(data)
 
 
 class TagsView(MethodView):
@@ -206,7 +199,7 @@ class TagsView(MethodView):
         data['values'] = values
         user = utils.db.user(user_id=config.USER_ID)
         data['user'] = user
-        return render_template('blog/tags.html', data=data)
+        return jsonify(data)
 
 
 class UserView(MethodView):
@@ -216,7 +209,7 @@ class UserView(MethodView):
         user = User.query.filter_by(
             user_id=self.user_id
         ).first()
-        introduction = request.form.get('introduction')
+        introduction = request.json.get('introduction')
         if not introduction:
             return '', 400
         user.introduction = introduction
@@ -304,4 +297,9 @@ class StatisticsView(MethodView):
             'max_persons': page_data[1],
         })
         data['user'] = utils.db.user(user_id=config.USER_ID)
-        return render_template('blog/statistics.html', data=data)
+        return jsonify(data)
+
+
+class BgView(MethodView):
+    def get(self):
+        return jsonify(random.choice(config.INDEX_BG))

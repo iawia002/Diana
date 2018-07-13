@@ -1,21 +1,16 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-import random
-
 from flask import (
-    render_template,
+    jsonify,
 )
-
-import config
 
 
 def raise_error(status_code):
-    data = {}
-    data['bg'] = random.choice(config.INDEX_BG)
-    data['status'] = {}
-    data['status']['code'] = status_code
-    return render_template('blog/error.html', data=data), status_code
+    data = {
+        'error': status_code
+    }
+    return jsonify(data), status_code
 
 
 def row2dict(row):

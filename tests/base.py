@@ -40,10 +40,10 @@ class BaseTest(unittest.TestCase):
     def login(self, username, password):
         return self.client.post(
             '/auth/login',
-            data=dict(
-                username=username,
-                password=password
-            ),
+            json={
+                'username': username,
+                'password': password,
+            },
             follow_redirects=True
         )
 

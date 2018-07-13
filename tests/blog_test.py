@@ -78,23 +78,19 @@ class BlogTest(BaseTest):
             response = self.client.get('/statistics')
             self.assertEqual(response.status_code, 200)
 
-    def test_login_get(self):
-        response = self.client.get('/auth/login')
-        self.assertEqual(response.status_code, 200)
-
     def test_login_post(self):
         response = self.client.post(
             '/auth/login',
-            data={
+            json={
                 'username': 'L',
                 'password': 'L',
             },
         )
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
 
         response = self.client.post(
             '/auth/login',
-            data={
+            json={
                 'username': 'L',
                 'password': 'hello',
             },
@@ -146,12 +142,12 @@ class BlogTest(BaseTest):
             self.login(self.username, self.password)
             response = self.client.post(
                 '/p/0/edit',
-                data={
+                json={
                     'title': 'hello',
                     'introduction': 'hello',
                     'markdown_content': 'hello',
                     'compiled_content': 'hello',
-                    'tags[]': ["hello", "tag"],
+                    'tags': ["hello", "tag"],
                 },
             )
             self.assertEqual(response.status_code, 200)
@@ -161,12 +157,12 @@ class BlogTest(BaseTest):
             self.login(self.username, self.password)
             response = self.client.post(
                 '/p/1/edit',
-                data={
+                json={
                     'title': 'hello L',
                     'introduction': 'hello L',
                     'markdown_content': 'hello L',
                     'compiled_content': 'hello L',
-                    'tags[]': ["hello"],
+                    'tags': ["hello"],
                 },
             )
             self.assertEqual(response.status_code, 200)
@@ -190,13 +186,13 @@ class BlogTest(BaseTest):
             self.login(self.username, self.password)
             response = self.client.post(
                 '/user',
-                data={
+                json={
                     'introduction': 'hello L',
                 },
             )
             self.assertEqual(response.status_code, 200)
 
-            response = self.client.post('/user')
+            response = self.client.post('/user', json={})
             self.assertEqual(response.status_code, 400)
 
     def test_fish(self):

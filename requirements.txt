@@ -1,4 +1,4 @@
-flask==0.12.2
+flask==1.0.2
 flake8==3.5.0
 blinker==1.4
 redis==2.10.6

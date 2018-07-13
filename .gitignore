@@ -83,6 +83,8 @@ ENV/
 # Rope project settings
 .ropeproject
 
+.vscode
+
 # 
 src/css/.sass-cache
 node_modules
