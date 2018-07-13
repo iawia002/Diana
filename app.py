@@ -13,7 +13,7 @@ def access_log(response):
     generate_access_log()
     response.headers.add(
         'Access-Control-Allow-Origin',
-        'https://api.jifangcheng.com'
+        'https://l.jifangcheng.com'
         if app.config.get('ENV') == 'production' else 'http://localhost:3000'
     )
     response.headers.add(
