@@ -15,7 +15,7 @@ import 'highlight.js/styles/solarized-dark.css';
 import 'codemirror/lib/codemirror.css';
 import 'notie/dist/notie.min.css';
 
-import './styles/editor.scss';
+const styles = require('./styles/editor.scss');
 
 interface MatchParams {
   id: string;
@@ -136,16 +136,16 @@ export default class EditorView extends React.Component<
       return <div />;
     }
     return (
-      <div className="editor-content">
-        <div className="lbox">
-          <a className="topbar" onClick={this.save}>
+      <div className={styles.editorContent}>
+        <div className={styles.lbox}>
+          <a className={styles.topbar} onClick={this.save}>
             <i className="fa fa-check" aria-hidden="true" /> 保存
           </a>
           <CodeMirror
             autoScroll={true}
             autoCursor={false}
             value={state.article_markdown_content}
-            className="source"
+            className={styles.source}
             options={{
               mode: 'gfm',
               lineWrapping: true,
@@ -159,7 +159,7 @@ export default class EditorView extends React.Component<
           />
         </div>
         <div
-          className="rbox"
+          className={styles.rbox}
           ref={output => (this.output = output)}
           dangerouslySetInnerHTML={{ __html: state.rendered }}
         />

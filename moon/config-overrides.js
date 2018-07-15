@@ -4,7 +4,19 @@ module.exports = function override(config, env) {
     0,
     {
       test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader'],
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            modules: true,
+            sourceMap: process.env.NODE_ENV === 'production' ? false : true,
+            importLoaders: 2,
+            localIdentName: '[name]__[local]--[hash:base64:5]',
+          },
+        },
+        'sass-loader',
+      ],
     }
   );
   return config;

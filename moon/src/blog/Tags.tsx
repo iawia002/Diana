@@ -5,6 +5,8 @@ import { request } from '../request';
 import { Tags } from './Interface';
 import { RightView, Footer } from './components';
 
+const styles = require('./styles/article.scss');
+
 export default class TagsView extends React.Component<{}, { data: Tags }> {
   componentDidMount() {
     document.title = '所有标签 - L';
@@ -50,18 +52,18 @@ export default class TagsView extends React.Component<{}, { data: Tags }> {
           <p id={value[0]}>
             <a href={`#${value[0]}`}>{value[0]}</a>
           </p>
-          <div className="tags">{tags}</div>
+          <div className={styles.tags}>{tags}</div>
         </div>
       );
     }
     return (
-      <div className="flex-article gray-bg">
+      <div className={[styles.flexArticle, styles.grayBg].join(' ')}>
         <RightView user={user} />
-        <div className="left">
-          <div className="tag-nav">
+        <div className={styles.left}>
+          <div className={styles.tagNav}>
             <p>所有标签</p>
           </div>
-          <div className="article all-tags">
+          <div className={[styles.article, styles.allTags].join(' ')}>
             <ul>{keyElements}</ul>
 
             {valueElements}

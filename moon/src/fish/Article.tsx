@@ -5,11 +5,11 @@ import { Helmet } from 'react-helmet';
 
 import { request } from '../request';
 import { Article } from './Interface';
-import { ArticleContentView, Footer, FishTop } from './components';
+import { ArticleContentView, Footer, Top } from './components';
 import { ImageGallery } from '../components/ImageGallery';
 import 'lazysizes';
 
-import './styles/article.scss';
+const styles = require('./styles/article.scss');
 
 interface MatchParams {
   id: string;
@@ -59,8 +59,8 @@ class FishArticleView extends React.Component<Props, { data: State }> {
         <Helmet>
           <meta name="referrer" content="no-referrer" />
         </Helmet>
-        <FishTop />
-        <div className="main">
+        <Top />
+        <div className={styles.main}>
           <ArticleContentView
             article={article}
             listMode={false}

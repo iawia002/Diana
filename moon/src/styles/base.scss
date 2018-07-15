@@ -1,6 +1,6 @@
 // base
-@import "~normalize.css";
-@import "variable";
+@import '~normalize.css';
+@import 'variable';
 
 body {
   background: $white;
@@ -14,7 +14,7 @@ body {
 
 body,
 html,
-#root {
+:global(#root) {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -22,7 +22,7 @@ html,
     size: 16px;
   }
 
-  @media (max-width: 991px){
+  @media (max-width: 991px) {
     font-size: 15px;
   }
 
@@ -104,31 +104,33 @@ input {
   outline: 0;
 }
 
-@media (max-width: 767px) {
-  .hidden-xs {
-    display: none;
+:global {
+  @media (max-width: 767px) {
+    .hidden-xs {
+      display: none;
+    }
+
+    .visible-xs {
+      display: block !important;
+    }
   }
 
-  .visible-xs {
-    display: block !important;
+  @media (min-width: 768px) and (max-width: 991px) {
+    .hidden-sm {
+      display: none;
+    }
   }
-}
 
-@media (min-width: 768px) and (max-width: 991px) {
-  .hidden-sm {
-    display: none;
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .hidden-md {
+      display: none;
+    }
   }
-}
 
-@media (min-width: 992px) and (max-width: 1199px) {
-  .hidden-md {
-    display: none;
-  }
-}
-
-@media (min-width: 1200px) {
-  .hidden-lg {
-    display: none;
+  @media (min-width: 1200px) {
+    .hidden-lg {
+      display: none;
+    }
   }
 }
 
@@ -138,14 +140,14 @@ input {
   box-shadow: 0 0 20px $light-black;
 }
 
-@mixin avatar($bg: "moon.png", $width: 120px) {
+@mixin avatar($bg: 'moon.png', $width: 120px) {
   margin: 0 auto;
   padding: 0;
   width: $width;
   height: $width;
   border-radius: 60px;
   text-indent: -9999px;
-  background: url("../../img/#{$bg}");
+  background: url('../../img/#{$bg}');
   background-size: 100%;
 
   @media (max-width: 767px) {
@@ -154,7 +156,7 @@ input {
   }
 }
 
-.footer {
+:global(.footer) {
   max-width: 640px;
   margin: 40px auto;
   text-align: center;

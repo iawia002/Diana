@@ -1,6 +1,5 @@
 // base
-@import "../../styles/base";
-
+@import '../../styles/base';
 
 @mixin avatar($top: 55px, $bottom: 10px, $width: 120px) {
   margin: $top auto $bottom;
@@ -222,7 +221,7 @@
   visibility: hidden;
 }
 
-.tag-nav {
+.tagNav {
   @include shadow-box;
   width: 70%;
   max-width: $article-width;
