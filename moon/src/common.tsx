@@ -4,6 +4,8 @@ import { AxiosResponse } from 'axios';
 import { request } from './request';
 import { Bg } from './blog/Interface';
 
+const styles = require('./blog/styles/index.scss');
+
 export class NotFound extends React.Component<{}, { data: Bg }> {
   componentDidMount() {
     var self = this;
@@ -19,8 +21,11 @@ export class NotFound extends React.Component<{}, { data: Bg }> {
     }
     const { data } = state;
     return (
-      <div className="top" style={{ height: '100%' }}>
-        <div className="bg" style={{ backgroundImage: `url(${data.url})` }} />
+      <div className={styles.top} style={{ height: '100%' }}>
+        <div
+          className={styles.bg}
+          style={{ backgroundImage: `url(${data.url})` }}
+        />
         <h1
           style={{
             fontSize: '5rem !important',
@@ -32,7 +37,7 @@ export class NotFound extends React.Component<{}, { data: Bg }> {
         >
           404
         </h1>
-        <div className="bottom-connect">
+        <div className={styles.bottomConnect}>
           <a href="/" data-balloon="返回首页" data-balloon-pos="up">
             <i className="fa fa-paper-plane" aria-hidden="true" />
           </a>
@@ -53,7 +58,7 @@ export class NotFound extends React.Component<{}, { data: Bg }> {
           </a>
         </div>
 
-        <p className="bg-intro">{data.name}</p>
+        <p className={styles.bgIntro}>{data.name}</p>
       </div>
     );
   }
