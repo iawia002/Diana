@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Article, User } from './Interface';
+const styles = require('./styles/article.scss');
 
 interface ContentProps {
   article: Article;
@@ -23,7 +24,7 @@ export class ArticleContentView extends React.Component<ContentProps, {}> {
     }
     return (
       <div
-        className="article"
+        className={styles.article}
         ref={ref => (this.selector = ref as HTMLDivElement)}
       >
         {listMode ? (
@@ -40,8 +41,8 @@ export class ArticleContentView extends React.Component<ContentProps, {}> {
         ) : (
           <div dangerouslySetInnerHTML={{ __html: article.compiled_content }} />
         )}
-        <div className="tags">{tags}</div>
-        <p className="time">
+        <div className={styles.tags}>{tags}</div>
+        <p className={styles.time}>
           <span>
             <i className="fa fa-eye" aria-hidden="true" /> {article.views}
           </span>
@@ -92,16 +93,16 @@ export class RightView extends React.Component<{ user: User }, {}> {
     const { user } = this.props;
     return (
       <>
-        <div className="right-wrapper hidden-xs">
+        <div className={`${styles.rightWrapper} hidden-xs`}>
           <div
-            className="right"
+            className={styles.right}
             style={{
               backgroundImage:
                 'url("http://img.l.jifangcheng.com/448306d943165b8c281583c854d06be5e204de8b.png")',
             }}
           >
             <div
-              className="avatar"
+              className={styles.avatar}
               style={{ backgroundImage: `url(${user.avatar})` }}
             />
             <h1>{user.username}</h1>
@@ -116,9 +117,9 @@ export class RightView extends React.Component<{ user: User }, {}> {
             </ul>
           </div>
         </div>
-        <div className="top-nav visible-xs">
+        <div className={`${styles.topNav} visible-xs`}>
           <div
-            className="avatar"
+            className={styles.avatar}
             style={{ backgroundImage: `url(${user.avatar})` }}
           />
           <h1>

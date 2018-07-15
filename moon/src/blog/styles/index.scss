@@ -1,6 +1,6 @@
 // 首页
-@import "../styles/base";
-@import "../styles/animate";
+@import '../styles/base';
+@import '../styles/animate';
 
 // @media (max-width: 1199){ //<=1199的设备 }
 // @media (max-width: 991px){ //<=991的设备 }
@@ -52,7 +52,7 @@
     }
   }
 
-  .bottom-connect {
+  .bottomConnect {
     margin: auto;
     position: absolute;
     left: 0;
@@ -65,7 +65,7 @@
     }
   }
 
-  .bg-intro {
+  .bgIntro {
     border: 0;
     position: absolute;
     bottom: 15px;
@@ -92,14 +92,14 @@
   opacity: 0;
   animation: {
     name: overlay;
-    duration: .5s;
-    delay: .1s;
+    duration: 0.5s;
+    delay: 0.1s;
     fill-mode: forwards;
   }
   position: absolute;
 }
 
-.main-content {
+.mainContent {
   position: absolute;
   top: 50%;
   left: 0;
@@ -167,7 +167,6 @@
 }
 
 @media (max-width: 767px) {
-
   .top {
     .introduction {
       margin-top: 5px;

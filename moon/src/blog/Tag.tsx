@@ -6,7 +6,7 @@ import { request } from '../request';
 import { LoadMoreView } from './utils';
 import { ArticleListView, Footer, RightView } from './components';
 
-import './styles/article.scss';
+const styles = require('./styles/article.scss');
 
 interface MatchParams {
   tag: string;
@@ -41,9 +41,9 @@ export default class TagView extends LoadMoreView<
     }
     const { login, articles, user } = state.data;
     return (
-      <div className="flex-article gray-bg">
+      <div className={[styles.flexArticle, styles.grayBg].join(' ')}>
         <RightView user={user} />
-        <div className="left">
+        <div className={styles.left}>
           <ArticleListView login={login} articles={articles} />
           <Footer />
         </div>

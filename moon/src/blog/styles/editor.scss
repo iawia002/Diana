@@ -1,7 +1,7 @@
 // 编辑器
-@import "base";
+@import 'base';
 
-.editor-content {
+.editorContent {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -71,11 +71,13 @@
   overflow: scroll;
 }
 
-.CodeMirror {
-  height: 100%;
-  width: 100%;
-}
+:global {
+  .CodeMirror {
+    height: 100%;
+    width: 100%;
+  }
 
-.cm-s-solarized.CodeMirror {
-  box-shadow: none;
+  .cm-s-solarized.CodeMirror {
+    box-shadow: none;
+  }
 }

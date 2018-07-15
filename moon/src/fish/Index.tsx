@@ -3,9 +3,9 @@ import { AxiosResponse, AxiosError } from 'axios';
 
 import { request } from '../request';
 import { LoadMoreView } from './utils';
-import { ArticleListView, Footer, FishTop } from './components';
+import { ArticleListView, Footer, Top } from './components';
 
-import './styles/base.scss';
+const styles = require('./styles/base.scss');
 
 export default class FishIndex extends LoadMoreView<{}> {
   constructor(props: {}) {
@@ -34,8 +34,8 @@ export default class FishIndex extends LoadMoreView<{}> {
     const { data } = state;
     return (
       <>
-        <FishTop />
-        <div className="main">
+        <Top />
+        <div className={styles.main}>
           <ArticleListView articles={data.articles} />
           <Footer />
         </div>

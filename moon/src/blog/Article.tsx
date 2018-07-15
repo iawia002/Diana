@@ -9,7 +9,7 @@ import { ArticleContentView, Footer, RightView } from './components';
 import { ImageGallery } from '../components/ImageGallery';
 
 import 'highlight.js/styles/solarized-dark.css';
-import './styles/article.scss';
+const styles = require('./styles/article.scss');
 
 interface MatchParams {
   id: string;
@@ -63,7 +63,7 @@ class ArticleView extends React.Component<Props, { data: State }> {
       title: article.title,
     };
     return (
-      <div className="flex-article gray-bg">
+      <div className={[styles.flexArticle, styles.grayBg].join(' ')}>
         <RightView user={user} />
         <div className="left">
           <ArticleContentView
@@ -72,7 +72,7 @@ class ArticleView extends React.Component<Props, { data: State }> {
             listMode={false}
             ref={ref => this.proc(ref as ArticleContentView)}
           />
-          <div className="article" style={{ padding: '20px' }}>
+          <div className={styles.article} style={{ padding: '20px' }}>
             <Disqus.DiscussionEmbed
               shortname={disqusShortname}
               config={disqusConfig}

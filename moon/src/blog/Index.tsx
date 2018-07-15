@@ -7,7 +7,7 @@ import { ArticleListView, Footer } from './components';
 
 import 'balloon-css/balloon.css';
 import 'font-awesome/css/font-awesome.css';
-import './styles/index.scss';
+const styles = require('./styles/index.scss');
 
 export default class Index extends LoadMoreView<{}> {
   constructor(props: {}) {
@@ -35,13 +35,13 @@ export default class Index extends LoadMoreView<{}> {
     const { data } = state;
     return (
       <>
-        <div className="top">
+        <div className={styles.top}>
           <div
-            className="bg"
+            className={styles.bg}
             style={{ backgroundImage: `url(${data.bg.url})` }}
           />
-          <nav className="nav">
-            <li className="category">
+          <nav className={styles.nav}>
+            <li className={styles.category}>
               <a href="/">首页</a>
               <a href="/tags">所有标签</a>
               <a href="/p/78">我的项目</a>
@@ -49,7 +49,7 @@ export default class Index extends LoadMoreView<{}> {
               <a href="/p/86">L and friends</a>
               <a
                 href="https://github.com/iawia002/Diana"
-                className="emoji"
+                className={styles.emoji}
                 target="_blank"
                 data-balloon="GitHub @iawia002"
                 data-balloon-pos="left"
@@ -58,7 +58,7 @@ export default class Index extends LoadMoreView<{}> {
               </a>
               <a
                 href="mailto:%7a%32%64@%6a%69%66%61%6e%67%63%68%65%6e%67.%63%6f%6d"
-                className="emoji"
+                className={styles.emoji}
                 data-balloon="z2d@jifangcheng.com"
                 data-balloon-pos="left"
               >
@@ -66,9 +66,9 @@ export default class Index extends LoadMoreView<{}> {
               </a>
             </li>
           </nav>
-          <div className="main-content">
+          <div className={styles.mainContent}>
             <h1>{data.user.username}</h1>
-            <div className="introduction" id="introduction">
+            <div className={styles.introduction} id="introduction">
               <p>{data.user.introduction}</p>
               {data.login ? (
                 <span>
@@ -79,9 +79,9 @@ export default class Index extends LoadMoreView<{}> {
               )}
             </div>
           </div>
-          <p className="bg-intro">{data.bg.name}</p>
+          <p className={styles.bgIntro}>{data.bg.name}</p>
         </div>
-        <div className="content">
+        <div className={styles.content}>
           <ArticleListView login={data.login} articles={data.articles} />
           <Footer />
         </div>

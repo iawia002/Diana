@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as Hammer from 'hammerjs';
 
+const styles = require('./styles/ImageGallery.scss');
+
 export interface ImageGalleryState {
   current: string;
   length: number;
@@ -110,11 +112,11 @@ export const ImageGallery = (WrappedComponent: React.ComponentType) =>
       return (
         <>
           <div
-            className="ig-model"
+            className={styles.model}
             style={{ display: this.state.show ? 'block' : 'none' }}
           >
-            <div className="ig-bg" onClick={this.handleClose} />
-            <div className="ig-content">
+            <div className={styles.bg} onClick={this.handleClose} />
+            <div className={styles.content}>
               <img
                 src={this.state.current}
                 alt=""
@@ -125,7 +127,11 @@ export const ImageGallery = (WrappedComponent: React.ComponentType) =>
                 {this.state.images.indexOf(this.state.current) + 1} /{' '}
                 {this.state.length}
               </p>
-              <a className="origin" href={this.state.current} target="_blank">
+              <a
+                className={styles.origin}
+                href={this.state.current}
+                target="_blank"
+              >
                 查看原图
               </a>
             </div>

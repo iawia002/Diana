@@ -1,12 +1,19 @@
 // 登录
-@import "base";
+@import 'base';
 
 .avatar {
   @include avatar($top: 80px, $bottom: 50px);
 }
 
+.top {
+  height: 100%;
+  background: {
+    color: $light-gray;
+  }
+}
+
 .login {
-  // height: 100%;
+  position: relative;
   padding: 0;
   max-width: 300px;
   margin: 0 auto;
@@ -22,7 +29,7 @@
     font-size: 1.1rem;
     line-height: normal;
 
-    transition: box-shadow ease-in-out .25s;
+    transition: box-shadow ease-in-out 0.25s;
 
     &:focus {
       box-shadow: 0 0 20px $light-black;

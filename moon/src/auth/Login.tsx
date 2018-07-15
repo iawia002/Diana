@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Redirect } from 'react-router-dom';
 import { AxiosResponse, AxiosError } from 'axios';
-var notie = require('notie');
+const notie = require('notie');
 
 import { request } from '../request';
 
-import './styles/login.scss';
+const styles = require('./styles/login.scss');
 
 interface LoginState {
   username: string;
@@ -60,30 +60,33 @@ export default class LoginView extends React.Component<{}, LoginState> {
       return <Redirect to="/" />;
     }
     return (
-      <div className="login">
-        <div
-          className="avatar"
-          style={{
-            backgroundImage: 'url("https://obmfhf1m3.qnssl.com/Katarina.png")',
-          }}
-        />
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="username"
-            placeholder="用户名"
-            value={this.state.username}
-            onChange={this.handleChange}
+      <div className={styles.top}>
+        <div className={styles.login}>
+          <div
+            className={styles.avatar}
+            style={{
+              backgroundImage:
+                'url("https://obmfhf1m3.qnssl.com/Katarina.png")',
+            }}
           />
-          <input
-            type="password"
-            name="password"
-            placeholder="密码"
-            value={this.state.password}
-            onChange={this.handleChange}
-          />
-          <button type="submit">登录</button>
-        </form>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              name="username"
+              placeholder="用户名"
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="密码"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
+            <button type="submit">登录</button>
+          </form>
+        </div>
       </div>
     );
   }

@@ -1,15 +1,15 @@
 // 右侧栏
-@import "base";
-@import "animate";
+@import 'base';
+@import 'animate';
 // @media (max-width: 1199){ //<=1199的设备 }
 // @media (max-width: 991px){ //<=991的设备 }
 // @media (max-width: 767px){ //<=768的设备 }
 
-.gray-bg {
+.grayBg {
   background: $light-gray;
 }
 
-.flex-article {
+.flexArticle {
   display: flex;
   justify-content: center;
   flex-direction: row-reverse;
@@ -20,7 +20,7 @@
   }
 }
 
-.right-wrapper {
+.rightWrapper {
   flex: 0 0 300px;
 }
 
@@ -83,7 +83,7 @@
   }
 }
 
-.top-nav {
+.topNav {
   display: none;
   overflow: hidden;
 
@@ -132,7 +132,7 @@
   }
 }
 
-.all-tags {
+.allTags {
   li,
   ul {
     margin: 0;
@@ -172,62 +172,5 @@
 
   div:last-child {
     padding-bottom: 20px;
-  }
-}
-
-.show {
-  display: block !important;
-}
-
-.model-open {
-  overflow: hidden;
-}
-
-.ig-model {
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  position: fixed;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  display: none;
-
-  .ig-bg {
-    position: absolute;
-    background: $black;
-    opacity: 0.7;
-    width: 100%;
-    height: 100%;
-  }
-
-  .ig-content {
-    p {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: $white;
-      // text-align: center;
-    }
-
-    img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 100%;
-      max-height: 100%;
-      display: block;
-      margin: 0 auto;
-      padding: 10px;
-    }
-
-    .origin {
-      position: absolute;
-      bottom: 10px;
-      right: 20px;
-      color: $white;
-    }
   }
 }
