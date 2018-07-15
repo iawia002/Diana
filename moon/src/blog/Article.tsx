@@ -65,7 +65,7 @@ class ArticleView extends React.Component<Props, { data: State }> {
     return (
       <div className={[styles.flexArticle, styles.grayBg].join(' ')}>
         <RightView user={user} />
-        <div className="left">
+        <div className={styles.left}>
           <ArticleContentView
             login={login}
             article={article}
