@@ -1,7 +1,8 @@
 import * as React from 'react';
 
 import { Article, User } from 'src/blog/Interface';
-const styles = require('src/blog/styles/article.scss');
+const styles = require('src/blog/styles/components.scss');
+const articleStyles = require('src/blog/styles/article.scss');
 
 interface ContentProps {
   article: Article;
@@ -24,7 +25,7 @@ export class ArticleContentView extends React.Component<ContentProps, {}> {
     }
     return (
       <div
-        className={styles.article}
+        className={articleStyles.article}
         ref={ref => (this.selector = ref as HTMLDivElement)}
       >
         {listMode ? (
@@ -41,8 +42,8 @@ export class ArticleContentView extends React.Component<ContentProps, {}> {
         ) : (
           <div dangerouslySetInnerHTML={{ __html: article.compiled_content }} />
         )}
-        <div className={styles.tags}>{tags}</div>
-        <p className={styles.time}>
+        <div className={articleStyles.tags}>{tags}</div>
+        <p className={articleStyles.time}>
           <span>
             <i className="fa fa-eye" aria-hidden="true" /> {article.views}
           </span>
@@ -93,16 +94,16 @@ export class RightView extends React.Component<{ user: User }, {}> {
     const { user } = this.props;
     return (
       <>
-        <div className={`${styles.rightWrapper} hidden-xs`}>
+        <div className={`${articleStyles.rightWrapper} hidden-xs`}>
           <div
-            className={styles.right}
+            className={articleStyles.right}
             style={{
               backgroundImage:
                 'url("http://img.l.jifangcheng.com/448306d943165b8c281583c854d06be5e204de8b.png")',
             }}
           >
             <div
-              className={styles.avatar}
+              className={articleStyles.avatar}
               style={{ backgroundImage: `url(${user.avatar})` }}
             />
             <h1>{user.username}</h1>
@@ -117,9 +118,9 @@ export class RightView extends React.Component<{ user: User }, {}> {
             </ul>
           </div>
         </div>
-        <div className={`${styles.topNav} visible-xs`}>
+        <div className={`${articleStyles.topNav} visible-xs`}>
           <div
-            className={styles.avatar}
+            className={articleStyles.avatar}
             style={{ backgroundImage: `url(${user.avatar})` }}
           />
           <h1>
@@ -128,6 +129,39 @@ export class RightView extends React.Component<{ user: User }, {}> {
           <p>{user.introduction}</p>
         </div>
       </>
+    );
+  }
+}
+
+export class Nav extends React.Component<{}, {}> {
+  render() {
+    return (
+      <nav className={styles.nav}>
+        <li className={styles.category}>
+          <a href="/">首页</a>
+          <a href="/tags">标签</a>
+          <a href="/p/78">我的项目</a>
+          <a href="/p/76">工具</a>
+          <a href="/friends">朋友们</a>
+          <a
+            href="https://github.com/iawia002/Diana"
+            className={styles.emoji}
+            target="_blank"
+            data-balloon="GitHub @iawia002"
+            data-balloon-pos="left"
+          >
+            <i className="fa fa-github" aria-hidden="true" />
+          </a>
+          <a
+            href="mailto:%7a%32%64@%6a%69%66%61%6e%67%63%68%65%6e%67.%63%6f%6d"
+            className={styles.emoji}
+            data-balloon="z2d@jifangcheng.com"
+            data-balloon-pos="left"
+          >
+            <i className="fa fa-envelope-o" aria-hidden="true" />
+          </a>
+        </li>
+      </nav>
     );
   }
 }

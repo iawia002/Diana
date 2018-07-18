@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import registerServiceWorker from 'src/registerServiceWorker';
-import { NotFound } from 'src/common';
+import { NotFound, FriendsView } from 'src/common/common';
 import Index from 'src/blog/Index';
 import ArticleView from 'src/blog/Article';
 import TagsView from 'src/blog/Tags';
@@ -20,6 +20,7 @@ const AppRouter = () => {
     <BrowserRouter>
       <Switch>
         <Route exact={true} path="/" component={Index} />
+        <Route exact={true} path="/friends" component={FriendsView} />
         <Route exact={true} path="/p/:id" component={ArticleView} />
         <Route exact={true} path="/tags" component={TagsView} />
         <Route exact={true} path="/tag/:tag" component={TagView} />

@@ -113,54 +113,6 @@
   }
 }
 
-.nav {
-  position: absolute;
-  top: 10px;
-  margin: auto;
-  width: 100%;
-  max-width: $content-max-width;
-  padding: 15px 30px;
-  text-align: left;
-  font-size: 1.2rem;
-  white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  a {
-    color: $white !important;
-  }
-
-  .category {
-    display: inline-block;
-
-    a {
-      padding: 10px;
-      vertical-align: middle;
-    }
-
-    a:hover {
-      border-bottom: 3px solid $white;
-    }
-
-    .emoji {
-      font: {
-        size: 1.6rem;
-        weight: normal;
-      }
-      vertical-align: middle;
-    }
-  }
-
-  @media (max-width: 767px) {
-    padding: 10px 5px;
-  }
-}
-
 .content {
   background: $light-gray;
   overflow: hidden;
