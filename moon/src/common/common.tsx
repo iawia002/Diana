@@ -5,6 +5,7 @@ const Disqus = require('disqus-react');
 import { request } from 'src/request';
 import { Bg } from 'src/blog/Interface';
 import { Nav } from 'src/blog/components';
+import { Footer } from 'src/components/components';
 
 const styles = require('src/common/styles/common.scss');
 const blogStyles = require('src/blog/styles/index.scss');
@@ -136,6 +137,8 @@ export class FriendsView extends React.Component<{}, {}> {
               config={disqusConfig}
             />
           </div>
+
+          <Footer />
         </div>
       </>
     );

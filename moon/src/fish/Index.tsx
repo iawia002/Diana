@@ -3,7 +3,8 @@ import { AxiosResponse, AxiosError } from 'axios';
 
 import { request } from 'src/request';
 import { LoadMoreView } from 'src/fish/utils';
-import { ArticleListView, Footer, Top } from 'src/fish/components';
+import { ArticleListView, Top } from 'src/fish/components';
+import { Footer } from 'src/components/components';
 
 const styles = require('src/fish/styles/base.scss');
 

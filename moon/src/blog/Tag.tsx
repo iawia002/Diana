@@ -4,7 +4,8 @@ import { AxiosResponse, AxiosError } from 'axios';
 
 import { request } from 'src/request';
 import { LoadMoreView } from 'src/blog/utils';
-import { ArticleListView, Footer, RightView } from 'src/blog/components';
+import { ArticleListView, RightView } from 'src/blog/components';
+import { Footer } from 'src/components/components';
 
 const styles = require('src/blog/styles/article.scss');
 

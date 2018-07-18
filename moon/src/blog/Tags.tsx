@@ -3,7 +3,8 @@ import { AxiosResponse, AxiosError } from 'axios';
 
 import { request } from 'src/request';
 import { Tags } from 'src/blog/Interface';
-import { RightView, Footer } from 'src/blog/components';
+import { RightView } from 'src/blog/components';
+import { Footer } from 'src/components/components';
 
 const styles = require('src/blog/styles/article.scss');
 

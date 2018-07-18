@@ -3,7 +3,8 @@ import { AxiosResponse, AxiosError } from 'axios';
 
 import { request } from 'src/request';
 import { LoadMoreView } from 'src/blog/utils';
-import { ArticleListView, Footer, Nav } from 'src/blog/components';
+import { ArticleListView, Nav } from 'src/blog/components';
+import { Footer } from 'src/components/components';
 
 import 'balloon-css/balloon.css';
 import 'font-awesome/css/font-awesome.css';

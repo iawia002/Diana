@@ -5,8 +5,9 @@ import { Helmet } from 'react-helmet';
 
 import { request } from 'src/request';
 import { Article } from 'src/fish/Interface';
-import { ArticleContentView, Footer, Top } from 'src/fish/components';
+import { ArticleContentView, Top } from 'src/fish/components';
 import { ImageGallery } from 'src/components/ImageGallery';
+import { Footer } from 'src/components/components';
 import 'lazysizes';
 
 const styles = require('src/fish/styles/article.scss');
