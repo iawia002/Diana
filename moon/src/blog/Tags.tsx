@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { AxiosResponse, AxiosError } from 'axios';
 
-import { request } from '../request';
-import { Tags } from './Interface';
-import { RightView, Footer } from './components';
+import { request } from 'src/request';
+import { Tags } from 'src/blog/Interface';
+import { RightView, Footer } from 'src/blog/components';
 
-const styles = require('./styles/article.scss');
+const styles = require('src/blog/styles/article.scss');
 
 export default class TagsView extends React.Component<{}, { data: Tags }> {
   componentDidMount() {

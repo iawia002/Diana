@@ -7,15 +7,15 @@ import { UnControlled as CodeMirror, IInstance } from 'react-codemirror2';
 import { ScrollInfo } from 'codemirror';
 var notie = require('notie');
 
-import { request } from '../request';
-import { getCookie } from '../utils';
+import { request } from 'src/request';
+import { getCookie } from 'src/utils';
 
 import 'codemirror/mode/gfm/gfm';
 import 'highlight.js/styles/solarized-dark.css';
 import 'codemirror/lib/codemirror.css';
 import 'notie/dist/notie.min.css';
 
-const styles = require('./styles/editor.scss');
+const styles = require('src/blog/styles/editor.scss');
 
 interface MatchParams {
   id: string;

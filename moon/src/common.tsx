@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { AxiosResponse } from 'axios';
 
-import { request } from './request';
-import { Bg } from './blog/Interface';
+import { request } from 'src/request';
+import { Bg } from 'src/blog/Interface';
 
-const styles = require('./blog/styles/index.scss');
+const styles = require('src/blog/styles/index.scss');
 
 export class NotFound extends React.Component<{}, { data: Bg }> {
   componentDidMount() {

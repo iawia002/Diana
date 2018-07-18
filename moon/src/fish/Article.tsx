@@ -3,13 +3,13 @@ import { match } from 'react-router-dom';
 import { AxiosResponse, AxiosError } from 'axios';
 import { Helmet } from 'react-helmet';
 
-import { request } from '../request';
-import { Article } from './Interface';
-import { ArticleContentView, Footer, Top } from './components';
-import { ImageGallery } from '../components/ImageGallery';
+import { request } from 'src/request';
+import { Article } from 'src/fish/Interface';
+import { ArticleContentView, Footer, Top } from 'src/fish/components';
+import { ImageGallery } from 'src/components/ImageGallery';
 import 'lazysizes';
 
-const styles = require('./styles/article.scss');
+const styles = require('src/fish/styles/article.scss');
 
 interface MatchParams {
   id: string;

@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = function override(config, env) {
   config.module.rules[1].oneOf.splice(
     config.module.rules[1].oneOf.length - 1,
@@ -19,5 +21,7 @@ module.exports = function override(config, env) {
       ],
     }
   );
+  config.resolve.alias.src = path.resolve(__dirname, 'src');
+  config.resolve.extensions.push('.scss');
   return config;
 };
