@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom';
 import { AxiosResponse, AxiosError } from 'axios';
 const notie = require('notie');
 
-import { request } from '../request';
+import { request } from 'src/request';
 
-const styles = require('./styles/login.scss');
+const styles = require('src/auth/styles/login.scss');
 
 interface LoginState {
   username: string;

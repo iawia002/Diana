@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { AxiosResponse, AxiosError } from 'axios';
 
-import { request } from '../request';
-import { LoadMoreView } from './utils';
-import { ArticleListView, Footer, Top } from './components';
+import { request } from 'src/request';
+import { LoadMoreView } from 'src/fish/utils';
+import { ArticleListView, Footer, Top } from 'src/fish/components';
 
-const styles = require('./styles/base.scss');
+const styles = require('src/fish/styles/base.scss');
 
 export default class FishIndex extends LoadMoreView<{}> {
   constructor(props: {}) {

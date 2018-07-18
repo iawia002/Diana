@@ -1,6 +1,6 @@
 // 动画
 
-@import "color";
+@import '~src/styles/color';
 
 // body {
 //   background-color: #dedede;
@@ -24,7 +24,7 @@
 .cube,
 .cube::after,
 .cube::before {
-  content: "";
+  content: '';
   float: left;
   height: 3em;
   position: absolute;

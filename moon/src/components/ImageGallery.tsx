@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Hammer from 'hammerjs';
 
-const styles = require('./styles/ImageGallery.scss');
+const styles = require('src/components/styles/ImageGallery.scss');
 
 export interface ImageGalleryState {
   current: string;

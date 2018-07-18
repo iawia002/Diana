@@ -2,18 +2,18 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import registerServiceWorker from './registerServiceWorker';
-import { NotFound } from './common';
-import Index from './blog/Index';
-import ArticleView from './blog/Article';
-import TagsView from './blog/Tags';
-import TagView from './blog/Tag';
-import EditorView from './blog/Editor';
+import registerServiceWorker from 'src/registerServiceWorker';
+import { NotFound } from 'src/common';
+import Index from 'src/blog/Index';
+import ArticleView from 'src/blog/Article';
+import TagsView from 'src/blog/Tags';
+import TagView from 'src/blog/Tag';
+import EditorView from 'src/blog/Editor';
 
-import FishIndex from './fish/Index';
-import FishArticleView from './fish/Article';
+import FishIndex from 'src/fish/Index';
+import FishArticleView from 'src/fish/Article';
 
-import LoginView from './auth/Login';
+import LoginView from 'src/auth/Login';
 
 const AppRouter = () => {
   return (

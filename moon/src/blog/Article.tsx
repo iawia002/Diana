@@ -3,13 +3,13 @@ import { match } from 'react-router-dom';
 import { AxiosResponse, AxiosError } from 'axios';
 const Disqus = require('disqus-react');
 
-import { request } from '../request';
-import { Article, User } from './Interface';
-import { ArticleContentView, Footer, RightView } from './components';
-import { ImageGallery } from '../components/ImageGallery';
+import { request } from 'src/request';
+import { Article, User } from 'src/blog/Interface';
+import { ArticleContentView, Footer, RightView } from 'src/blog/components';
+import { ImageGallery } from 'src/components/ImageGallery';
 
 import 'highlight.js/styles/solarized-dark.css';
-const styles = require('./styles/article.scss');
+const styles = require('src/blog/styles/article.scss');
 
 interface MatchParams {
   id: string;

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { AxiosResponse, AxiosError } from 'axios';
 
-import { request } from '../request';
-import { LoadMoreView } from './utils';
-import { ArticleListView, Footer } from './components';
+import { request } from 'src/request';
+import { LoadMoreView } from 'src/blog/utils';
+import { ArticleListView, Footer } from 'src/blog/components';
 
 import 'balloon-css/balloon.css';
 import 'font-awesome/css/font-awesome.css';
-const styles = require('./styles/index.scss');
+const styles = require('src/blog/styles/index.scss');
 
 export default class Index extends LoadMoreView<{}> {
   constructor(props: {}) {

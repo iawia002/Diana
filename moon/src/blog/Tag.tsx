@@ -2,11 +2,11 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { AxiosResponse, AxiosError } from 'axios';
 
-import { request } from '../request';
-import { LoadMoreView } from './utils';
-import { ArticleListView, Footer, RightView } from './components';
+import { request } from 'src/request';
+import { LoadMoreView } from 'src/blog/utils';
+import { ArticleListView, Footer, RightView } from 'src/blog/components';
 
-const styles = require('./styles/article.scss');
+const styles = require('src/blog/styles/article.scss');
 
 interface MatchParams {
   tag: string;

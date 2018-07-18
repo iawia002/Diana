@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { Article, User } from './Interface';
-const styles = require('./styles/article.scss');
+import { Article, User } from 'src/blog/Interface';
+const styles = require('src/blog/styles/article.scss');
 
 interface ContentProps {
   article: Article;

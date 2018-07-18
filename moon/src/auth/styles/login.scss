@@ -1,5 +1,5 @@
 // 登录
-@import 'base';
+@import '~src/auth/styles/base';
 
 .avatar {
   @include avatar($top: 80px, $bottom: 50px);

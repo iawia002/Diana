@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { Article } from './Interface';
+import { Article } from 'src/fish/Interface';
 
-const styles = require('./styles/article.scss');
+const styles = require('src/fish/styles/article.scss');
 
 interface ContentProps {
   article: Article;

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { AxiosResponse } from 'axios';
 
-import { request } from '../request';
-import { State } from './Interface';
+import { request } from 'src/request';
+import { State } from 'src/fish/Interface';
 
 export class LoadMoreView<P> extends React.Component<P, State> {
   componentDidMount() {
