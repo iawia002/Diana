@@ -59,7 +59,7 @@ class ArticleView extends React.Component<Props, { data: State }> {
     const { login, article, user } = state.data;
     const disqusShortname = 'theycallmel';
     const disqusConfig = {
-      url: `https://l.jifangcheng.com/p/${article.article_id}`,
+      url: `https://ia.jifangcheng.com/p/${article.article_id}`,
       identifier: article.article_id,
       title: article.title,
     };

@@ -76,7 +76,7 @@ export class FriendsView extends React.Component<{}, {}> {
   render() {
     const disqusShortname = 'theycallmel';
     const disqusConfig = {
-      url: `https://l.jifangcheng.com/friends`,
+      url: `https://ia.jifangcheng.com/friends`,
       identifier: 'friends',
       title: '朋友们',
     };
