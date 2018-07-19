@@ -1,8 +1,7 @@
 @import '~src/styles/variable';
 
 .nav {
-  position: absolute;
-  top: 10px;
+  position: relative;
   margin: auto;
   width: 100%;
   max-width: $content-max-width;

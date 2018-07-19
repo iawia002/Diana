@@ -2,6 +2,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import 'normalize.css';
+
 import registerServiceWorker from 'src/registerServiceWorker';
 import { NotFound, FriendsView } from 'src/common/common';
 import Index from 'src/blog/Index';
