@@ -44,7 +44,7 @@ class ArticleView extends React.Component<Props, { data: State }> {
       .get(`/p/${id}`)
       .then(function(response: AxiosResponse) {
         self.setState({ data: response.data });
-        document.title = `${response.data.article.title} - L`;
+        document.title = `${response.data.article.title} - iawia002`;
       })
       .catch(function(error: AxiosError) {
         console.log(error);

@@ -28,7 +28,7 @@ export default class TagView extends LoadMoreView<
           page: 'tag',
           tag: response.data.tag,
         });
-        document.title = `${response.data.tag} - L`;
+        document.title = `${response.data.tag} - iawia002`;
       })
       .catch(function(error: AxiosError) {
         console.log(error);

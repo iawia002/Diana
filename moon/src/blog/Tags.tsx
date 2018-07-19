@@ -10,7 +10,7 @@ const styles = require('src/blog/styles/article.scss');
 
 export default class TagsView extends React.Component<{}, { data: Tags }> {
   componentDidMount() {
-    document.title = '所有标签 - L';
+    document.title = '所有标签 - iawia002';
     var self = this;
     request
       .get('/tags')

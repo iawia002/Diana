@@ -14,7 +14,7 @@ export default class FishIndex extends LoadMoreView<{}> {
   }
 
   componentDidMount() {
-    document.title = '知乎热门钓鱼帖 - L';
+    document.title = '知乎热门钓鱼帖 - iawia002';
     super.componentDidMount.apply(this);
     var self = this;
     request

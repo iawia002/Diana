@@ -35,7 +35,9 @@ class FishArticleView extends React.Component<Props, { data: State }> {
       .get(`/fish/p/${id}`)
       .then(function(response: AxiosResponse) {
         self.setState({ data: response.data });
-        document.title = `${response.data.article.title} - 知乎热门钓鱼帖 - L`;
+        document.title = `${
+          response.data.article.title
+        } - 知乎热门钓鱼帖 - iawia002`;
       })
       .catch(function(error: AxiosError) {
         console.log(error);

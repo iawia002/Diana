@@ -70,7 +70,7 @@ export class NotFound extends React.Component<{}, { data: Bg }> {
 
 export class FriendsView extends React.Component<{}, {}> {
   componentDidMount() {
-    document.title = '朋友们 - L';
+    document.title = '朋友们 - iawia002';
   }
 
   render() {

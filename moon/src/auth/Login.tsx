@@ -26,7 +26,7 @@ export default class LoginView extends React.Component<{}, LoginState> {
   }
 
   componentDidMount() {
-    document.title = '登录 - L';
+    document.title = '登录 - iawia002';
   }
 
   handleChange(event: React.FormEvent<HTMLInputElement>) {

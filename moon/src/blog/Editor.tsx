@@ -57,7 +57,7 @@ export default class EditorView extends React.Component<
   }
 
   componentDidMount() {
-    document.title = '编辑 - L';
+    document.title = '编辑 - iawia002';
     const { id } = this.props.match.params;
     const self = this;
     request
