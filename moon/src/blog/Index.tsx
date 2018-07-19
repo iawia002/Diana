@@ -41,9 +41,10 @@ export default class Index extends LoadMoreView<{}> {
             className={styles.bg}
             style={{ backgroundImage: `url(${data.bg.url})` }}
           />
+          <div className={styles.mask} />
           <Nav />
           <div className={styles.mainContent}>
-            <h1>{data.user.username}</h1>
+            {/* <h1>{data.user.username}</h1> */}
             <div className={styles.introduction} id="introduction">
               <p>{data.user.introduction}</p>
               {data.login ? (

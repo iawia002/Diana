@@ -90,6 +90,7 @@ export class FriendsView extends React.Component<{}, {}> {
                 'url(http://img.l.jifangcheng.com/68ae837e8306c7a75261ebd18d8b2c352aec2442.png)',
             }}
           />
+          <div className={blogStyles.mask} />
           <Nav />
           <div className={blogStyles.mainContent} style={{ marginTop: 0 }}>
             <h1 style={{ fontSize: '1.5rem' }}>“以我所有，换我所无”</h1>

@@ -33,12 +33,11 @@
 
   p {
     font: {
-      size: 1.5rem;
+      size: 3rem;
       weight: normal;
     }
     margin-top: 10px;
     text-shadow: 0 0 20px $black;
-    border-left: 3px solid $white;
     padding: 3px 20px;
     display: inline-block;
     color: $white;
@@ -78,7 +77,6 @@
 }
 
 .bg {
-  // height: 100vh;
   height: 100%;
   width: 100%;
   margin: 0;
@@ -97,6 +95,14 @@
     fill-mode: forwards;
   }
   position: absolute;
+}
+
+.mask {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: $black;
+  opacity: 0.3;
 }
 
 .mainContent {
