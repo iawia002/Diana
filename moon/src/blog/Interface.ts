@@ -14,6 +14,7 @@ export interface User {
 export interface Bg {
   name: string;
   url: string;
+  quote: string;
 }
 
 export interface Tag {

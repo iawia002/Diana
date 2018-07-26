@@ -93,7 +93,7 @@ export class FriendsView extends React.Component<{}, {}> {
           <div className={blogStyles.mask} />
           <Nav />
           <div className={blogStyles.mainContent} style={{ marginTop: 0 }}>
-            <h1 style={{ fontSize: '1.5rem' }}>“以我所有，换我所无”</h1>
+            <h1 style={{ fontSize: '1.5rem' }}>What makes me, me</h1>
           </div>
         </div>
         <div className={styles.content}>

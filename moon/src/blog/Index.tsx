@@ -44,16 +44,8 @@ export default class Index extends LoadMoreView<{}> {
           <div className={styles.mask} />
           <Nav />
           <div className={styles.mainContent}>
-            {/* <h1>{data.user.username}</h1> */}
             <div className={styles.introduction} id="introduction">
-              <p>{data.user.introduction}</p>
-              {data.login ? (
-                <span>
-                  <i className="fa fa-pencil-square-o" aria-hidden="true" />
-                </span>
-              ) : (
-                ''
-              )}
+              <p>{`“${data.bg.quote}”`}</p>
             </div>
           </div>
           <p className={styles.bgIntro}>{data.bg.name}</p>

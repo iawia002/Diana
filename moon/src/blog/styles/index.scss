@@ -33,10 +33,9 @@
 
   p {
     font: {
-      size: 2.5rem;
+      size: 2rem;
       weight: normal;
     }
-    margin-top: 10px;
     text-shadow: 0 0 20px $black;
     padding: 3px 20px;
     display: inline-block;
@@ -111,12 +110,7 @@
   left: 0;
   right: 0;
   transform: translateY(-50%);
-  margin-top: -40px;
   padding: 0 10px;
-
-  @media (max-width: 767px) {
-    margin-top: -10px;
-  }
 }
 
 .content {
