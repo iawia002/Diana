@@ -15,6 +15,7 @@ export interface Bg {
   name: string;
   url: string;
   quote: string;
+  position: string;
 }
 
 export interface Tag {

@@ -39,7 +39,12 @@ export default class Index extends LoadMoreView<{}> {
         <div className={styles.top}>
           <div
             className={styles.bg}
-            style={{ backgroundImage: `url(${data.bg.url})` }}
+            style={{
+              backgroundImage: `url(${data.bg.url})`,
+              backgroundPosition: data.bg.position
+                ? data.bg.position
+                : 'center',
+            }}
           />
           <div className={styles.mask} />
           <Nav />
