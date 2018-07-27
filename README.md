@@ -1,6 +1,6 @@
 # Diana
 
-[![](docs/images/index.png)](https://ia.jifangcheng.com)
+[![](docs/images/index.jpg)](https://ia.jifangcheng.com)
 
 [![Build Status](https://travis-ci.org/iawia002/Diana.svg?branch=master)](https://travis-ci.org/iawia002/Diana)
 [![codecov](https://codecov.io/gh/iawia002/Diana/branch/master/graph/badge.svg)](https://codecov.io/gh/iawia002/Diana)
