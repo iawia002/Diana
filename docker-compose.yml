@@ -4,13 +4,13 @@ version: '2'
 services:
   #redis
   redis:
-    image: daocloud.io/library/redis:4.0.1
+    image: redis:4.0.10
     volumes:
       - ./data/redis:/data
 
   # postgres
   postgres:
-    image: daocloud.io/library/postgres:9.6.5
+    image: postgres:9.6.9
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_DB=diana

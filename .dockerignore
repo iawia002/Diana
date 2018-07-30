@@ -3,4 +3,8 @@ __pycache__
 
 .git
 
-node_modules
+moon/node_modules
+
+backup
+data
+log
