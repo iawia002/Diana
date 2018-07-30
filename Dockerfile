@@ -1,9 +1,7 @@
-FROM daocloud.io/library/python:3.6.2
+FROM python:3.7
 ENV PYTHONUNBUFFERED=1
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-COPY sources.list /etc/apt/sources.list
-RUN apt-get update && apt-get install -y gcc g++ python-software-properties libpq-dev git build-essential
 RUN mkdir /code
 WORKDIR /code
 ADD requirements.txt /code
