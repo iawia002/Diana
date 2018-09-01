@@ -4,7 +4,7 @@ import { AxiosResponse, AxiosError } from 'axios';
 import { request } from 'src/request';
 import { Tags } from 'src/blog/Interface';
 import { RightView } from 'src/blog/components';
-import { Footer } from 'src/components/components';
+import { Footer, Loading } from 'src/components/components';
 
 const styles = require('src/blog/styles/article.scss');
 
@@ -25,7 +25,7 @@ export default class TagsView extends React.Component<{}, { data: Tags }> {
   render() {
     const { state } = this;
     if (!state) {
-      return <div />;
+      return <Loading />;
     }
     const { keys, values, user } = state.data;
     var keyElements = [];

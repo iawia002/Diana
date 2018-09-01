@@ -1,0 +1,24 @@
+.loading {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+
+  p {
+    display: inline-block;
+    text-align: center;
+    padding: 0px 20px;
+    font-size: 2rem;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    span {
+      font-size: 1rem;
+      padding-top: 10px;
+      display: block;
+    }
+  }
+}

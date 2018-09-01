@@ -7,7 +7,7 @@ import { request } from 'src/request';
 import { Article, User } from 'src/blog/Interface';
 import { ArticleContentView, RightView } from 'src/blog/components';
 import { ImageGallery } from 'src/components/ImageGallery';
-import { Footer } from 'src/components/components';
+import { Footer, Loading } from 'src/components/components';
 
 import 'highlight.js/styles/solarized-dark.css';
 const styles = require('src/blog/styles/article.scss');
@@ -54,7 +54,7 @@ class ArticleView extends React.Component<Props, { data: State }> {
   render() {
     const { state } = this;
     if (!state) {
-      return <div />;
+      return <Loading />;
     }
     const { login, article, user } = state.data;
     const disqusShortname = 'theycallmel';

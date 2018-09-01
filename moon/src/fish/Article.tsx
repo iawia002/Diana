@@ -7,7 +7,7 @@ import { request } from 'src/request';
 import { Article } from 'src/fish/Interface';
 import { ArticleContentView, Top } from 'src/fish/components';
 import { ImageGallery } from 'src/components/ImageGallery';
-import { Footer } from 'src/components/components';
+import { Footer, Loading } from 'src/components/components';
 import 'lazysizes';
 
 const styles = require('src/fish/styles/article.scss');
@@ -54,7 +54,7 @@ class FishArticleView extends React.Component<Props, { data: State }> {
   render() {
     const { state } = this;
     if (!state) {
-      return <div />;
+      return <Loading />;
     }
     const { article } = state.data;
     return (

@@ -5,7 +5,7 @@ import { AxiosResponse, AxiosError } from 'axios';
 import { request } from 'src/request';
 import { LoadMoreView } from 'src/blog/utils';
 import { ArticleListView, RightView } from 'src/blog/components';
-import { Footer } from 'src/components/components';
+import { Footer, Loading } from 'src/components/components';
 
 const styles = require('src/blog/styles/article.scss');
 
@@ -38,7 +38,7 @@ export default class TagView extends LoadMoreView<
   render() {
     const { state } = this;
     if (!state) {
-      return <div />;
+      return <Loading />;
     }
     const { login, articles, user } = state.data;
     return (

@@ -4,7 +4,7 @@ import { AxiosResponse, AxiosError } from 'axios';
 import { request } from 'src/request';
 import { LoadMoreView } from 'src/fish/utils';
 import { ArticleListView, Top } from 'src/fish/components';
-import { Footer } from 'src/components/components';
+import { Footer, Loading } from 'src/components/components';
 
 const styles = require('src/fish/styles/base.scss');
 
@@ -30,7 +30,7 @@ export default class FishIndex extends LoadMoreView<{}> {
   render() {
     const { state } = this;
     if (!state) {
-      return <div />;
+      return <Loading />;
     }
     const { data } = state;
     return (

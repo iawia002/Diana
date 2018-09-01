@@ -66,7 +66,7 @@ export default class LoginView extends React.Component<{}, LoginState> {
             className={styles.avatar}
             style={{
               backgroundImage:
-                'url("https://obmfhf1m3.qnssl.com/Katarina.png")',
+                'url("http://img.l.jifangcheng.com/3306700a34d503e000b41e3a7060d59c6dbc8308.png")',
             }}
           />
           <form onSubmit={this.handleSubmit}>

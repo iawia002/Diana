@@ -139,14 +139,14 @@ input {
   box-shadow: 0 0 20px $light-black;
 }
 
-@mixin avatar($bg: 'moon.png', $width: 120px) {
-  margin: 0 auto;
+@mixin avatar($top: 55px, $bottom: 10px, $width: 120px) {
+  margin: $top auto $bottom;
   padding: 0;
   width: $width;
   height: $width;
+  box-shadow: 0 2px 5px 0 $light-black-2;
   border-radius: 60px;
   text-indent: -9999px;
-  background: url('../../img/#{$bg}');
   background-size: 100%;
 
   @media (max-width: 767px) {
