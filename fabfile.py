@@ -80,17 +80,7 @@ def shell():
 def upgrade_packages():
     '''更新依赖
     '''
-    local(
-        'docker-compose run --no-deps --name diana_upgrade web '
-        'pip install -r requirements.txt'
-    )
-    local(
-        'docker commit -m "update" -a "iawia002" diana_upgrade '
-        'iawia002/diana:latest'
-    )
-    local(
-        'docker rm --force diana_upgrade'
-    )
+    local('docker build -t iawia002/diana:latest -f ./Dockerfile .')
     local('docker push iawia002/diana:latest')
 
 
