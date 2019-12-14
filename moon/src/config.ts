@@ -3,7 +3,7 @@ const dev = {
 };
 
 const prod = {
-  api: 'https://api.jifangcheng.com',
+  api: 'https://api.ia.jifangcheng.com',
 };
 
 const config = process.env.NODE_ENV === 'production' ? prod : dev;
