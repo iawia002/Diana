@@ -4433,9 +4433,10 @@ lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "http://registry.npm.taobao.org/lazy-cache/download/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
 
-lazysizes@^4.0.2:
-  version "4.1.1"
-  resolved "http://registry.npm.taobao.org/lazysizes/download/lazysizes-4.1.1.tgz#f0b798ac0be77d3de91adf6b80037443b5d2ee54"
+lazysizes@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/lazysizes/-/lazysizes-5.2.1.tgz#f450e36a995efb5817acb8c904f3d2f2efc29ffa"
+  integrity sha512-607dEMlbcnkny2lGYVqoA/rQO+WGpWh/BISeS1eLfT8nHQw6E+R8ybJoKKGVlZ2czKPTATrsU95f+nkwix0fXw==
 
 lcid@^1.0.0:
   version "1.0.0"
