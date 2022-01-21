@@ -9,7 +9,7 @@ Alembic==1.0.0
 psycopg2-binary==2.7.5
 pinyin==0.4.0
 bcrypt==3.1.4
-IPython==6.4.0
+IPython==7.16.3
 ipdb==0.11
 fabric==2.2.1
 coverage==4.5.1
