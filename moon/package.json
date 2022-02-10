@@ -46,7 +46,7 @@
     "@types/react-dom": "^16.0.6",
     "@types/react-helmet": "^5.0.5",
     "@types/react-router-dom": "^4.2.7",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "react-app-rewired": "^1.5.2",
     "sass-loader": "^7.0.3",
     "typescript": "^3.0.3"
